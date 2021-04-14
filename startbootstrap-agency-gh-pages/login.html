@@ -16,6 +16,25 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="css/styles.css" rel="stylesheet" />
+    <!-- 로그인css&link========================================================================================-->
+    <link rel="stylesheet" type="text/css" href="login/vendor/bootstrap/css/bootstrap.min.css" />
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="login/fonts/font-awesome-4.7.0/css/font-awesome.min.css" />
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="login/fonts/iconic/css/material-design-iconic-font.min.css" />
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="login/vendor/animate/animate.css" />
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="login/vendor/css-hamburgers/hamburgers.min.css" />
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="login/vendor/animsition/css/animsition.min.css" />
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="login/vendor/select2/select2.min.css" />
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="vendor/daterangepicker/daterangepicker.css" />
+    <link rel="stylesheet" type="text/css" href="login/css/util.css" />
+    <link rel="stylesheet" type="text/css" href="login/css/main.css" />
+  
   </head>
   <body id="page-top">
     <!-- Navigation-->
@@ -35,260 +54,51 @@
           </ul>
           <ul class="navbar-nav text-uppercase ml-auto">
             <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#contact">검색</a></li>
-            <li class="nav-item"><a class="nav-link js-scroll-trigger" href="login.html">로그인</a></li>
+            <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#contact">로그인</a></li>
             <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#contact">한국어</a></li>
           </ul>
         </div>
       </div>
     </nav>
-    <!-- Masthead-->
-    <header class="masthead">
-      <div class="container">
-        <div class="masthead-subheading">Welcom to SEOUL</div>
-        <div class="masthead-heading text-uppercase">어서와 서울은 처음이지?</div>
-        <!-- <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="#services">Tell Me More</a> -->
-      </div>
-    </header>
     <!-- Services-->
-    <section class="page-section" id="services">
-      <div class="container">
-        <div class="text-center">
-          <h2 class="section-heading text-uppercase">오늘의 서울</h2>
-          <h3 class="section-subheading text-muted">다양한 서울의 정보를 제공합니다.</h3>
-        </div>
-        <div class="row text-center">
-          <div class="col-md-4">
-            <span class="fa-stack fa-4x">
-              <!-- <i class="fas fa-circle fa-stack-2x text-primary"></i> -->
-              <i class="bi-cloud-sun fa-stack-1x fa-inverse fa-lg" style="color: black"></i>
-            </span>
-            <h4 class="my-3">날씨</h4>
-            <p class="text-muted">서울의 날씨를 제공합니다.</p>
-          </div>
-          <div class="col-md-4">
-            <span class="fa-stack fa-4x">
-              <!-- <i class="fas fa-circle fa-stack-2x text-primary"></i> -->
-              <i class="bi-signpost-split fa-stack-1x fa-inverse" style="color: black"></i>
-              <!-- <i class="fas fa-laptop fa-stack-1x fa-inverse"></i> -->
-            </span>
-            <h4 class="my-3">지역</h4>
-            <p class="text-muted">가장 핫한 서울을 소개합니다</p>
-          </div>
-          <div class="col-md-4">
-            <span class="fa-stack fa-4x">
-              <!-- <i class="fas fa-circle fa-stack-2x text-primary"></i> -->
-              <i class="bi-map fa-stack-1x fa-inverse" style="color: black"></i>
-            </span>
-            <h4 class="my-3">여행정보</h4>
-            <class class="text-muted">여행에 필요한 정보를 제공합니다.</class>
-          </div>
-        </div>
-      </div>
-    </section>
-    <!-- Portfolio Grid-->
-    <section class="page-section bg-light" id="portfolio">
-      <div class="container">
-        <div class="text-center">
-          <h2 class="section-heading text-uppercase">지역</h2>
-          <h3 class="section-subheading text-muted">가장 핫 한 서울을 소개합니다.</h3>
-        </div>
-        <div class="row">
-          <div class="col-lg-4 col-sm-6 mb-4">
-            <div class="portfolio-item">
-              <a class="portfolio-link" data-toggle="modal" href="#portfolioModal1">
-                <div class="portfolio-hover">
-                  <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
-                </div>
-                <img class="img-fluid" src="assets/img/portfolio/01-thumbnail.jpg" alt="" />
-              </a>
-              <div class="portfolio-caption">
-                <div class="portfolio-caption-heading">강남</div>
-                <div class="portfolio-caption-subheading text-muted">GANGNAM</div>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-4 col-sm-6 mb-4">
-            <div class="portfolio-item">
-              <a class="portfolio-link" href="hongdae.html">
-                <div class="portfolio-hover">
-                  <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
-                </div>
-                <img class="img-fluid" src="assets/img/portfolio/02-thumbnail.jpg" alt="" />
-              </a>
-              <div class="portfolio-caption">
-                <div class="portfolio-caption-heading">홍대</div>
-                <div class="portfolio-caption-subheading text-muted">HONGDAE</div>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-4 col-sm-6 mb-4">
-            <div class="portfolio-item">
-              <a class="portfolio-link" data-toggle="modal" href="#portfolioModal3">
-                <div class="portfolio-hover">
-                  <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
-                </div>
-                <img class="img-fluid" src="assets/img/portfolio/03-thumbnail.jpg" alt="" />
-              </a>
-              <div class="portfolio-caption">
-                <div class="portfolio-caption-heading">이태원</div>
-                <div class="portfolio-caption-subheading text-muted">ITAEWON</div>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-4 col-sm-6 mb-4 mb-lg-0">
-            <div class="portfolio-item">
-              <a class="portfolio-link" data-toggle="modal" href="#portfolioModal4">
-                <div class="portfolio-hover">
-                  <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
-                </div>
-                <img class="img-fluid" src="assets/img/portfolio/04-thumbnail.jpg" alt="" />
-              </a>
-              <div class="portfolio-caption">
-                <div class="portfolio-caption-heading">잠실</div>
-                <div class="portfolio-caption-subheading text-muted">JAMSIL</div>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-4 col-sm-6 mb-4 mb-sm-0">
-            <div class="portfolio-item">
-              <a class="portfolio-link" data-toggle="modal" href="#portfolioModal5">
-                <div class="portfolio-hover">
-                  <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
-                </div>
-                <img class="img-fluid" src="assets/img/portfolio/05-thumbnail.jpg" alt="" />
-              </a>
-              <div class="portfolio-caption">
-                <div class="portfolio-caption-heading">명동</div>
-                <div class="portfolio-caption-subheading text-muted">MYEONGDONG</div>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-4 col-sm-6">
-            <div class="portfolio-item">
-              <a class="portfolio-link" data-toggle="modal" href="#portfolioModal6">
-                <div class="portfolio-hover">
-                  <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
-                </div>
-                <img class="img-fluid" src="assets/img/portfolio/06-thumbnail.jpg" alt="" />
-              </a>
-              <div class="portfolio-caption">
-                <div class="portfolio-caption-heading">광화문</div>
-                <div class="portfolio-caption-subheading text-muted">GWANGHWAMUN</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <!-- About-->
-    <section class="page-section" id="about">
-      <div class="container">
-        <div class="text-center">
-          <h2 class="section-heading text-uppercase">후기</h2>
-          <h3 class="section-subheading text-muted">가봤던 곳들을 생생하게 전달 해줍니다.</h3>
-        </div>
-        <ul class="timeline">
-          <li>
-            <a href="https://www.naver.com/">
-              <div class="timeline-image"><img class="rounded-circle img-fluid" src="assets/img/about/1.jpg" alt="" /></div>
-              <div class="timeline-panel">
-                <div class="timeline-heading">
-                  <hx4 class="subheading">[정원영] 생생한 후기 !</hx4>
-                </div>
-                <div class="timeline-body"><p class="text-muted">잘나왔습니다</div>
-            </a>
-          </li>
+    <div class="limiter">
+      <div class="container-login100" id =login>
+        <div class="wrap-login100">
+          <form class="login100-form validate-form">
+            <span class="login100-form-title p-b-24"> 로그인 </span>
 
-          <li class="timeline-inverted">
-              <div class="timeline-image"><img class="rounded-circle img-fluid" src="assets/img/about/2.jpg" alt="" /></div>
-              <div class="timeline-panel">
-                <div class="timeline-heading">
-                  <h4>March 2011</h4>
-                  <h4 class="subheading">An Agency is Born</h4>
-                </div>
-                <div class="timeline-body"><p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt ut voluptatum eius sapiente, totam reiciendis temporibus qui quibusdam, recusandae sit vero unde, sed, incidunt et ea quo dolore laudantium consectetur!</p></div>
+            <div class="wrap-input100 validate-input" data-validate="Valid email is: a@b.c">
+              <input class="input100" type="text" name="email" />
+              <span class="focus-input100" data-placeholder="Email"></span>
+            </div>
+
+            <div class="wrap-input100 validate-input" data-validate="Enter password">
+              <span class="btn-show-pass">
+                <i class="zmdi zmdi-eye"></i>
+              </span>
+              <input class="input100" type="password" name="pass" />
+              <span class="focus-input100" data-placeholder="Password"></span>
+            </div>
+            
+
+            <div class="container-login100-form-btn">
+              <div class="wrap-login100-form-btn">
+                <div class="login100-form-bgbtn"></div>
+                <button class="login100-form-btn">Login</button>
               </div>
-          </li>
-          <li>
-            <a href="https://www.naver.com/">
-              <div class="timeline-image"><img class="rounded-circle img-fluid" src="assets/img/about/3.jpg" alt="" /></div>
-              <div class="timeline-panel">
-                <div class="timeline-heading">
-                  <h4>December 2012</h4>
-                  <h4 class="subheading">Transition to Full Service</h4>
-                </div>
-                <div class="timeline-body"><p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt ut voluptatum eius sapiente, totam reiciendis temporibus qui quibusdam, recusandae sit vero unde, sed, incidunt et ea quo dolore laudantium consectetur!</p></div>
-              </div>
-            </a>
-          </li>
-          <li class="timeline-inverted">
-            <div class="timeline-image"><img class="rounded-circle img-fluid" src="assets/img/about/4.jpg" alt="" /></div>
-            <div class="timeline-panel">
-              <div class="timeline-heading">
-                <h4>July 2014</h4>
-                <h4 class="subheading">Phase Two Expansion</h4>
-              </div>
-              <div class="timeline-body"><p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt ut voluptatum eius sapiente, totam reiciendis temporibus qui quibusdam, recusandae sit vero unde, sed, incidunt et ea quo dolore laudantium consectetur!</p></div>
             </div>
-          </li>
-          <li class="timeline-inverted">
-            <div class="timeline-image">
-              <h4>
-                Be Part
-                <br />
-                Of Our
-                <br />
-                Story!
-              </h4>
+
+            <div class="text-center p-t-115">
+              <span class="txt1"> 회원가입 하시겠습니까? </span>
+
+              <a class="txt2" href="register.html"> Sign Up </a>
             </div>
-          </li>
-        </ul>
-      </div>
-    </section>
-    <!-- Team-->
-    <section class="page-section bg-light" id="team">
-      <div class="container">
-        <div class="text-center">
-          <h2 class="section-heading text-uppercase">여행정보</h2>
-          <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
-        </div>
-        <div class="row">
-          <div class="col-lg-4">
-            <div class="team-member">
-              <img class="mx-auto rounded-circle" src="assets/img/team/1.jpg" alt="" />
-              <h4>Kay Garland</h4>
-              <p class="text-muted">Lead Designer</p>
-              <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-twitter"></i></a>
-              <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-facebook-f"></i></a>
-              <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-linkedin-in"></i></a>
-            </div>
-          </div>
-          <div class="col-lg-4">
-            <div class="team-member">
-              <img class="mx-auto rounded-circle" src="assets/img/team/2.jpg" alt="" />
-              <h4>Larry Parker</h4>
-              <p class="text-muted">Lead Marketer</p>
-              <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-twitter"></i></a>
-              <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-facebook-f"></i></a>
-              <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-linkedin-in"></i></a>
-            </div>
-          </div>
-          <div class="col-lg-4">
-            <div class="team-member">
-              <img class="mx-auto rounded-circle" src="assets/img/team/3.jpg" alt="" />
-              <h4>Diana Petersen</h4>
-              <p class="text-muted">Lead Developer</p>
-              <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-twitter"></i></a>
-              <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-facebook-f"></i></a>
-              <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-linkedin-in"></i></a>
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-lg-8 mx-auto text-center"><p class="large text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut eaque, laboriosam veritatis, quos non quis ad perspiciatis, totam corporis ea, alias ut unde.</p></div>
+          </form>
         </div>
       </div>
-    </section>
+    </div>
+
+    <div id="dropDownSelect1"></div>
     <!-- Clients-->
     <div class="py-5">
       <div class="container">
@@ -533,5 +343,23 @@
     <script src="assets/mail/contact_me.js"></script>
     <!-- Core theme JS-->
     <script src="js/scripts.js"></script>
+
+    
+    <!--===============================================================================================-->
+    <script src="login/vendor/jquery/jquery-3.2.1.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="login/vendor/animsition/js/animsition.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="login/vendor/bootstrap/js/popper.js"></script>
+    <script src="login/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="login/vendor/select2/select2.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="login/vendor/daterangepicker/moment.min.js"></script>
+    <script src="login/vendor/daterangepicker/daterangepicker.js"></script>
+    <!--===============================================================================================-->
+    <script src="login/vendor/countdowntime/countdowntime.js"></script>
+    <!--===============================================================================================-->
+    <script src="login/js/main.js"></script>
   </body>
 </html>
