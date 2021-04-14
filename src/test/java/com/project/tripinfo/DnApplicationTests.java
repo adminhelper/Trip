@@ -1,4 +1,4 @@
-package com.project.dn;
+package com.project.tripinfo;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
