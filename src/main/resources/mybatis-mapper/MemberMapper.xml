@@ -3,7 +3,11 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.project.tripinfo.repository.MemberMapper">
     
-    <select id="selectMemberByAll" resultType="Member">
+    <select id="selectMemberByAll" resultType="com.project.tripinfo.model.Member">
         SELECT * FROM member
+    </select>
+
+    <select id="joinMember" resultType="int" >
+       SELECT count(1) FROM member where member_id = #{member_id} and member_password =  #{member_password}
     </select>
 </mapper>
