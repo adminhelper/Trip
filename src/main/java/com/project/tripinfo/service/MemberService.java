@@ -2,30 +2,29 @@ package com.project.tripinfo.service;
 
 import com.project.tripinfo.model.Member;
 import com.project.tripinfo.repository.MemberMapper;
-import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpSession;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
-@Service("com.project.tripinfo.service.MemberService")
+@Service("com.project.tripinfo.service.MemberMapper")
 public class MemberService implements MemberMapper {
 
     @Resource(name = "com.project.tripinfo.repository.MemberMapper")
     MemberMapper memberMapper;
 
-
     @Override
-    public List<Member> selectMemberByAll () {
-        return memberMapper.selectMemberByAll();
+    public void memberRegister (Member member) throws Exception {
+        memberMapper.memberRegister(member);
     }
 
     @Override
-    public int joinMember (Member member) {
-        return memberMapper.joinMember(member);
+    public int idCheck (String member_id) throws Exception {
+        return memberMapper.idCheck(member_id);
+    }
+
+    @Override
+    public int loginCheck (Member member) throws Exception {
+        return memberMapper.loginCheck(member);
     }
 
 

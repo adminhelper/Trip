@@ -65,38 +65,41 @@
 <div class="limiter">
     <div class="container-login100" id =login>
         <div class="wrap-login100">
-            <form class="login100-form validate-form" action="/member/join" method="post">
+            <form class="login100-form validate-form" action="/member/register" method="post">
                 <span class="login100-form-title p-b-26"> 회원가입 </span>
 
-                <div class="wrap-input100 validate-input" data-validate="Valid email is: a@b.c">
-                    <input class="input100" type="text" name="member_id" />
+                <div class="wrap-input100 validate-input" data-validate="아이디를 입력해주세요">
+                    <input class="input100" type="text" name="member_id" id="member_id" />
                     <span class="focus-input100" data-placeholder="id"></span>
+
+                </div>
+
+
+                <div class="wrap-input100 validate-input" data-validate="닉네임을 입력해주세요">
+                    <input class="input100" type="text" name="member_nickname" id="member_nickname" />
+                    <span class="focus-input100" data-placeholder="Nickname"></span>
                 </div>
 
                 <div class="wrap-input100 validate-input" data-validate="비밀번호를 입력해주세">
               <span class="btn-show-pass">
                 <i class="zmdi zmdi-eye"></i>
               </span>
-                    <input class="input100" type="password" name="member_password" />
+                    <input class="input100" type="password" name="member_password" id="member_password"/>
                     <span class="focus-input100" data-placeholder="Password"></span>
                 </div>
                 <div class="wrap-input100 validate-input" data-validate="비밀번호를 입력해주세요">
               <span class="btn-show-pass">
                 <i class="zmdi zmdi-eye"></i>
               </span>
-                    <input class="input100" type="password" name="member_password" />
+                    <input class="input100" type="password" name="member_password2" id="member_password2" />
                     <span class="focus-input100" data-placeholder="Password"></span>
                 </div>
 
-                <div class="wrap-input100 validate-input" data-validate="닉네임을 입력해주세요">
-                    <input class="input100" type="text" name="member_nickname" />
-                    <span class="focus-input100" data-placeholder="Nickname"></span>
-                </div>
 
                 <div class="container-login100-form-btn">
                     <div class="wrap-login100-form-btn">
                         <div class="login100-form-bgbtn"></div>
-                        <button class="login100-form-btn" type="submit">회원가입</button>
+                        <button class="login100-form-btn" type="submit" id = "register_button">회원가입</button>
                     </div>
                 </div>
 
@@ -374,4 +377,6 @@
 <!--===============================================================================================-->
 <script src="/login/js/main.js"></script>
 </body>
+<script>
+</script>
 </html>

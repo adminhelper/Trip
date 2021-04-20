@@ -1,29 +1,33 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="utf-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <meta name="description" content="" />
-    <meta name="author" content="" />
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <meta name="description" content=""/>
+    <meta name="author" content=""/>
     <title>오늘의 서울</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" />
-    <link rel="icon" type="image/x-icon" href="/assets/img/favicon.ico" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css"/>
+    <link rel="icon" type="image/x-icon" href="/assets/img/favicon.ico"/>
     <!-- Font Awesome icons (free version)-->
     <script src="https://use.fontawesome.com/releases/v5.15.1/js/all.js" crossorigin="anonymous"></script>
     <!-- Google fonts-->
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
-    <link href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
-    <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css"/>
+    <link href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic" rel="stylesheet"
+          type="text/css"/>
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css"/>
     <!-- Core theme CSS (includes Bootstrap)-->
-    <link href="/css/styles.css" rel="stylesheet" />
+    <link href="/css/styles.css" rel="stylesheet"/>
 </head>
 <body id="page-top">
 <!-- Navigation-->
 <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
     <div class="container">
-        <a class="navbar-brand js-scroll-trigger" href="/"><img src="/assets/img/navbar-logo.svg" alt="" /></a>
-        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <a class="navbar-brand js-scroll-trigger" href="/"><img src="/assets/img/navbar-logo.svg" alt=""/></a>
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
+                data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
+                aria-label="Toggle navigation">
             Menu
             <i class="fas fa-bars ml-1"></i>
         </button>
@@ -34,12 +38,25 @@
                 <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#about">후기</a></li>
                 <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#team">여행정보</a></li>
             </ul>
-            <ul class="navbar-nav text-uppercase ml-auto">
-                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#contact">검색</a></li>
-                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="/login">로그인</a></li>
-                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#contact">한국어</a></li>
-            </ul>
+            <c:choose>
+                <c:when test="${member == null}">
+                    <ul class="navbar-nav text-uppercase ml-auto">
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#contact">검색</a></li>
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="/login">로그인</a></li>
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#contact">한국어</a></li>
+                    </ul>
+                </c:when>
+                <c:when test="${member != null}">
+                    <ul class="navbar-nav text-uppercase ml-auto">
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#contact">검색</a></li>
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="/mypage">${member.member_id}님</a></li>
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="/logout">로그아웃</a></li>
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#contact">한국어</a></li>
+                    </ul>
+                </c:when>
+            </c:choose>
         </div>
+
     </div>
 </nav>
 <!-- Masthead-->
@@ -100,7 +117,7 @@
                         <div class="portfolio-hover">
                             <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
                         </div>
-                        <img class="img-fluid" src="/assets/img/portfolio/01-thumbnail.jpg" alt="" />
+                        <img class="img-fluid" src="/assets/img/portfolio/01-thumbnail.jpg" alt=""/>
                     </a>
                     <div class="portfolio-caption">
                         <div class="portfolio-caption-heading">강남</div>
@@ -114,7 +131,7 @@
                         <div class="portfolio-hover">
                             <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
                         </div>
-                        <img class="img-fluid" src="/assets/img/portfolio/02-thumbnail.jpg" alt="" />
+                        <img class="img-fluid" src="/assets/img/portfolio/02-thumbnail.jpg" alt=""/>
                     </a>
                     <div class="portfolio-caption">
                         <div class="portfolio-caption-heading">홍대</div>
@@ -128,7 +145,7 @@
                         <div class="portfolio-hover">
                             <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
                         </div>
-                        <img class="img-fluid" src="/assets/img/portfolio/03-thumbnail.jpg" alt="" />
+                        <img class="img-fluid" src="/assets/img/portfolio/03-thumbnail.jpg" alt=""/>
                     </a>
                     <div class="portfolio-caption">
                         <div class="portfolio-caption-heading">이태원</div>
@@ -142,7 +159,7 @@
                         <div class="portfolio-hover">
                             <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
                         </div>
-                        <img class="img-fluid" src="/assets/img/portfolio/04-thumbnail.jpg" alt="" />
+                        <img class="img-fluid" src="/assets/img/portfolio/04-thumbnail.jpg" alt=""/>
                     </a>
                     <div class="portfolio-caption">
                         <div class="portfolio-caption-heading">잠실</div>
@@ -156,7 +173,7 @@
                         <div class="portfolio-hover">
                             <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
                         </div>
-                        <img class="img-fluid" src="/assets/img/portfolio/05-thumbnail.jpg" alt="" />
+                        <img class="img-fluid" src="/assets/img/portfolio/05-thumbnail.jpg" alt=""/>
                     </a>
                     <div class="portfolio-caption">
                         <div class="portfolio-caption-heading">명동</div>
@@ -170,7 +187,7 @@
                         <div class="portfolio-hover">
                             <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
                         </div>
-                        <img class="img-fluid" src="/assets/img/portfolio/06-thumbnail.jpg" alt="" />
+                        <img class="img-fluid" src="/assets/img/portfolio/06-thumbnail.jpg" alt=""/>
                     </a>
                     <div class="portfolio-caption">
                         <div class="portfolio-caption-heading">광화문</div>
@@ -185,8 +202,8 @@
 <section class="page-section" id="about">
     <div class="container">
         <div class="text-center">
-            <a href="/review/boardlist">
-            <h2 class="section-heading text-uppercase">후기</h2>
+            <a href="/board/review/boardlist">
+                <h2 class="section-heading text-uppercase">후기</h2>
             </a>
             <h3 class="section-subheading text-muted">가봤던 곳들을 생생하게 전달 해줍니다.</h3>
         </div>
@@ -194,7 +211,8 @@
         <ul class="timeline">
             <li>
                 <a href="https://www.naver.com/">
-                    <div class="timeline-image"><img class="rounded-circle img-fluid" src="/assets/img/about/1.jpg" alt="" /></div>
+                    <div class="timeline-image"><img class="rounded-circle img-fluid" src="/assets/img/about/1.jpg"
+                                                     alt=""/></div>
                     <div class="timeline-panel">
                         <div class="timeline-heading">
                             <hx4 class="subheading">[정원영] 생생한 후기 !</hx4>
@@ -204,44 +222,54 @@
             </li>
 
             <li class="timeline-inverted">
-                <div class="timeline-image"><img class="rounded-circle img-fluid" src="/assets/img/about/2.jpg" alt="" /></div>
+                <div class="timeline-image"><img class="rounded-circle img-fluid" src="/assets/img/about/2.jpg" alt=""/>
+                </div>
                 <div class="timeline-panel">
                     <div class="timeline-heading">
                         <h4>March 2011</h4>
                         <h4 class="subheading">An Agency is Born</h4>
                     </div>
-                    <div class="timeline-body"><p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt ut voluptatum eius sapiente, totam reiciendis temporibus qui quibusdam, recusandae sit vero unde, sed, incidunt et ea quo dolore laudantium consectetur!</p></div>
+                    <div class="timeline-body"><p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing
+                        elit. Sunt ut voluptatum eius sapiente, totam reiciendis temporibus qui quibusdam, recusandae
+                        sit vero unde, sed, incidunt et ea quo dolore laudantium consectetur!</p></div>
                 </div>
             </li>
             <li>
                 <a href="https://www.naver.com/">
-                    <div class="timeline-image"><img class="rounded-circle img-fluid" src="/assets/img/about/3.jpg" alt="" /></div>
+                    <div class="timeline-image"><img class="rounded-circle img-fluid" src="/assets/img/about/3.jpg"
+                                                     alt=""/></div>
                     <div class="timeline-panel">
                         <div class="timeline-heading">
                             <h4>December 2012</h4>
                             <h4 class="subheading">Transition to Full Service</h4>
                         </div>
-                        <div class="timeline-body"><p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt ut voluptatum eius sapiente, totam reiciendis temporibus qui quibusdam, recusandae sit vero unde, sed, incidunt et ea quo dolore laudantium consectetur!</p></div>
+                        <div class="timeline-body"><p class="text-muted">Lorem ipsum dolor sit amet, consectetur
+                            adipisicing elit. Sunt ut voluptatum eius sapiente, totam reiciendis temporibus qui
+                            quibusdam, recusandae sit vero unde, sed, incidunt et ea quo dolore laudantium
+                            consectetur!</p></div>
                     </div>
                 </a>
             </li>
             <li class="timeline-inverted">
-                <div class="timeline-image"><img class="rounded-circle img-fluid" src="/assets/img/about/4.jpg" alt="" /></div>
+                <div class="timeline-image"><img class="rounded-circle img-fluid" src="/assets/img/about/4.jpg" alt=""/>
+                </div>
                 <div class="timeline-panel">
                     <div class="timeline-heading">
                         <h4>July 2014</h4>
                         <h4 class="subheading">Phase Two Expansion</h4>
                     </div>
-                    <div class="timeline-body"><p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt ut voluptatum eius sapiente, totam reiciendis temporibus qui quibusdam, recusandae sit vero unde, sed, incidunt et ea quo dolore laudantium consectetur!</p></div>
+                    <div class="timeline-body"><p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing
+                        elit. Sunt ut voluptatum eius sapiente, totam reiciendis temporibus qui quibusdam, recusandae
+                        sit vero unde, sed, incidunt et ea quo dolore laudantium consectetur!</p></div>
                 </div>
             </li>
             <li class="timeline-inverted">
                 <div class="timeline-image">
                     <h4>
                         Be Part
-                        <br />
+                        <br/>
                         Of Our
-                        <br />
+                        <br/>
                         Story!
                     </h4>
                 </div>
@@ -259,7 +287,7 @@
         <div class="row">
             <div class="col-lg-4">
                 <div class="team-member">
-                    <img class="mx-auto rounded-circle" src="/assets/img/team/1.jpg" alt="" />
+                    <img class="mx-auto rounded-circle" src="/assets/img/team/1.jpg" alt=""/>
                     <h4>Kay Garland</h4>
                     <p class="text-muted">Lead Designer</p>
                     <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-twitter"></i></a>
@@ -269,7 +297,7 @@
             </div>
             <div class="col-lg-4">
                 <div class="team-member">
-                    <img class="mx-auto rounded-circle" src="/assets/img/team/2.jpg" alt="" />
+                    <img class="mx-auto rounded-circle" src="/assets/img/team/2.jpg" alt=""/>
                     <h4>Larry Parker</h4>
                     <p class="text-muted">Lead Marketer</p>
                     <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-twitter"></i></a>
@@ -279,7 +307,7 @@
             </div>
             <div class="col-lg-4">
                 <div class="team-member">
-                    <img class="mx-auto rounded-circle" src="/assets/img/team/3.jpg" alt="" />
+                    <img class="mx-auto rounded-circle" src="/assets/img/team/3.jpg" alt=""/>
                     <h4>Diana Petersen</h4>
                     <p class="text-muted">Lead Developer</p>
                     <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-twitter"></i></a>
@@ -289,7 +317,9 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-lg-8 mx-auto text-center"><p class="large text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut eaque, laboriosam veritatis, quos non quis ad perspiciatis, totam corporis ea, alias ut unde.</p></div>
+            <div class="col-lg-8 mx-auto text-center"><p class="large text-muted">Lorem ipsum dolor sit amet,
+                consectetur adipisicing elit. Aut eaque, laboriosam veritatis, quos non quis ad perspiciatis, totam
+                corporis ea, alias ut unde.</p></div>
         </div>
     </div>
 </section>
@@ -298,57 +328,20 @@
     <div class="container">
         <div class="row">
             <div class="col-md-3 col-sm-6 my-3">
-                <a href="#!"><img class="img-fluid d-block mx-auto" src="/assets/img/logos/envato.jpg" alt="" /></a>
+                <a href="#!"><img class="img-fluid d-block mx-auto" src="/assets/img/logos/envato.jpg" alt=""/></a>
             </div>
             <div class="col-md-3 col-sm-6 my-3">
-                <a href="#!"><img class="img-fluid d-block mx-auto" src="/assets/img/logos/designmodo.jpg" alt="" /></a>
+                <a href="#!"><img class="img-fluid d-block mx-auto" src="/assets/img/logos/designmodo.jpg" alt=""/></a>
             </div>
             <div class="col-md-3 col-sm-6 my-3">
-                <a href="#!"><img class="img-fluid d-block mx-auto" src="/assets/img/logos/themeforest.jpg" alt="" /></a>
+                <a href="#!"><img class="img-fluid d-block mx-auto" src="/assets/img/logos/themeforest.jpg" alt=""/></a>
             </div>
             <div class="col-md-3 col-sm-6 my-3">
-                <a href="#!"><img class="img-fluid d-block mx-auto" src="/assets/img/logos/creative-market.jpg" alt="" /></a>
+                <a href="#!"><img class="img-fluid d-block mx-auto" src="/assets/img/logos/creative-market.jpg" alt=""/></a>
             </div>
         </div>
     </div>
 </div>
-<!-- Contact-->
-<!-- <section class="page-section" id="contact">
-  <div class="container">
-    <div class="text-center">
-      <h2 class="section-heading text-uppercase">Contact Us</h2>
-      <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
-    </div>
-    <form id="contactForm" name="sentMessage" novalidate="novalidate">
-      <div class="row align-items-stretch mb-5">
-        <div class="col-md-6">
-          <div class="form-group">
-            <input class="form-control" id="name" type="text" placeholder="Your Name *" required="required" data-validation-required-message="Please enter your name." />
-            <p class="help-block text-danger"></p>
-          </div>
-          <div class="form-group">
-            <input class="form-control" id="email" type="email" placeholder="Your Email *" required="required" data-validation-required-message="Please enter your email address." />
-            <p class="help-block text-danger"></p>
-          </div>
-          <div class="form-group mb-md-0">
-            <input class="form-control" id="phone" type="tel" placeholder="Your Phone *" required="required" data-validation-required-message="Please enter your phone number." />
-            <p class="help-block text-danger"></p>
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="form-group form-group-textarea mb-md-0">
-            <textarea class="form-control" id="message" placeholder="Your Message *" required="required" data-validation-required-message="Please enter a message."></textarea>
-            <p class="help-block text-danger"></p>
-          </div>
-        </div>
-      </div>
-      <div class="text-center">
-        <div id="success"></div>
-        <button class="btn btn-primary btn-xl text-uppercase" id="sendMessageButton" type="submit">Send Message</button>
-      </div>
-    </form>
-  </div>
-</section> -->
 <!-- Footer-->
 <footer class="footer py-4">
     <div class="container"
@@ -371,7 +364,8 @@
 <div class="portfolio-modal modal fade" id="portfolioModal1" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="close-modal" data-dismiss="modal"><img src="/assets/img/close-icon.svg" alt="Close modal" /></div>
+            <div class="close-modal" data-dismiss="modal"><img src="/assets/img/close-icon.svg" alt="Close modal"/>
+            </div>
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-lg-8">
@@ -379,9 +373,12 @@
                             <!-- Project Details Go Here-->
                             <h2 class="text-uppercase">Project Name</h2>
                             <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
-                            <img class="img-fluid d-block mx-auto" src="/assets/img/portfolio/01-full.jpg" alt="" />
+                            <img class="img-fluid d-block mx-auto" src="/assets/img/portfolio/01-full.jpg" alt=""/>
                             <p>
-                                Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae, nostrum, reiciendis facere nemo!
+                                Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur
+                                adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt
+                                repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae,
+                                nostrum, reiciendis facere nemo!
                             </p>
                             <ul class="list-inline">
                                 <li>Date: January 2020</li>
@@ -403,7 +400,8 @@
 <div class="portfolio-modal modal fade" id="portfolioModal3" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="close-modal" data-dismiss="modal"><img src="/assets/img/close-icon.svg" alt="Close modal" /></div>
+            <div class="close-modal" data-dismiss="modal"><img src="/assets/img/close-icon.svg" alt="Close modal"/>
+            </div>
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-lg-8">
@@ -411,9 +409,12 @@
                             <!-- Project Details Go Here-->
                             <h2 class="text-uppercase">Project Name</h2>
                             <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
-                            <img class="img-fluid d-block mx-auto" src="/assets/img/portfolio/03-full.jpg" alt="" />
+                            <img class="img-fluid d-block mx-auto" src="/assets/img/portfolio/03-full.jpg" alt=""/>
                             <p>
-                                Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae, nostrum, reiciendis facere nemo!
+                                Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur
+                                adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt
+                                repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae,
+                                nostrum, reiciendis facere nemo!
                             </p>
                             <ul class="list-inline">
                                 <li>Date: January 2020</li>
@@ -435,7 +436,8 @@
 <div class="portfolio-modal modal fade" id="portfolioModal4" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="close-modal" data-dismiss="modal"><img src="/assets/img/close-icon.svg" alt="Close modal" /></div>
+            <div class="close-modal" data-dismiss="modal"><img src="/assets/img/close-icon.svg" alt="Close modal"/>
+            </div>
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-lg-8">
@@ -443,9 +445,12 @@
                             <!-- Project Details Go Here-->
                             <h2 class="text-uppercase">Project Name</h2>
                             <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
-                            <img class="img-fluid d-block mx-auto" src="/assets/img/portfolio/04-full.jpg" alt="" />
+                            <img class="img-fluid d-block mx-auto" src="/assets/img/portfolio/04-full.jpg" alt=""/>
                             <p>
-                                Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae, nostrum, reiciendis facere nemo!
+                                Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur
+                                adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt
+                                repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae,
+                                nostrum, reiciendis facere nemo!
                             </p>
                             <ul class="list-inline">
                                 <li>Date: January 2020</li>
@@ -467,7 +472,8 @@
 <div class="portfolio-modal modal fade" id="portfolioModal5" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="close-modal" data-dismiss="modal"><img src="/assets/img/close-icon.svg" alt="Close modal" /></div>
+            <div class="close-modal" data-dismiss="modal"><img src="/assets/img/close-icon.svg" alt="Close modal"/>
+            </div>
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-lg-8">
@@ -475,9 +481,12 @@
                             <!-- Project Details Go Here-->
                             <h2 class="text-uppercase">Project Name</h2>
                             <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
-                            <img class="img-fluid d-block mx-auto" src="/assets/img/portfolio/05-full.jpg" alt="" />
+                            <img class="img-fluid d-block mx-auto" src="/assets/img/portfolio/05-full.jpg" alt=""/>
                             <p>
-                                Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae, nostrum, reiciendis facere nemo!
+                                Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur
+                                adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt
+                                repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae,
+                                nostrum, reiciendis facere nemo!
                             </p>
                             <ul class="list-inline">
                                 <li>Date: January 2020</li>
@@ -499,7 +508,8 @@
 <div class="portfolio-modal modal fade" id="portfolioModal6" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="close-modal" data-dismiss="modal"><img src="/assets/img/close-icon.svg" alt="Close modal" /></div>
+            <div class="close-modal" data-dismiss="modal"><img src="/assets/img/close-icon.svg" alt="Close modal"/>
+            </div>
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-lg-8">
@@ -507,9 +517,12 @@
                             <!-- Project Details Go Here-->
                             <h2 class="text-uppercase">Project Name</h2>
                             <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
-                            <img class="img-fluid d-block mx-auto" src="/assets/img/portfolio/06-full.jpg" alt="" />
+                            <img class="img-fluid d-block mx-auto" src="/assets/img/portfolio/06-full.jpg" alt=""/>
                             <p>
-                                Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae, nostrum, reiciendis facere nemo!
+                                Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur
+                                adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt
+                                repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae,
+                                nostrum, reiciendis facere nemo!
                             </p>
                             <ul class="list-inline">
                                 <li>Date: January 2020</li>

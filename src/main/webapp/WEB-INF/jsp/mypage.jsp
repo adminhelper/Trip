@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="utf-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,7 +9,7 @@
     <meta name="author" content=""/>
     <title>오늘의 서울</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css"/>
-    <link rel="icon" type="image/x-icon" href="/assets/img/favicon.ico"/>
+    <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico"/>
     <!-- Font Awesome icons (free version)-->
     <script src="https://use.fontawesome.com/releases/v5.15.1/js/all.js" crossorigin="anonymous"></script>
     <!-- Google fonts-->
@@ -17,32 +18,13 @@
           type="text/css"/>
     <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css"/>
     <!-- Core theme CSS (includes Bootstrap)-->
-    <link href="/css/styles.css" rel="stylesheet"/>
-    <!-- 로그인css&link========================================================================================-->
-    <link rel="stylesheet" type="text/css" href="/login/vendor/bootstrap/css/bootstrap.min.css"/>
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="/login/fonts/font-awesome-4.7.0/css/font-awesome.min.css"/>
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="/login/fonts/iconic/css/material-design-iconic-font.min.css"/>
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="/login/vendor/animate/animate.css"/>
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="/login/vendor/css-hamburgers/hamburgers.min.css"/>
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="/login/vendor/animsition/css/animsition.min.css"/>
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="/login/vendor/select2/select2.min.css"/>
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="/login/vendor/daterangepicker/daterangepicker.css"/>
-    <link rel="stylesheet" type="text/css" href="/login/css/util.css"/>
-    <link rel="stylesheet" type="text/css" href="/login/css/main.css"/>
-
+    <link href="css/styles.css" rel="stylesheet"/>
 </head>
 <body id="page-top">
 <!-- Navigation-->
 <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
     <div class="container">
-        <a class="navbar-brand js-scroll-trigger" href="#page-top"><img src="/assets/img/navbar-logo.svg" alt=""/></a>
+        <a class="navbar-brand js-scroll-trigger" href="#page-top"><img src="assets/img/navbar-logo.svg" alt=""/></a>
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
                 data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
                 aria-label="Toggle navigation">
@@ -56,68 +38,88 @@
                 <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#about">후기</a></li>
                 <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#team">여행정보</a></li>
             </ul>
-            <ul class="navbar-nav text-uppercase ml-auto">
-                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#contact">검색</a></li>
-                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#contact">로그인</a></li>
-                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#contact">한국어</a></li>
-            </ul>
+            <c:choose>
+                <c:when test="${member == null}">
+                    <ul class="navbar-nav text-uppercase ml-auto">
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#contact">검색</a></li>
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="/login">로그인</a></li>
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#contact">한국어</a></li>
+                    </ul>
+                </c:when>
+                <c:when test="${member != null}">
+                    <ul class="navbar-nav text-uppercase ml-auto">
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#contact">검색</a></li>
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger"
+                                                href="/mypage">${member.member_id}님</a></li>
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="/logout">로그아웃</a></li>
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#contact">한국어</a></li>
+                    </ul>
+                </c:when>
+            </c:choose>
         </div>
     </div>
 </nav>
+<!-- Masthead-->
+<header class="masthead">
+    <div class="container">
+        <div class="masthead-subheading">Welcom to SEOUL</div>
+        <div class="masthead-heading text-uppercase">어서와 서울은 처음이지?</div>
+        <!-- <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="#services">Tell Me More</a> -->
+    </div>
+</header>
 <!-- Services-->
-<div class="limiter">
-    <div class="container-login100" id="login">
-        <div class="wrap-login100">
-            <form class="login100-form validate-form">
-                <span class="login100-form-title p-b-24"> 로그인 </span>
-
-                <div class="wrap-input100 validate-input" data-validate="아이디를 입력해주세요">
-                    <input class="input100" type="text" name="id" id="id"/>
-                    <span class="focus-input100" data-placeholder="id"></span>
-                </div>
-
-                <div class="wrap-input100 validate-input" data-validate="비밀번호를 입력해주세요">
-              <span class="btn-show-pass">
-                <i class="zmdi zmdi-eye"></i>
-              </span>
-                    <input class="input100" type="password" name="pass" id="pass"/>
-                    <span class="focus-input100" data-placeholder="Password"></span>
-                </div>
-
-
-                <div class="container-login100-form-btn">
-                    <div class="wrap-login100-form-btn">
-                        <div class="login100-form-bgbtn"></div>
-                        <button type="button" class="login100-form-btn" id="login_btn">Login</button>
-                    </div>
-                </div>
-
-                <div class="text-center p-t-115">
-                    <span class="txt1"> 회원가입 하시겠습니까? </span>
-
-                    <a class="txt2" href="/member/register"> 회원가입 </a>
-                </div>
-            </form>
+<section class="page-section" id="services">
+    <div class="container">
+        <div class="text-center">
+            <h2 class="section-heading text-uppercase">마이페이지</h2>
+            <h3 class="section-subheading text-muted">회원의 정보를 수정합니다.</h3>
+        </div>
+        <div class="row text-center">
+            <div class="col-md-4">
+            <span class="fa-stack fa-4x">
+              <!-- <i class="fas fa-circle fa-stack-2x text-primary"></i> -->
+              <i class="bi-cloud-sun fa-stack-1x fa-inverse fa-lg" style="color: black"></i>
+            </span>
+                <h4 class="my-3">아이디</h4>
+                <p class="text-muted">${member.member_id}</p>
+            </div>
+            <div class="col-md-4">
+            <span class="fa-stack fa-4x">
+              <!-- <i class="fas fa-circle fa-stack-2x text-primary"></i> -->
+              <i class="bi-signpost-split fa-stack-1x fa-inverse" style="color: black"></i>
+                <!-- <i class="fas fa-laptop fa-stack-1x fa-inverse"></i> -->
+            </span>
+                <h4 class="my-3">닉네임</h4>
+                <p class="text-muted">닉네임안나옴 수정하셈</p>
+            </div>
+            <div class="col-md-4">
+                <a href="URL" onclick="window.open(this.href,'_blank',
+              'width=320px,height=320px,toolbars=no,scrollbars=no'); return false;">
+            <span class="fa-stack fa-4x">
+              <!-- <i class="fas fa-circle fa-stack-2x text-primary"></i> -->
+                  <i class="bi-map fa-stack-1x fa-inverse" style="color: black"></i>
+            </span>
+                    <h4 class="my-3">비밀번호 변경</h4></a>
+                <class class="text-muted">비밀번호를 변경합니다</class>
+            </div>
         </div>
     </div>
-</div>
-
-<div id="dropDownSelect1"></div>
+</section>
 <!-- Clients-->
-<div class="py-5">
+<div class="py-5" style="background-color: antiquewhite;">
     <div class="container">
         <div class="row">
             <div class="col-md-3 col-sm-6 my-3">
-                <a href="#!"><img class="img-fluid d-block mx-auto" src="/assets/img/logos/envato.jpg" alt=""/></a>
+                <a href="#!"><img class="img-fluid d-block mx-auto" src="assets/img/logos/envato.jpg" alt=""/></a>
             </div>
             <div class="col-md-3 col-sm-6 my-3">
-                <a href="#!"><img class="img-fluid d-block mx-auto" src="/assets/img/logos/designmodo.jpg" alt=""/></a>
+                <a href="#!"><img class="img-fluid d-block mx-auto" src="assets/img/logos/designmodo.jpg" alt=""/></a>
             </div>
             <div class="col-md-3 col-sm-6 my-3">
-                <a href="#!"><img class="img-fluid d-block mx-auto" src="/assets/img/logos/themeforest.jpg" alt=""/></a>
+                <a href="#!"><img class="img-fluid d-block mx-auto" src="assets/img/logos/themeforest.jpg" alt=""/></a>
             </div>
             <div class="col-md-3 col-sm-6 my-3">
-                <a href="#!"><img class="img-fluid d-block mx-auto" src="/assets/img/logos/creative-market.jpg" alt=""/></a>
+                <a href="#!"><img class="img-fluid d-block mx-auto" src="assets/img/logos/creative-market.jpg" alt=""/></a>
             </div>
         </div>
     </div>
@@ -161,19 +163,19 @@
 </section> -->
 <!-- Footer-->
 <footer class="footer py-4">
-    <div class="container">
-        <div class="row align-items-center">
-            <div class="col-lg-4 text-lg-left">Copyright © Your Website 2020</div>
-            <div class="col-lg-4 my-3 my-lg-0">
-                <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-twitter"></i></a>
-                <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-facebook-f"></i></a>
-                <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-linkedin-in"></i></a>
-            </div>
-            <div class="col-lg-4 text-lg-right">
-                <a class="mr-3" href="#!">Privacy Policy</a>
-                <a href="#!">Terms of Use</a>
-            </div>
+    <div class="container"
+    <div class="row align-items-center">
+        <div class="col-lg-4 text-lg-left">Copyright © Your Website 2020</div>
+        <div class="col-lg-4 my-3 my-lg-0">
+            <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-twitter"></i></a>
+            <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-facebook-f"></i></a>
+            <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-linkedin-in"></i></a>
         </div>
+        <div class="col-lg-4 text-lg-right">
+            <a class="mr-3" href="#!">Privacy Policy</a>
+            <a href="#!">Terms of Use</a>
+        </div>
+    </div>
     </div>
 </footer>
 <!-- Portfolio Modals-->
@@ -181,8 +183,7 @@
 <div class="portfolio-modal modal fade" id="portfolioModal1" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="close-modal" data-dismiss="modal"><img src="/assets/img/close-icon.svg" alt="Close modal"/>
-            </div>
+            <div class="close-modal" data-dismiss="modal"><img src="assets/img/close-icon.svg" alt="Close modal"/></div>
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-lg-8">
@@ -190,7 +191,7 @@
                             <!-- Project Details Go Here-->
                             <h2 class="text-uppercase">Project Name</h2>
                             <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
-                            <img class="img-fluid d-block mx-auto" src="/assets/img/portfolio/01-full.jpg" alt=""/>
+                            <img class="img-fluid d-block mx-auto" src="assets/img/portfolio/01-full.jpg" alt=""/>
                             <p>
                                 Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur
                                 adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt
@@ -217,8 +218,7 @@
 <div class="portfolio-modal modal fade" id="portfolioModal3" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="close-modal" data-dismiss="modal"><img src="/assets/img/close-icon.svg" alt="Close modal"/>
-            </div>
+            <div class="close-modal" data-dismiss="modal"><img src="assets/img/close-icon.svg" alt="Close modal"/></div>
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-lg-8">
@@ -226,7 +226,7 @@
                             <!-- Project Details Go Here-->
                             <h2 class="text-uppercase">Project Name</h2>
                             <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
-                            <img class="img-fluid d-block mx-auto" src="/assets/img/portfolio/03-full.jpg" alt=""/>
+                            <img class="img-fluid d-block mx-auto" src="assets/img/portfolio/03-full.jpg" alt=""/>
                             <p>
                                 Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur
                                 adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt
@@ -253,8 +253,7 @@
 <div class="portfolio-modal modal fade" id="portfolioModal4" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="close-modal" data-dismiss="modal"><img src="/assets/img/close-icon.svg" alt="Close modal"/>
-            </div>
+            <div class="close-modal" data-dismiss="modal"><img src="assets/img/close-icon.svg" alt="Close modal"/></div>
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-lg-8">
@@ -262,7 +261,7 @@
                             <!-- Project Details Go Here-->
                             <h2 class="text-uppercase">Project Name</h2>
                             <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
-                            <img class="img-fluid d-block mx-auto" src="/assets/img/portfolio/04-full.jpg" alt=""/>
+                            <img class="img-fluid d-block mx-auto" src="assets/img/portfolio/04-full.jpg" alt=""/>
                             <p>
                                 Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur
                                 adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt
@@ -289,8 +288,7 @@
 <div class="portfolio-modal modal fade" id="portfolioModal5" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="close-modal" data-dismiss="modal"><img src="/assets/img/close-icon.svg" alt="Close modal"/>
-            </div>
+            <div class="close-modal" data-dismiss="modal"><img src="assets/img/close-icon.svg" alt="Close modal"/></div>
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-lg-8">
@@ -298,7 +296,7 @@
                             <!-- Project Details Go Here-->
                             <h2 class="text-uppercase">Project Name</h2>
                             <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
-                            <img class="img-fluid d-block mx-auto" src="/assets/img/portfolio/05-full.jpg" alt=""/>
+                            <img class="img-fluid d-block mx-auto" src="assets/img/portfolio/05-full.jpg" alt=""/>
                             <p>
                                 Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur
                                 adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt
@@ -325,8 +323,7 @@
 <div class="portfolio-modal modal fade" id="portfolioModal6" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="close-modal" data-dismiss="modal"><img src="/assets/img/close-icon.svg" alt="Close modal"/>
-            </div>
+            <div class="close-modal" data-dismiss="modal"><img src="assets/img/close-icon.svg" alt="Close modal"/></div>
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-lg-8">
@@ -334,7 +331,7 @@
                             <!-- Project Details Go Here-->
                             <h2 class="text-uppercase">Project Name</h2>
                             <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
-                            <img class="img-fluid d-block mx-auto" src="/assets/img/portfolio/06-full.jpg" alt=""/>
+                            <img class="img-fluid d-block mx-auto" src="assets/img/portfolio/06-full.jpg" alt=""/>
                             <p>
                                 Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur
                                 adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt
@@ -363,55 +360,9 @@
 <!-- Third party plugin JS-->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
 <!-- Contact form JS-->
-<script src="/assets/mail/jqBootstrapValidation.js"></script>
-<script src="/assets/mail/contact_me.js"></script>
+<script src="assets/mail/jqBootstrapValidation.js"></script>
+<script src="assets/mail/contact_me.js"></script>
 <!-- Core theme JS-->
-<script src="/js/scripts.js"></script>
-
-
-<!--===============================================================================================-->
-<script src="/login/vendor/jquery/jquery-3.2.1.min.js"></script>
-<!--===============================================================================================-->
-<script src="/login/vendor/animsition/js/animsition.min.js"></script>
-<!--===============================================================================================-->
-<script src="/login/vendor/bootstrap/js/popper.js"></script>
-<script src="/login/vendor/bootstrap/js/bootstrap.min.js"></script>
-<!--===============================================================================================-->
-<script src="/login/vendor/select2/select2.min.js"></script>
-<!--===============================================================================================-->
-<script src="/login/vendor/daterangepicker/moment.min.js"></script>
-<script src="/login/vendor/daterangepicker/daterangepicker.js"></script>
-<!--===============================================================================================-->
-<script src="/login/vendor/countdowntime/countdowntime.js"></script>
-<!--===============================================================================================-->
-<script src="/login/js/main.js"></script>
+<script src="js/scripts.js"></script>
 </body>
-<script>
-    $(document).ready(function () {
-        $("#login_btn").on('click', function () {
-            loginCheck();
-        });
-    });
-
-    function loginCheck() {
-        $.ajax({
-            url: "/member/loginCheck",
-            type: "POST",
-            data: {
-                member_id: $("#id").val(),
-                member_password: $("#pass").val()
-            },
-            success: function (data) {
-                if (data == 1) {
-                    alert("성공");
-                    location.href = "/";
-                }else{
-                    alert("실패");
-                }
-            },
-            error: function () {
-            }
-        });
-    }
-</script>
 </html>

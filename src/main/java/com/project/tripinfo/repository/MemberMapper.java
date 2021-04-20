@@ -11,8 +11,8 @@ import java.util.Map;
 @Repository("com.project.tripinfo.repository.MemberMapper")
 public interface MemberMapper {
 
-    List<Member> selectMemberByAll();
+    void memberRegister(Member member) throws  Exception;
+    int  loginCheck(Member member)throws  Exception;
 
-    int joinMember(Member member);
-
+    int idCheck (String member_id) throws  Exception;
 }

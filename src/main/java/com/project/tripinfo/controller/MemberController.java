@@ -1,16 +1,17 @@
 package com.project.tripinfo.controller;
 
 import com.project.tripinfo.model.Member;
+import com.project.tripinfo.service.BoardService;
 import com.project.tripinfo.service.MemberService;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 
 @Slf4j
@@ -22,19 +23,54 @@ public class MemberController {
     @Autowired
     private MemberService memberService;
 
-    @RequestMapping(value = "/register")
-    public String register() throws Exception {
+    @RequestMapping(value = "/register", method = RequestMethod.GET)
+    public String register (HttpSession session) throws Exception {
+        session.invalidate();
+        logger.info("=== 회원가입 ===");
         return "register";
     }
 
-    @PostMapping(value = "/join")
+    @RequestMapping(value = "/register", method = RequestMethod.POST)
+    public String memberRegister (Member member) throws Exception {
+        int count = memberService.idCheck(member.getMember_id());
+
+        if (count == 0) {
+            memberService.memberRegister(member);
+        }
+        return "redirect:/";
+    }
+
+    @RequestMapping(value = "/idCheck", method = RequestMethod.POST)
     @ResponseBody
-    public int join(Member member) throws  Exception {
-        int result = memberService.joinMember(member);
-                return result;
+    public int idCheck (@RequestBody String member_id) throws Exception {
+        int count = 0;
+        count = memberService.idCheck(member_id);
+        System.out.println(member_id);
+        return count;
     }
 
 
+    @PostMapping(value = "/loginCheck")
+    @ResponseBody
+    public int loginCheck (Member member, HttpServletRequest request) throws Exception {
+        logger.info("=== 로그인 체크 ===");
+        HttpSession session = request.getSession();
+
+        if (session.getAttribute("member") != null) {
+            session.removeAttribute("member");
+            System.out.println("===  세션 삭제 ===");
+        }
+        int result = memberService.loginCheck(member);
+        System.out.println(session.toString());
+        if (member != null) {
+            System.out.println(" === 1 ===");
+            session.setAttribute("member", member);
+            return result;
+        } else {
+            return 0;
+        }
+
+    }
 
 
 }
