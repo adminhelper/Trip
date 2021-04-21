@@ -1,9 +1,7 @@
 package com.project.tripinfo.service;
 
 import com.project.tripinfo.model.Board;
-import com.project.tripinfo.model.Member;
 import com.project.tripinfo.repository.BoardMapper;
-import com.project.tripinfo.repository.MemberMapper;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -21,4 +19,14 @@ public class BoardService implements BoardMapper {
         return boardMapper.reviewBoardList();
     }
 
+    @Override
+    public void reviewBoardInset(Board board) throws Exception {
+        boardMapper.reviewBoardInset(board);
+
+    }
+
+    @Override
+    public Board reviewBoardDetail(int board_no) throws Exception{
+        return boardMapper.reviewBoardDetail(board_no);
+    }
 }

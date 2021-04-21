@@ -11,4 +11,8 @@ import java.util.List;
 public interface BoardMapper {
 
     List<Board> reviewBoardList() throws Exception;
+
+    void reviewBoardInset(Board board) throws Exception;
+
+    Board reviewBoardDetail(int board_no) throws Exception;
 }

@@ -56,56 +56,32 @@
 <section class="page-section bg-s" id="portfolio">
     <div class="container">
         <div class="text-center">
-            <h2 class="section-heading text-uppercase">후기</h2>
-            <h3 class="section-subheading text-muted">생생한 후기를 전달합니다.</h3>
+            <h3 class="section-heading">후기</h3>
         </div>
-
-
-        <div class="row">
-            <c:forEach items="${review}" var="data">
-                <div class="col-lg-3 col-sm-6">
-                    <div class="portfolio-item">
-                        <a class="portfolio-link"  href="/board/review/detail?no=${data.board_no}">
-                            <div class="portfolio-hover">
-                                <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
-                            </div>
-                            <img class="img-fluid" src="/assets/img/portfolio/06-thumbnail.jpg" alt=""/>
-                        </a>
-
-                        <div class="portfolio-caption">
-                            <div class="portfolio-caption-heading">${data.board_title}</div>
-                            <div class="portfolio-caption-subheading text-muted">${data.member_id}</div>
+        <div class="container">
+            <hr size="10px">
+            <div class="row justify-content-center">
+                <div class="col-lg-100">
+                    <div class="modal-body">
+                        <form action='/board/review/insert' method="post">
+                        <div class="text-center">
+                            <input type="hidden" name="member_id" value="${member.member_id}">
+                           제목<input type="text" id="board_title" name="board_title">
+                            내용<textarea rows="5" cols="13" id="board_contents" name="board_contents"></textarea>
                         </div>
-
+                            <button type="submit">작성완료</button>
+                        </form>
+                        <ul class="list-inline">
+                            <li>Date: January 2020</li>
+                            <li>Client: Threads</li>
+                            <li>Category: Illustration</li>
+                        </ul>
+                        <div id="map" style="width:100%;height:450px;"></div>
                     </div>
+                    <hr size="10px">
                 </div>
-            </c:forEach>
-            </a>
+            </div>
         </div>
-
-    </div>
-
-    <nav aria-label="Page navigation example">
-        <ul class="pagination justify-content-center">
-            <button class="btn btn-primary" type="button" onclick="location.href='/board/review/insertboard'"> 글쓰기
-            </button>
-            <li class="page-item">
-                <a class="page-link" style="color: black" href="#" aria-label="Previous">
-                    <span aria-hidden="true">&laquo;</span>
-                    <span class="sr-only">Previous</span>
-                </a>
-            </li>
-            <li class="page-item"><a class="page-link" style="color: black" href="#">1</a></li>
-            <li class="page-item"><a class="page-link" style="color: black" href="#">2</a></li>
-            <li class="page-item"><a class="page-link" style="color: black" href="#">3</a></li>
-            <li class="page-item">
-                <a class="page-link" style="color: black" href="#" aria-label="Next">
-                    <span aria-hidden="true">&raquo;</span>
-                    <span class="sr-only">Next</span>
-                </a>
-            </li>
-        </ul>
-    </nav>
 </section>
 <!-- Footer-->
 <footer class="footer py-4">

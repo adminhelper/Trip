@@ -2,8 +2,14 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.project.tripinfo.repository.BoardMapper">
+    <insert id="reviewBoardInset" >
+        INSERT INTO BOARD (board_title,board_contents,member_id) values (#{board_title},#{board_contents},#{member_id})
+    </insert>
 
     <select id="reviewBoardList" resultType="com.project.tripinfo.model.Board">
-            SELECT * FROM BOARD board ,MEMBER member WHERE board.member_id = member.member_id;
+        SELECT * FROM BOARD board ,MEMBER member WHERE board.member_id = member.member_id
+    </select>
+    <select id="reviewBoardDetail" resultType="com.project.tripinfo.model.Board">
+        SELECT board_title,board_contents,member_id,board_no FROM board where board_no = #{board_no}
     </select>
 </mapper>
