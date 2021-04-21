@@ -2,57 +2,10 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="utf-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
-    <meta name="description" content=""/>
-    <meta name="author" content=""/>
-    <title>오늘의 서울</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css"/>
-    <link rel="icon" type="image/x-icon" href="/assets/img/favicon.ico"/>
-    <!-- Font Awesome icons (free version)-->
-    <script src="https://use.fontawesome.com/releases/v5.15.1/js/all.js" crossorigin="anonymous"></script>
-    <!-- Google fonts-->
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css"/>
-    <link href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic" rel="stylesheet"
-          type="text/css"/>
-    <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css"/>
-    <!-- Core theme CSS (includes Bootstrap)-->
-    <link href="/css/styles.css" rel="stylesheet"/>
-</head>
+<jsp:include page="../head.jsp" flush="true"/>
 <body id="page-top">
 <!-- Navigation-->
-<nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
-    <div class="container">
-        <a class="navbar-brand js-scroll-trigger" href="#page-top"><img src="/assets/img/navbar-logo.svg" alt=""/></a>
-        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
-                data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
-                aria-label="Toggle navigation">
-            Menu
-            <i class="fas fa-bars ml-1"></i>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-            <ul class="navbar-nav text-uppercase ml-auto">
-                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#services">오늘의 서울</a></li>
-                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#portfolio">지역</a></li>
-                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#about">후기</a></li>
-                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#team">여행정보</a></li>
-            </ul>
-            <ul class="navbar-nav text-uppercase ml-auto">
-                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#contact">검색</a></li>
-                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#contact">로그인</a></li>
-                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#contact">한국어</a></li>
-            </ul>
-        </div>
-    </div>
-</nav>
-<header class="masthead">
-    <div class="container">
-        <div class="masthead-subheading">Welcom to SEOUL</div>
-        <div class="masthead-heading text-uppercase">어서와 서울은 처음이지?</div>
-        <!-- <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="#services">Tell Me More</a> -->
-    </div>
-</header>
+<jsp:include page="../header.jsp" flush="true"/>
 <section class="page-section bg-s" id="portfolio">
     <div class="container">
         <div class="text-center">
@@ -65,7 +18,7 @@
             <c:forEach items="${review}" var="data">
                 <div class="col-lg-3 col-sm-6">
                     <div class="portfolio-item">
-                        <a class="portfolio-link"  href="/board/review/detail?no=${data.board_no}">
+                        <a class="portfolio-link" href="/board/review/detail?no=${data.board_no}">
                             <div class="portfolio-hover">
                                 <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
                             </div>
@@ -87,7 +40,8 @@
 
     <nav aria-label="Page navigation example">
         <ul class="pagination justify-content-center">
-            <button class="btn btn-primary" type="button" onclick="location.href='/board/review/insertboard'"> 글쓰기
+            <button class="btn btn-primary" type="button" id = "ck" onclick="location.href='/board/review/insertboard'">
+                글쓰기
             </button>
             <li class="page-item">
                 <a class="page-link" style="color: black" href="#" aria-label="Previous">
@@ -134,4 +88,15 @@
 <script src="/assets/mail/contact_me.js"></script>
 <!-- Core theme JS-->
 <script src="/js/scripts.js"></script>
+<script>
+
+$("#ck").click(function (){
+    if(${empty sessionScope.member || data eq null}) {
+        alert("로그인해주세요");
+        location.href = "/login";
+    }
+})
+</script>
+
+
 </html>

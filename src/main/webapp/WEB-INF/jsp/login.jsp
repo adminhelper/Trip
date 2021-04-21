@@ -51,14 +51,14 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav text-uppercase ml-auto">
-                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#services">오늘의 서울</a></li>
+                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="/">오늘의 서울</a></li>
                 <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#portfolio">지역</a></li>
-                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#about">후기</a></li>
+                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="/board/review/boardlist">후기</a></li>
                 <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#team">여행정보</a></li>
             </ul>
             <ul class="navbar-nav text-uppercase ml-auto">
                 <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#contact">검색</a></li>
-                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#contact">로그인</a></li>
+                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="/login">로그인</a></li>
                 <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#contact">한국어</a></li>
             </ul>
         </div>
@@ -83,7 +83,7 @@
                     <input class="input100" type="password" name="pass" id="pass"/>
                     <span class="focus-input100" data-placeholder="Password"></span>
                 </div>
-
+                <div id = "p"></div>
 
                 <div class="container-login100-form-btn">
                     <div class="wrap-login100-form-btn">
@@ -122,43 +122,6 @@
         </div>
     </div>
 </div>
-<!-- Contact-->
-<!-- <section class="page-section" id="contact">
-  <div class="container">
-    <div class="text-center">
-      <h2 class="section-heading text-uppercase">Contact Us</h2>
-      <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
-    </div>
-    <form id="contactForm" name="sentMessage" novalidate="novalidate">
-      <div class="row align-items-stretch mb-5">
-        <div class="col-md-6">
-          <div class="form-group">
-            <input class="form-control" id="name" type="text" placeholder="Your Name *" required="required" data-validation-required-message="Please enter your name." />
-            <p class="help-block text-danger"></p>
-          </div>
-          <div class="form-group">
-            <input class="form-control" id="email" type="email" placeholder="Your Email *" required="required" data-validation-required-message="Please enter your email address." />
-            <p class="help-block text-danger"></p>
-          </div>
-          <div class="form-group mb-md-0">
-            <input class="form-control" id="phone" type="tel" placeholder="Your Phone *" required="required" data-validation-required-message="Please enter your phone number." />
-            <p class="help-block text-danger"></p>
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="form-group form-group-textarea mb-md-0">
-            <textarea class="form-control" id="message" placeholder="Your Message *" required="required" data-validation-required-message="Please enter a message."></textarea>
-            <p class="help-block text-danger"></p>
-          </div>
-        </div>
-      </div>
-      <div class="text-center">
-        <div id="success"></div>
-        <button class="btn btn-primary btn-xl text-uppercase" id="sendMessageButton" type="submit">Send Message</button>
-      </div>
-    </form>
-  </div>
-</section> -->
 <!-- Footer-->
 <footer class="footer py-4">
     <div class="container">
@@ -403,10 +366,10 @@
             },
             success: function (data) {
                 if (data == 1) {
-                    alert("성공");
                     location.href = "/";
                 }else{
-                    alert("실패");
+                    $('#p').text('아이디와 비밀번호를 확인해주세요 :)');
+                    $('#p').css('color', 'red');
                 }
             },
             error: function () {

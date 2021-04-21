@@ -5,6 +5,14 @@
     <insert id="reviewBoardInset" >
         INSERT INTO BOARD (board_title,board_contents,member_id) values (#{board_title},#{board_contents},#{member_id})
     </insert>
+    <update id="reviewBoardModify" parameterType="com.project.tripinfo.model.Board">
+        UPDATE BOARD SET board_title = #{board_title},
+                         board_contents = #{board_contents}
+                         WHERE board_no = #{board_no}
+    </update>
+    <delete id="reviewBoardDelete" parameterType="int">
+        DELETE FROM BOARD WHERE board_no = #{board_no}
+    </delete>
 
     <select id="reviewBoardList" resultType="com.project.tripinfo.model.Board">
         SELECT * FROM BOARD board ,MEMBER member WHERE board.member_id = member.member_id

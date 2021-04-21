@@ -2,71 +2,10 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="utf-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
-    <meta name="description" content=""/>
-    <meta name="author" content=""/>
-    <title>오늘의 서울</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css"/>
-    <link rel="icon" type="image/x-icon" href="/assets/img/favicon.ico"/>
-    <!-- Font Awesome icons (free version)-->
-    <script src="https://use.fontawesome.com/releases/v5.15.1/js/all.js" crossorigin="anonymous"></script>
-    <!-- Google fonts-->
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css"/>
-    <link href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic" rel="stylesheet"
-          type="text/css"/>
-    <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css"/>
-    <!-- Core theme CSS (includes Bootstrap)-->
-    <link href="/css/styles.css" rel="stylesheet"/>
-</head>
+<jsp:include page="head.jsp" flush="true"/>
 <body id="page-top">
 <!-- Navigation-->
-<nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
-    <div class="container">
-        <a class="navbar-brand js-scroll-trigger" href="/"><img src="/assets/img/navbar-logo.svg" alt=""/></a>
-        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
-                data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
-                aria-label="Toggle navigation">
-            Menu
-            <i class="fas fa-bars ml-1"></i>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-            <ul class="navbar-nav text-uppercase ml-auto">
-                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#services">오늘의 서울</a></li>
-                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#portfolio">지역</a></li>
-                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#about">후기</a></li>
-                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#team">여행정보</a></li>
-            </ul>
-            <c:choose>
-                <c:when test="${member == null}">
-                    <ul class="navbar-nav text-uppercase ml-auto">
-                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#contact">검색</a></li>
-                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="/login">로그인</a></li>
-                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#contact">한국어</a></li>
-                    </ul>
-                </c:when>
-                <c:when test="${member != null}">
-                    <ul class="navbar-nav text-uppercase ml-auto">
-                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#contact">검색</a></li>
-                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="/mypage">${member.member_id}님</a></li>
-                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="/logout">로그아웃</a></li>
-                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#contact">한국어</a></li>
-                    </ul>
-                </c:when>
-            </c:choose>
-        </div>
-
-    </div>
-</nav>
-<!-- Masthead-->
-<header class="masthead">
-    <div class="container">
-        <div class="masthead-subheading">Welcom to SEOUL</div>
-        <div class="masthead-heading text-uppercase">어서와 서울은 처음이지?</div>
-        <!-- <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="#services">Tell Me More</a> -->
-    </div>
-</header>
+<jsp:include page="header.jsp" flush="true"/>
 <!-- Services-->
 <section class="page-section" id="services">
     <div class="container">

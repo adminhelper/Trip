@@ -15,4 +15,8 @@ public interface BoardMapper {
     void reviewBoardInset(Board board) throws Exception;
 
     Board reviewBoardDetail(int board_no) throws Exception;
+
+    void reviewBoardDelete (int board_no) throws Exception;
+
+    void reviewBoardModify (Board board) throws Exception;
 }

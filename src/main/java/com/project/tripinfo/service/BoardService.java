@@ -29,4 +29,12 @@ public class BoardService implements BoardMapper {
     public Board reviewBoardDetail(int board_no) throws Exception{
         return boardMapper.reviewBoardDetail(board_no);
     }
+
+    public void reviewBoardDelete (int board_no) throws Exception {
+        boardMapper.reviewBoardDelete(board_no);
+    }
+
+    public void reviewBoardModify (Board board) throws Exception {
+        boardMapper.reviewBoardModify(board);
+    }
 }

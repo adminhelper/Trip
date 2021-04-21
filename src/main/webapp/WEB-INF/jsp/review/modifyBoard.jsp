@@ -16,13 +16,19 @@
             <div class="row justify-content-center">
                 <div class="col-lg-100">
                     <div class="modal-body">
-                        <form action='/board/review/insert' method="post">
-                        <div class="text-center">
-                            <input type="hidden" name="member_id" value="${member.member_id}">
-                           제목<input type="text" id="board_title" name="board_title">
-                            내용<textarea rows="5" cols="13" id="board_contents" name="board_contents"></textarea>
-                        </div>
-                            <button type="submit">작성완료</button>
+                        <form name="form" action="/board/review/modify" method="post">
+                            <div class="text-center">
+                                글번호<input readonly="readonly" name="board_no" id="board_no" value="${board.board_no}">
+                                작성자<input readonly="readonly" name="member_id" id="member_id"
+                                          value="${board.member_id}">
+                                제목<input name="board_title" id="board_title"
+                                         value="${board.board_title}">
+                                내용<input name="board_contents" id="board_contents"
+                                         value="${board.board_contents}">
+                            </div>
+                            <input type="hidden" name="board_no" value="${board.board_no}">
+                            <button type="button" onclick="history.back()">돌아가</button>
+                            <button id="modify" type="submit">수정완료</button>
                         </form>
                         <ul class="list-inline">
                             <li>Date: January 2020</li>
