@@ -16,24 +16,37 @@
             <div class="row justify-content-center">
                 <div class="col-lg-100">
                     <div class="modal-body">
-                        <form action='/board/review/insert' method="post">
-                        <div class="text-center">
-                            <input type="hidden" name="member_id" value="${member.member_id}">
-                           제목<input type="text" id="board_title" name="board_title">
-                            내용<textarea rows="5" cols="13" id="board_contents" name="board_contents"></textarea>
-                        </div>
-                            <button type="submit">작성완료</button>
+                        <form action='/board/review/insert' method="post" enctype="multipart/form-data">
+                            <div class="text-center">
+
+                                <table class="table table-striped table-bordered">
+
+                                    <tr>
+                                        <th>제목</th>
+                                        <td><input type="text" id="board_title" name="board_title"></td>
+                                    </tr>
+                                    <tr>
+                                        <th>작성자</th>
+                                        <td><input type="text" readonly="readonly" name="member_id"
+                                                   value="${member.member_id}">${board.member_id}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>내용</th>
+                                        <td><textarea rows="5" cols="13" id="board_contents"
+                                                      name="board_contents"></textarea></td>
+                                    </tr>
+                                    <tr>
+                                        <th>이미지 첨부</th>
+                                        <td><input type="file" name="files" multiple="multiple"/></td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <button class="btn-primary" type="submit">작성완료</button>
                         </form>
-                        <ul class="list-inline">
-                            <li>Date: January 2020</li>
-                            <li>Client: Threads</li>
-                            <li>Category: Illustration</li>
-                        </ul>
-                        <div id="map" style="width:100%;height:450px;"></div>
                     </div>
-                    <hr size="10px">
                 </div>
             </div>
+            <hr size="10px">
         </div>
 </section>
 <!-- Footer-->

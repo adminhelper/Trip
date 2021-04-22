@@ -2,6 +2,8 @@ package com.project.tripinfo.controller;
 
 import com.project.tripinfo.model.Board;
 import com.project.tripinfo.service.BoardService;
+import com.project.tripinfo.util.Criteria;
+import com.project.tripinfo.util.Pagination;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,9 +24,18 @@ public class BoardController {
     private BoardService boardService;
 
     @RequestMapping(value = "/review/boardlist")
-    public String reviewBoard_list(Model model) throws Exception {
-        List<Board> list = boardService.reviewBoardList();
+    public String reviewBoard_list(Criteria criteria, Model model) throws Exception {
+
+        //전체 글 개수
+        int boardListCnt = boardService.boardListCnt();
+
+        //페이징 객체
+        Pagination paging = new Pagination();
+        paging.setCriteria(criteria);
+        paging.setTotalCount(boardListCnt);
+        List<Board> list = boardService.ListPaging(criteria);
         model.addAttribute("review", list);
+        model.addAttribute("paging", paging);
         return "review/reviewBoard";
     }
 

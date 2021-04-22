@@ -40,24 +40,33 @@
 
     <nav aria-label="Page navigation example">
         <ul class="pagination justify-content-center">
-            <button class="btn btn-primary" type="button" id = "ck" onclick="location.href='/board/review/insertboard'">
+            <button class="btn btn-primary" type="button" id="ck" onclick="location.href='/board/review/insertboard'">
                 글쓰기
             </button>
-            <li class="page-item">
-                <a class="page-link" style="color: black" href="#" aria-label="Previous">
-                    <span aria-hidden="true">&laquo;</span>
-                    <span class="sr-only">Previous</span>
-                </a>
-            </li>
-            <li class="page-item"><a class="page-link" style="color: black" href="#">1</a></li>
-            <li class="page-item"><a class="page-link" style="color: black" href="#">2</a></li>
-            <li class="page-item"><a class="page-link" style="color: black" href="#">3</a></li>
-            <li class="page-item">
-                <a class="page-link" style="color: black" href="#" aria-label="Next">
-                    <span aria-hidden="true">&raquo;</span>
-                    <span class="sr-only">Next</span>
-                </a>
-            </li>
+            <c:if test="${paging.prev}">
+                <li class="page-item">
+            <span class="sr-only">
+                    <a class="page-link" style="color: black"
+                       href="'<c:url value='boardlist?page=${paging.startPage-1}'/>" aria-label="Previous">
+                        이전
+                    </a></span>
+
+                </li>
+            </c:if>
+            <c:forEach begin="${paging.startPage}" end="${paging.endPage}" var="num">
+                <li class="page-item"><a class="page-link" style="color: black"
+                                         href="<c:url value='boardlist?page=${num}'/>">${num}</a></li>
+            </c:forEach>
+            <c:if test="${paging.next && paging.endPage>0}">
+                <li class="page-item">
+                  <span class="sr-only">  <a class="page-link" style="color: black"
+                                             href="<c:url value='boardlist?page=${paging.startPage+1}'/>"
+                                             aria-label="Next">
+
+                    </a>다음</span>
+                </li>
+            </c:if>
+
         </ul>
     </nav>
 </section>
@@ -90,12 +99,12 @@
 <script src="/js/scripts.js"></script>
 <script>
 
-$("#ck").click(function (){
-    if(${empty sessionScope.member || data eq null}) {
-        alert("로그인해주세요");
-        location.href = "/login";
-    }
-})
+    $("#ck").click(function () {
+        if (${sessionScope.member eq null || review eq null}) {
+            alert("로그인해주세요");
+            location.href = "/login";
+        }
+    })
 </script>
 
 

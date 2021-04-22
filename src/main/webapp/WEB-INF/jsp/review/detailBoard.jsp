@@ -14,32 +14,43 @@
         <div class="container">
             <hr size="10px">
             <div class="row justify-content-center">
-                <div class="col-lg-100">
+                <div class="col-lg-8">
                     <div class="modal-body">
+                        <!-- Project Details Go Here-->
                         <form name="form" method="post">
-                            <div class="text-center">
-                                글번호<input readonly="readonly" name="board_num" id="board_no" value="${board.board_no}">
-                                작성자<input readonly="readonly" name="member_id" id="member_id"
-                                          value="${board.member_id}">
-                                제목<input readonly="readonly" name="board_title" id="board_title"
-                                         value="${board.board_title}">
-                                내용<input readonly="readonly" name="board_contents" id="board_contents"
-                                         value="${board.board_contents}">
-                            </div>
-                            <button type="button" onclick="location.href='/board/review/boardlist'">목록</button>
-                            <button id="modify" type="button" onclick="location.href='/board/review/modifyform?no=${board.board_no}'">수정</button>
-                            <button id="delete" type="button" onclick="location.href='/board/review/delete?no=${board.board_no}'">삭제</button>
+                            <table class="table table-striped table-bordered">
+                                <tr>
+                                    <th>글번호</th>
+                                    <td>${board.board_no}</td>
+                                </tr>
+                                <tr>
+                                    <th>제목</th>
+                                    <td><input readonly="readonly" name="board_title" id="board_title"
+                                               value="${board.board_title}"></td>
+                                </tr>
+                                <tr>
+                                    <th>작성자</th>
+                                    <td><input readonly="readonly" name="member_id" id="member_id"
+                                               value="${board.member_id}"></td>
+                                </tr>
+                                <tr>
+                                    <th>내용</th>
+                                    <td><input readonly="readonly" name="board_contents" id="board_contents"
+                                               value="${board.board_contents}"></td>
+                                </tr>
+                                <button type="button" onclick="location.href='/board/review/boardlist'">목록</button>
+                                <button id="modify" type="button"
+                                        onclick="location.href='/board/review/modifyform?no=${board.board_no}'">수정
+                                </button>
+                                <button id="delete" type="button"
+                                        onclick="location.href='/board/review/delete?no=${board.board_no}'">삭제
+                                </button>
+                            </table>
                         </form>
-                        <ul class="list-inline">
-                            <li>Date: January 2020</li>
-                            <li>Client: Threads</li>
-                            <li>Category: Illustration</li>
-                        </ul>
-                        <div id="map" style="width:100%;height:450px;"></div>
                     </div>
-                    <hr size="10px">
                 </div>
             </div>
+            <hr size="10px">
         </div>
 </section>
 <!-- Footer-->

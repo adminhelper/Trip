@@ -2,6 +2,7 @@ package com.project.tripinfo.service;
 
 import com.project.tripinfo.model.Board;
 import com.project.tripinfo.repository.BoardMapper;
+import com.project.tripinfo.util.Criteria;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -20,6 +21,11 @@ public class BoardService implements BoardMapper {
     }
 
     @Override
+    public List<Board> ListPaging (Criteria criteria) {
+        return boardMapper.ListPaging(criteria);
+    }
+
+    @Override
     public void reviewBoardInset(Board board) throws Exception {
         boardMapper.reviewBoardInset(board);
 
@@ -29,12 +35,17 @@ public class BoardService implements BoardMapper {
     public Board reviewBoardDetail(int board_no) throws Exception{
         return boardMapper.reviewBoardDetail(board_no);
     }
-
+    @Override
     public void reviewBoardDelete (int board_no) throws Exception {
         boardMapper.reviewBoardDelete(board_no);
     }
-
+    @Override
     public void reviewBoardModify (Board board) throws Exception {
         boardMapper.reviewBoardModify(board);
+    }
+
+    @Override
+    public int boardListCnt () throws Exception {
+        return boardMapper.boardListCnt();
     }
 }
