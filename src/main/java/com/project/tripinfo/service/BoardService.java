@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.Map;
 
 @Service("com.project.tripinfo.service.BoardService")
 public class BoardService implements BoardMapper {
@@ -16,8 +17,8 @@ public class BoardService implements BoardMapper {
 
 
     @Override
-    public List<Board> reviewBoardList () throws Exception {
-        return boardMapper.reviewBoardList();
+    public List<Map<String, Object>> reviewBoardList (Criteria criteria) throws Exception {
+        return boardMapper.reviewBoardList(criteria);
     }
 
     @Override

@@ -37,7 +37,10 @@
                                     </tr>
                                     <tr>
                                         <th>이미지 첨부</th>
-                                        <td><input type="file" name="files" multiple="multiple"/></td>
+                                        <td><input type="file" name="files" id="files" multiple="multiple"/>
+                                        <div class="select_img"><img src=""/>
+                                        </div>
+                                        </td>
                                     </tr>
                                 </table>
                             </div>
@@ -76,4 +79,18 @@
 <script src="/assets/mail/contact_me.js"></script>
 <!-- Core theme JS-->
 <script src="/js/scripts.js"></script>
+
+<script>
+    $("#files").change(function(){
+        if(this.files && this.files[0]) {
+            var reader = new FileReader;
+            reader.onload = function(data) {
+                $(".select_img img").attr("src", data.target.result).width(500);
+            }
+            reader.readAsDataURL(this.files[0]);
+
+
+        }
+    });
+</script>
 </html>

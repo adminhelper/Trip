@@ -6,13 +6,14 @@ import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Map;
 
 @Mapper
 @Repository("com.project.tripinfo.repository.BoardMapper")
 public interface BoardMapper {
 
     //게시글 조회
-    List<Board> reviewBoardList() throws Exception;
+    List<Map<String,Object>> reviewBoardList(Criteria criteria) throws Exception;
 
     //페이징처리 게시글 조회
     List<Board> ListPaging(Criteria criteria);

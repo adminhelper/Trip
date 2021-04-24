@@ -45,25 +45,25 @@
             </button>
             <c:if test="${paging.prev}">
                 <li class="page-item">
-            <span class="sr-only">
+
                     <a class="page-link" style="color: black"
-                       href="'<c:url value='boardlist?page=${paging.startPage-1}'/>" aria-label="Previous">
+                       href="<c:url value='boardlist?pageNum=${paging.startPage-1}'/>" aria-label="Previous">
                         이전
-                    </a></span>
+                    </a>
 
                 </li>
             </c:if>
             <c:forEach begin="${paging.startPage}" end="${paging.endPage}" var="num">
                 <li class="page-item"><a class="page-link" style="color: black"
-                                         href="<c:url value='boardlist?page=${num}'/>">${num}</a></li>
+                                         href="<c:url value='boardlist?pageNum=${num}'/>">${num}</a></li>
             </c:forEach>
             <c:if test="${paging.next && paging.endPage>0}">
                 <li class="page-item">
-                  <span class="sr-only">  <a class="page-link" style="color: black"
-                                             href="<c:url value='boardlist?page=${paging.startPage+1}'/>"
-                                             aria-label="Next">
-
-                    </a>다음</span>
+                    <a class="page-link" style="color: black"
+                       href="<c:url value='boardlist?pageNum=${paging.endPage+1}'/>"
+                       aria-label="Next">
+                        다음
+                    </a>
                 </li>
             </c:if>
 

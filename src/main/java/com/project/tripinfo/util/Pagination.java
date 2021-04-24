@@ -2,9 +2,11 @@ package com.project.tripinfo.util;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 @Getter
 @Setter
+@ToString
 public class Pagination {
 
     private Criteria criteria;
@@ -12,7 +14,7 @@ public class Pagination {
     // 전체 데이터 개수
     private int totalCount;
     // 전체 페이지 개수
-    private int totalPageCount = 12;
+    private int totalPageCount = 5;
     //페이지 리스트 첫페이지 번호
     private int startPage;
     //페이지 리스트의 마지막 페이지 번호

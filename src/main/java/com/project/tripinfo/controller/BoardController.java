@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
+import java.util.Map;
 
 @Slf4j
 @Controller
@@ -28,12 +29,11 @@ public class BoardController {
 
         //전체 글 개수
         int boardListCnt = boardService.boardListCnt();
-
         //페이징 객체
         Pagination paging = new Pagination();
         paging.setCriteria(criteria);
         paging.setTotalCount(boardListCnt);
-        List<Board> list = boardService.ListPaging(criteria);
+        List<Map<String,Object>> list = boardService.reviewBoardList(criteria);
         model.addAttribute("review", list);
         model.addAttribute("paging", paging);
         return "review/reviewBoard";
