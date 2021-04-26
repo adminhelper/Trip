@@ -2,6 +2,110 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="en">
+<style>
+    .content .table_wrap {
+        padding: 0 30px 40px 30px;
+    }
+
+    .table_wrap .tower_light_desc {
+        height: 255px;
+        width: 900px;
+        margin: 70px -100px;
+    }
+
+    .table_wrap .tower_light_desc .title {
+        background: url(//imgstower.ytn.co.kr/img/ico_tourinside.png) no-repeat center left;
+        padding-left: 34px;
+        font-size: 26px;
+        font-weight: 600;
+        width: 336px;
+        margin: 0 auto 30px 270px;
+    }
+
+    .table_wrap .tower_light_desc .img_light_01 {
+        float: left;
+        display: block;
+        width: 180px;
+        height: 255px;
+        background: url(//imgstower.ytn.co.kr/img/tour_inside_light_01.png) no-repeat top left;
+        background-size: 180px 180px;
+    }
+
+    .table_wrap .tower_light_desc .value {
+        margin: 195px 0 0 0;
+        text-align: center;
+        font-size: 18px;
+    }
+
+    .table_wrap .tower_light_desc .blue {
+        font-size: 24px;
+        font-weight: 600;
+        text-align: center;
+        color: #00affa;
+    }
+
+    .table_wrap .tower_light_desc .next_arrow {
+        float: left;
+        display: block;
+        width: 60px;
+        height: 180px;
+        background: url(//imgstower.ytn.co.kr/img/bt_vod_next.png) no-repeat center center;
+    }
+
+    .table_wrap .tower_light_desc .img_light_02 {
+        float: left;
+        display: block;
+        width: 180px;
+        height: 255px;
+        background: url(//imgstower.ytn.co.kr/img/tour_inside_light_02.png) no-repeat top left;
+        background-size: 180px 180px;
+    }
+
+    .table_wrap .tower_light_desc .value {
+        margin: 195px 0 0 0;
+        text-align: center;
+        font-size: 18px;
+    }
+
+    .table_wrap .tower_light_desc .green {
+        font-size: 24px;
+        font-weight: 600;
+        text-align: center;
+        color: #049600;
+    }
+
+    .table_wrap .tower_light_desc .img_light_03 {
+        float: left;
+        display: block;
+        width: 180px;
+        height: 255px;
+        background: url(//imgstower.ytn.co.kr/img/tour_inside_light_03.png) no-repeat top left;
+        background-size: 180px 180px;
+    }
+
+    .table_wrap .tower_light_desc .yellow {
+        font-size: 24px;
+        font-weight: 600;
+        text-align: center;
+        color: #ffb400;
+    }
+
+    .table_wrap .tower_light_desc .img_light_04 {
+        float: left;
+        display: block;
+        width: 180px;
+        height: 255px;
+        background: url(//imgstower.ytn.co.kr/img/tour_inside_light_04.png) no-repeat top left;
+        background-size: 180px 180px;
+    }
+
+    .table_wrap .tower_light_desc .red {
+        font-size: 24px;
+        font-weight: 600;
+        text-align: center;
+        color: #ff0018;
+    }
+</style>
 <jsp:include page="head.jsp" flush="true"/>
 <body id="page-top">
 <!-- Navigation-->
@@ -183,7 +287,7 @@
             </div>
             <div class="col-lg-4">
                 <div class="team-member">
-                    <a class="portfolio-link text-center" data-toggle="modal" href="#traffic">
+                    <a class="portfolio-link text-center" id="kakao" data-toggle="modal" href="#traffic">
                         <img class="mx-auto rounded-circle" src="/assets/img/team/2.jpg" alt=""/>
                     </a>
                 </div>
@@ -237,7 +341,7 @@
 <!-- Modal 1-->
 <div class="portfolio-modal modal fade" id="weather" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog">
-        <div class="modal-content">
+        <div class="modal-content text-center">
             <div class="close-modal" data-dismiss="modal"><img src="assets/img/close-icon.svg" alt="Close modal"/></div>
             <div class="container">
                 <div class="row justify-content-center">
@@ -245,21 +349,37 @@
                         <div class="modal-body">
                             <!-- Project Details Go Here-->
                             <h2 class="text-uppercase">서울 현재 날씨</h2>
-                            <div >
+                            <div class="modal-body">
                                 <h3 class="time">현재 시간 </h3>
                                 <h3 class="ctemp">현재 온도 </h3>
                                 <h3 class="lowtemp">최저 온도 </h3>
                                 <h3 class="hightemp">최고 온도 </h3>
                                 <h3 class="icon"></h3>
-                                <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+                                <h4 class="name"></h4>
+                                <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+                                        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+                                        crossorigin="anonymous"></script>
                                 <script>
                                     $.getJSON("http://api.openweathermap.org/data/2.5/weather?q=Seoul&appid=423860f71278bfb9ab4d4d19ffc84001&units=metric", function (result) {
-                                        $(".ctemp").append(result.main.temp);
-                                        $(".lowtemp").append(result.main.temp_min);
-                                        $(".hightemp").append(result.main.temp_max);
-                                        var wiconUrl = '<img src = "http://openweathermap.org/img/wn/' + result.weather[0].icon + '.png" alt="' + result.weather[0].description + '">';
+                                        $(".ctemp").append(Math.ceil(result.main.temp) + " 도");
+                                        $(".lowtemp").append(result.main.temp_min + " 도");
+                                        $(".hightemp").append(result.main.temp_max + " 도");
+                                        var wiconUrl = '<img src = "http://openweathermap.org/img/wn/' + result.weather[0].icon + '@2x.png" alt="' + result.weather[0].description + '">';
                                         $(".icon").html(wiconUrl);
                                         var ct = result.dt;
+
+                                        var data = {
+                                            "clear sky": "맑은 하늘",
+                                            "few clouds": "약간 흐림",
+                                            "scattered clouds": "구름 많음",
+                                            "broken clouds": "먹구름",
+                                            "shower rain": "소나기",
+                                            "rain": "비",
+                                            "thunderstorm": "천",
+                                            "snow": "눈",
+                                            "mist": "안개"
+                                        }
+                                        $(".name").append(data[result.weather[0].description]);
 
                                         function convertTime(t) {
                                             var ot = new Date(t * 1000);
@@ -271,10 +391,56 @@
 
                                             return dt + "일 " + hr + " : " + "00";
                                         }
+
                                         var currentTime = convertTime(ct);
                                         $(".time").append(currentTime);
                                     });
                                 </script>
+
+                                <script>
+                                    $.getJSON("http://openapi.seoul.go.kr:8088/4b6149745979683435395944555a61/json/ListAvgOfSeoulAirQualityService/1/5/", function (result) {
+                                        var vv = result.ListAvgOfSeoulAirQualityService["row"][0]["PM10"];
+                                        checkPM(vv);
+                                    });
+
+                                    function checkPM(vv) {
+                                        if (vv <= 0 || vv <= 15) {
+                                            $('.img_light_01').css('border', '1px solid black');
+                                        } else if (vv <= 16 || vv <= 35) {
+                                            $('.img_light_02').css('border', '1px solid black');
+                                        } else if (vv <= 36 || vv <= 75) {
+                                            $('.img_light_03').css('border', '1px solid black');
+                                        } else {
+                                            $('.img_light_04').css('border', '1px solid black');
+                                        }
+                                    }
+
+                                </script>
+                                <div class="table_wrap text-center">
+                                    <div class="tower_light_desc">
+                                        <p class="title">
+                                            조명 색깔별 미세먼지 4단계</p>
+                                        <div class="img_light_01">
+                                            <p class="value">0~15㎍/m³</p>
+                                            <p class="blue">좋음</p>
+                                        </div>
+                                        <div class="next_arrow"></div>
+                                        <div class="img_light_02">
+                                            <p class="value">16~35㎍/m³</p>
+                                            <p class="green">보통</p>
+                                        </div>
+                                        <div class="next_arrow"></div>
+                                        <div class="img_light_03">
+                                            <p class="value">36~75㎍/m³</p>
+                                            <p class="yellow">나쁨</p>
+                                        </div>
+                                        <div class="next_arrow"></div>
+                                        <div class="img_light_04">
+                                            <p class="value">76㎍/m³ 이상</p>
+                                            <p class="red">매우나쁨</p>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -296,7 +462,39 @@
                             <h2 class="text-uppercase">Project Name</h2>
                             <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
                             <p>
-                            <div class="container" id="map" style="width:300px;height:300px;"></div>
+                            <div class="modal-content" id="map" style="width:700px;height:350px;"></div>
+                            <button onclick="resizeMap()">지도 크기 바꾸기</button>
+                            <button onclick="relayout()">relayout 호출하기</button>
+                            <script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=0db2942233bd1e50916ba2f9f084b46e"></script>
+                            <script>
+                                var mapContainer = document.getElementById('map'), // 지도를 표시할 div
+                                    mapOption = {
+                                        center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+                                        level: 3 // 지도의 확대 레벨
+                                    };
+                                var map = new kakao.maps.Map(mapContainer, mapOption);
+
+                                function resizeMap() {
+                                    var mapContainer = document.getElementById('map');
+                                    mapContainer.style.width = '650px';
+                                    mapContainer.style.height = '650px';
+                                }
+
+                                function relayout() {
+
+                                    // 지도를 표시하는 div 크기를 변경한 이후 지도가 정상적으로 표출되지 않을 수도 있습니다
+                                    // 크기를 변경한 이후에는 반드시  map.relayout 함수를 호출해야 합니다
+                                    // window의 resize 이벤트에 의한 크기변경은 map.relayout 함수가 자동으로 호출됩니다
+                                    map.relayout();
+                                }
+
+                                setTimeout(function () {
+                                    resizeMap();
+                                    map.relayout();
+                                }, 200 /*이 값은 원하는 대로...*/);
+
+                            </script>
+
                             </p>
                         </div>
                     </div>
@@ -315,20 +513,5 @@
 <script src="/assets/mail/contact_me.js"></script>
 <!-- Core theme JS-->
 <script src="/js/scripts.js"></script>
-
-
-<script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=0db2942233bd1e50916ba2f9f084b46e"></script>
-<script>
-    var mapContainer = document.getElementById('map'), // 지도를 표시할 div
-        mapOption = {
-            center: new kakao.maps.LatLng(37.56682, 126.97865), // 지도의 중심좌표
-            level: 3, // 지도의 확대 레벨
-            mapTypeId : kakao.maps.MapTypeId.ROADMAP // 지도종류
-        };
-
-    // 지도를 생성한다
-    var map = new kakao.maps.Map(mapContainer, mapOption);
-
-</script>
 </body>
 </html>

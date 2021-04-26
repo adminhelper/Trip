@@ -21,7 +21,7 @@ public class BoardServiceImpl implements BoardService {
     @Autowired
     private FileUtils fileUtils;
 
-    @Autowired(required = true)
+    @Autowired
     BoardMapper boardMapper;
 
 
@@ -40,9 +40,10 @@ public class BoardServiceImpl implements BoardService {
         boardMapper.reviewBoardInsert(board);
 
         List<Review_File> list = fileUtils.parseFileInfo(board.getBoard_no(), multipartHttpServletRequest);
-        if (CollectionUtils.isEmpty(list) == false) {
+        if(CollectionUtils.isEmpty(list) == false){
             boardMapper.reviewBoardFileInsert(list);
         }
+        System.out.println(list.toString());
     }
     @Override
     public Board reviewBoardDetail (int board_no) throws Exception {
@@ -59,9 +60,9 @@ public class BoardServiceImpl implements BoardService {
         boardMapper.reviewBoardModify(board);
     }
 
-//    @Override
-//    public int boardListCnt () throws Exception {
-//         return boardMapper.boardListCnt();
-//    }
+    @Override
+    public int boardListCnt () throws Exception {
+         return boardMapper.boardListCnt();
+    }
 
 }

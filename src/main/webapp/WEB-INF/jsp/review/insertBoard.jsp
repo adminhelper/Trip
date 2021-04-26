@@ -16,7 +16,7 @@
             <div class="row justify-content-center">
                 <div class="col-lg-100">
                     <div class="modal-body">
-                        <form action='/board/review/insert' method="post" enctype="multipart/form-data">
+                        <form id="frm" name="frm" method="post"  action='/board/review/insert' enctype="multipart/form-data">
                             <div class="text-center">
 
                                 <table class="table table-striped table-bordered">

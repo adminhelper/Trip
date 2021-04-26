@@ -12,7 +12,7 @@ import java.util.Map;
 @Mapper
 public interface BoardMapper {
 
-//    int boardListCnt () throws Exception;
+    int boardListCnt () throws Exception;
 
     //게시글 조회
     List<Map<String, Object>> reviewBoardList (Criteria criteria) throws Exception;
@@ -21,8 +21,6 @@ public interface BoardMapper {
     List<Board> ListPaging (Criteria criteria);
 
     //게시글 추가
-    void reviewBoardInsert (Board board, MultipartHttpServletRequest multipartHttpServletRequest) throws Exception;
-
     void reviewBoardInsert (Board board) throws Exception;
 
     //파일 첨부

@@ -1,70 +1,80 @@
 package com.project.tripinfo.util.file.model;
 
+import com.project.tripinfo.model.Member;
 import com.project.tripinfo.model.Review_File;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.util.ObjectUtils;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import java.io.File;
-import java.io.IOException;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
 @Component
 public class FileUtils {
 
-    public List<Review_File> parseFileInfo (int board_no, MultipartHttpServletRequest multipartHttpServletRequest) throws IOException {
-        if (ObjectUtils.isEmpty(multipartHttpServletRequest)) {
+
+    public List<Review_File> parseFileInfo(int board_no, MultipartHttpServletRequest multipartHttpServletRequest) throws Exception{
+        if(ObjectUtils.isEmpty(multipartHttpServletRequest)){
             return null;
         }
-        List<Review_File> reviewFileList = new ArrayList<>();
+
+
+        List<Review_File> fileList = new ArrayList<>();
+
         DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyyMMdd");
         ZonedDateTime current = ZonedDateTime.now();
-        String path = "image/" + current.format(format);
-
+        String path = "images/"+current.format(format);
         File file = new File(path);
-        if (file.exists() == false) {
-            file.mkdir();
+        if(file.exists() == false){
+            file.mkdirs();
         }
 
         Iterator<String> iterator = multipartHttpServletRequest.getFileNames();
-        String newFilename, originalFileExtension, contentType = new String();
 
-        while (iterator.hasNext()) {
+        String newFileName, originalFileExtension, contentType;
+
+        while(iterator.hasNext()){
             List<MultipartFile> list = multipartHttpServletRequest.getFiles(iterator.next());
-            for (MultipartFile multipartFile : list) {
-                if (multipartFile.isEmpty() == false) {
+            for (MultipartFile multipartFile : list){
+                if(multipartFile.isEmpty() == false){
                     contentType = multipartFile.getContentType();
-                    break;
-                } else {
-                    if (contentType.contains("image/jpeg")) {
-                        originalFileExtension = ".jpg";
-                    } else if (contentType.contains("image/png")) {
-                        originalFileExtension = ".png";
-                    } else if (contentType.contains("image/gif")) {
-                        originalFileExtension = ".gif";
-                    } else {
+                    if(ObjectUtils.isEmpty(contentType)){
                         break;
                     }
-                }
-                newFilename = Long.toString(System.nanoTime()) + originalFileExtension;
-                Review_File review_file = new Review_File();
-                review_file.setBoard_no(board_no);
-                review_file.setFile_size(multipartFile.getSize());
-                review_file.setFile_origin_name(multipartFile.getOriginalFilename());
-                review_file.setFile_name(path + "/" + newFilename);
-                review_file.setFile_regdate(new Date());
-                reviewFileList.add(review_file);
+                    else{
+                        if(contentType.contains("image/jpeg")) {
+                            originalFileExtension = ".jpg";
+                        }
+                        else if(contentType.contains("image/png")) {
+                            originalFileExtension = ".png";
+                        }
+                        else if(contentType.contains("image/gif")) {
+                            originalFileExtension = ".gif";
+                        }
+                        else{
+                            break;
+                        }
+                    }
 
-                file = new File(path + "/" + newFilename);
-                multipartFile.transferTo(file);
+                    newFileName = Long.toString(System.nanoTime()) + originalFileExtension;
+                    Review_File boardFile = new Review_File();
+                    boardFile.setBoard_no(board_no);
+                    boardFile.setFile_size(multipartFile.getSize());
+                    boardFile.setFile_origin_name(multipartFile.getOriginalFilename());
+                    boardFile.setFile_name(path + "/" + newFileName);
+                    fileList.add(boardFile);
+
+                    file = new File(path + "/" + newFileName);
+                    multipartFile.transferTo(file);
+                }
             }
         }
-        return reviewFileList;
+        return fileList;
     }
 }

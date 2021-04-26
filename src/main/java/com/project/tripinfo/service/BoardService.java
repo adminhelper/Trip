@@ -24,5 +24,5 @@ public interface BoardService {
 
      void reviewBoardModify (Board board) throws Exception;
 
-//     int boardListCnt () throws Exception;
+     int boardListCnt () throws Exception;
 }

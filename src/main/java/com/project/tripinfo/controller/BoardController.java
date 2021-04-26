@@ -44,7 +44,6 @@ public class BoardController {
     @RequestMapping(value = "/review/insert")
     public String reviewBoard_insert(Board board, MultipartHttpServletRequest multipartHttpServletRequest) throws  Exception{
         boardService.reviewBoardInsert(board,multipartHttpServletRequest);
-        log.info("컨트롤 ===== ", multipartHttpServletRequest.toString());
         return "redirect:/board/review/boardlist";
     }
     //게시글 등록

@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.project.tripinfo.repository.BoardMapper">
-    <insert id="reviewBoardInsert">
+    <insert id="reviewBoardInsert" parameterType="com.project.tripinfo.model.Board" useGeneratedKeys="true" keyProperty="board_no">
         INSERT INTO BOARD (board_title, board_contents, member_id)
         values (#{board_title}, #{board_contents}, #{member_id})
     </insert>
@@ -11,9 +11,7 @@
         <![CDATA[
             INSERT INTO file
             (
-                file_no,
                 board_no,
-                member_id,
                 file_origin_name,
                 file_name,
                 file_size,
@@ -23,10 +21,9 @@
         <foreach collection="list" item="item" separator=",">
             (
             #{item.board_no},
-            '111',
-            #{item.originalFileName},
-            #{item.storedFiePath},
-            #{item.fileSize},
+            #{item.file_origin_name},
+            #{item.file_name},
+            #{item.file_size},
             NOW()
             )
         </foreach>
@@ -65,8 +62,8 @@
         LIMIT #{pageNum}, #{amount}
     </select>
 
-<!--    <select id="boardListCnt" resultType="java.lang.Integer">-->
-<!--        select count(*)-->
-<!--        from board-->
-<!--    </select>-->
+    <select id="boardListCnt" resultType="java.lang.Integer">
+        select count(*)
+        from board
+    </select>
 </mapper>
