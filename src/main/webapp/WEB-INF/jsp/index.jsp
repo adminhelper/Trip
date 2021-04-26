@@ -26,7 +26,7 @@
         float: left;
         display: block;
         width: 180px;
-        height: 255px;
+        height: 260px;
         background: url(//imgstower.ytn.co.kr/img/tour_inside_light_01.png) no-repeat top left;
         background-size: 180px 180px;
     }
@@ -56,7 +56,7 @@
         float: left;
         display: block;
         width: 180px;
-        height: 255px;
+        height: 260px;
         background: url(//imgstower.ytn.co.kr/img/tour_inside_light_02.png) no-repeat top left;
         background-size: 180px 180px;
     }
@@ -78,7 +78,7 @@
         float: left;
         display: block;
         width: 180px;
-        height: 255px;
+        height: 260px;
         background: url(//imgstower.ytn.co.kr/img/tour_inside_light_03.png) no-repeat top left;
         background-size: 180px 180px;
     }
@@ -94,7 +94,7 @@
         float: left;
         display: block;
         width: 180px;
-        height: 255px;
+        height: 260px;
         background: url(//imgstower.ytn.co.kr/img/tour_inside_light_04.png) no-repeat top left;
         background-size: 180px 180px;
     }
@@ -356,6 +356,7 @@
                                 <h3 class="hightemp">최고 온도 </h3>
                                 <h3 class="icon"></h3>
                                 <h4 class="name"></h4>
+
                                 <script src="https://code.jquery.com/jquery-3.6.0.min.js"
                                         integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
                                         crossorigin="anonymous"></script>
@@ -417,7 +418,9 @@
 
                                 </script>
                                 <div class="table_wrap text-center">
+
                                     <div class="tower_light_desc">
+                                        <hr style="width: 100%; background-color: black;">
                                         <p class="title">
                                             조명 색깔별 미세먼지 4단계</p>
                                         <div class="img_light_01">
@@ -463,8 +466,6 @@
                             <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
                             <p>
                             <div class="modal-content" id="map" style="width:700px;height:350px;"></div>
-                            <button onclick="resizeMap()">지도 크기 바꾸기</button>
-                            <button onclick="relayout()">relayout 호출하기</button>
                             <script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=0db2942233bd1e50916ba2f9f084b46e"></script>
                             <script>
                                 var mapContainer = document.getElementById('map'), // 지도를 표시할 div
@@ -474,27 +475,11 @@
                                     };
                                 var map = new kakao.maps.Map(mapContainer, mapOption);
 
-                                function resizeMap() {
-                                    var mapContainer = document.getElementById('map');
-                                    mapContainer.style.width = '650px';
-                                    mapContainer.style.height = '650px';
-                                }
+                                mapContainer.style.width = "650px";
+                                mapContainer.style.height = "650px";
 
-                                function relayout() {
-
-                                    // 지도를 표시하는 div 크기를 변경한 이후 지도가 정상적으로 표출되지 않을 수도 있습니다
-                                    // 크기를 변경한 이후에는 반드시  map.relayout 함수를 호출해야 합니다
-                                    // window의 resize 이벤트에 의한 크기변경은 map.relayout 함수가 자동으로 호출됩니다
-                                    map.relayout();
-                                }
-
-                                setTimeout(function () {
-                                    resizeMap();
-                                    map.relayout();
-                                }, 200 /*이 값은 원하는 대로...*/);
-
+                                map.relayout();
                             </script>
-
                             </p>
                         </div>
                     </div>
