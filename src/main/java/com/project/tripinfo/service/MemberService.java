@@ -2,14 +2,15 @@ package com.project.tripinfo.service;
 
 import com.project.tripinfo.model.Member;
 import com.project.tripinfo.repository.MemberMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 
-@Service("com.project.tripinfo.service.MemberMapper")
+@Service
 public class MemberService implements MemberMapper {
 
-    @Resource(name = "com.project.tripinfo.repository.MemberMapper")
+    @Autowired(required = true)
     MemberMapper memberMapper;
 
     @Override

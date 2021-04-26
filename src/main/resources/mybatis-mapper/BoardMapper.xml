@@ -2,39 +2,71 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.project.tripinfo.repository.BoardMapper">
-    <insert id="reviewBoardInset">
-        INSERT INTO BOARD (board_title,board_contents,member_id) values (#{board_title},#{board_contents},#{member_id})
+    <insert id="reviewBoardInsert">
+        INSERT INTO BOARD (board_title, board_contents, member_id)
+        values (#{board_title}, #{board_contents}, #{member_id})
+    </insert>
+
+    <insert id="reviewBoardFileInsert" parameterType="com.project.tripinfo.model.Review_File">
+        <![CDATA[
+            INSERT INTO file
+            (
+                file_no,
+                board_no,
+                member_id,
+                file_origin_name,
+                file_name,
+                file_size,
+                file_regdate
+            ) VALUES
+        ]]>
+        <foreach collection="list" item="item" separator=",">
+            (
+            #{item.board_no},
+            '111',
+            #{item.originalFileName},
+            #{item.storedFiePath},
+            #{item.fileSize},
+            NOW()
+            )
+        </foreach>
+
     </insert>
     <update id="reviewBoardModify" parameterType="com.project.tripinfo.model.Board">
-        UPDATE BOARD SET board_title = #{board_title},
-                         board_contents = #{board_contents}
-                         WHERE board_no = #{board_no}
+        UPDATE BOARD
+        SET board_title    = #{board_title},
+            board_contents = #{board_contents}
+        WHERE board_no = #{board_no}
     </update>
     <delete id="reviewBoardDelete" parameterType="int">
-        DELETE FROM BOARD WHERE board_no = #{board_no}
+        DELETE
+        FROM BOARD
+        WHERE board_no = #{board_no}
     </delete>
 
     <select id="reviewBoardList" resultType="hashmap" parameterType="hashmap">
         <![CDATA[
-            SELECT *
-            FROM board
-            ORDER BY board_no DESC
-            LIMIT #{pageStart}, #{amount}
+        SELECT *
+        FROM board
+        ORDER BY board_no DESC
+        LIMIT #{pageStart}, #{amount}
         ]]>
     </select>
     <select id="reviewBoardDetail" resultType="com.project.tripinfo.model.Board">
-        SELECT board_title,board_contents,member_id,board_no FROM board where board_no = #{board_no}
-    </select>
-    <select id="ListPaging" resultType="com.project.tripinfo.model.Board">
-        SELECT *
-            FROM board
-            ORDER BY board_no DESC
-            LIMIT #{pageNum}, #{amount}
+        SELECT board_title, board_contents, member_id, board_no
+        FROM board
+        where board_no = #{board_no}
     </select>
 
-    <!-- 게시글 총 개수 -->
-    <select id="boardListCnt" resultType="int">
-        select count(*)
-        from board
+    <select id="ListPaging" resultType="com.project.tripinfo.model.Board">
+        SELECT *
+        FROM board
+        ORDER BY board_no DESC
+        LIMIT #{pageNum}, #{amount}
     </select>
+
+<!--    <select id="boardListCnt" resultType="java.lang.Integer">-->
+<!--        select count(*)-->
+<!--        from board-->
+<!--    </select>-->
 </mapper>

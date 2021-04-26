@@ -1,52 +1,28 @@
 package com.project.tripinfo.service;
 
 import com.project.tripinfo.model.Board;
-import com.project.tripinfo.repository.BoardMapper;
 import com.project.tripinfo.util.Criteria;
-import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
-import javax.annotation.Resource;
 import java.util.List;
 import java.util.Map;
 
-@Service("com.project.tripinfo.service.BoardService")
-public class BoardService implements BoardMapper {
 
-    @Resource(name = "com.project.tripinfo.repository.BoardMapper")
-    BoardMapper boardMapper;
+public interface BoardService {
 
 
-    @Override
-    public List<Map<String, Object>> reviewBoardList (Criteria criteria) throws Exception {
-        return boardMapper.reviewBoardList(criteria);
-    }
+     List<Map<String, Object>> reviewBoardList (Criteria criteria) throws Exception;
 
-    @Override
-    public List<Board> ListPaging (Criteria criteria) {
-        return boardMapper.ListPaging(criteria);
-    }
+     List<Board> ListPaging (Criteria criteria);
 
-    @Override
-    public void reviewBoardInset(Board board) throws Exception {
-        boardMapper.reviewBoardInset(board);
+     void reviewBoardInsert (Board board, MultipartHttpServletRequest multipartHttpServletRequest) throws Exception;
 
-    }
 
-    @Override
-    public Board reviewBoardDetail(int board_no) throws Exception{
-        return boardMapper.reviewBoardDetail(board_no);
-    }
-    @Override
-    public void reviewBoardDelete (int board_no) throws Exception {
-        boardMapper.reviewBoardDelete(board_no);
-    }
-    @Override
-    public void reviewBoardModify (Board board) throws Exception {
-        boardMapper.reviewBoardModify(board);
-    }
+     Board reviewBoardDetail (int board_no) throws Exception;
 
-    @Override
-    public int boardListCnt () throws Exception {
-        return boardMapper.boardListCnt();
-    }
+     void reviewBoardDelete (int board_no) throws Exception;
+
+     void reviewBoardModify (Board board) throws Exception;
+
+//     int boardListCnt () throws Exception;
 }

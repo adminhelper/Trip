@@ -8,9 +8,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
@@ -28,11 +28,12 @@ public class BoardController {
     public String reviewBoard_list(Criteria criteria, Model model) throws Exception {
 
         //전체 글 개수
-        int boardListCnt = boardService.boardListCnt();
+//        int boardCnt = boardService.boardListCnt();
+        int boardCnt = 50;
         //페이징 객체
         Pagination paging = new Pagination();
         paging.setCriteria(criteria);
-        paging.setTotalCount(boardListCnt);
+        paging.setTotalCount(boardCnt);
         List<Map<String,Object>> list = boardService.reviewBoardList(criteria);
         model.addAttribute("review", list);
         model.addAttribute("paging", paging);
@@ -41,13 +42,15 @@ public class BoardController {
 
     //게시판 조회
     @RequestMapping(value = "/review/insert")
-    public String reviewBoard_insert(Board board) throws  Exception{
-        boardService.reviewBoardInset(board);
+    public String reviewBoard_insert(Board board, MultipartHttpServletRequest multipartHttpServletRequest) throws  Exception{
+        boardService.reviewBoardInsert(board,multipartHttpServletRequest);
+        log.info("컨트롤 ===== ", multipartHttpServletRequest.toString());
         return "redirect:/board/review/boardlist";
     }
     //게시글 등록
     @RequestMapping(value = "/review/insertboard")
     public String reviewBoard_insertForm() throws  Exception {
+
         return "review/insertBoard";
     }
     //게시글 삭제
