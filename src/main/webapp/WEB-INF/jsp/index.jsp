@@ -280,6 +280,7 @@
                     <div class="team-member">
                         <a class="portfolio-link text-center" data-toggle="modal" href="#weather">
                             <img class="mx-auto rounded-circle" src="/assets/img/team/2.jpg" alt=""/>
+                            <h4>날씨</h4>
                         </a>
                     </div>
 
@@ -287,15 +288,20 @@
             </div>
             <div class="col-lg-4">
                 <div class="team-member">
+                    <script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=0db2942233bd1e50916ba2f9f084b46e"></script>
                     <a class="portfolio-link text-center" id="kakao" data-toggle="modal" href="#traffic">
+
                         <img class="mx-auto rounded-circle" src="/assets/img/team/2.jpg" alt=""/>
+                        <h4>지도</h4>
                     </a>
                 </div>
             </div>
             <div class="col-lg-4">
                 <div class="team-member">
-                    <img class="mx-auto rounded-circle" src="/assets/img/team/3.jpg" alt=""/>
-                    <h4>Diana Petersen</h4>
+                    <a class="portfolio-link text-center" data-toggle="modal" href="#covid19">
+                        <img class="mx-auto rounded-circle" src="/assets/img/team/3.jpg" alt=""/>
+                        <h4>코로나 확진자 수</h4>
+                    </a>
                 </div>
             </div>
         </div>
@@ -457,7 +463,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="close-modal" data-dismiss="modal"><img src="assets/img/close-icon.svg" alt="Close modal"/></div>
-            <div class="container">
+            <div class="container" id="container">
                 <div class="row justify-content-center">
                     <div class="col-lg-8">
                         <div class="modal-body">
@@ -478,9 +484,33 @@
                                 mapContainer.style.width = "650px";
                                 mapContainer.style.height = "650px";
 
-                                map.relayout();
+
                             </script>
                             </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="portfolio-modal modal fade" id="covid19" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content text-center">
+            <div class="close-modal" data-dismiss="modal"><img src="assets/img/close-icon.svg" alt="Close modal"/></div>
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-8">
+                        <div class="modal-body">
+                            <!-- Project Details Go Here-->
+                            <h2 class="text-uppercase">코로나 확진자 </h2>
+                            <div class="modal-body">
+                                <h5 class="t1"></h5>
+                                <h5 class="t3">확진환자 </h5>
+                                <h5 class="t4">격리해제 </h5>
+                                <h5 class="t5">검사진행 </h5>
+                                <h5 class="t6">사망자 </h5>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -498,5 +528,29 @@
 <script src="/assets/mail/contact_me.js"></script>
 <!-- Core theme JS-->
 <script src="/js/scripts.js"></script>
+<script>
+    $.ajax({
+        url: "/api",
+        type: "get",
+        contentType: "application/json; charset=utf-8;",
+        dataType: "json",
+        success: function (res2) {
+
+            var t3 = res2["data"][0].decideCnt - res2["data"][1].decideCnt;
+            var t4 = res2["data"][0].clearCnt - res2["data"][1].clearCnt;
+            var t5 = res2["data"][1].examCnt - res2["data"][0].examCnt;
+            var t6 = res2["data"][0].deathCnt - res2["data"][1].deathCnt;
+
+            var number = "명";
+            var numberI = "명" + '<i class="bi bi-arrow-up"></i>';
+            $(".t1").append("국내 현황 " + res2["data"][0].stateDt + "<br>" + res2["data"][0].stateTime + "시 기준");
+            $(".t3").append(res2["data"][0].decideCnt.toLocaleString() + number + "<br>" + t3 + numberI);
+            $(".t4").append(res2["data"][0].clearCnt.toLocaleString() + number + "<br>" + t4 + numberI);
+            $(".t5").append(res2["data"][0].examCnt.toLocaleString() + number + "<br>" + t5 + numberI);
+            $(".t6").append(res2["data"][0].deathCnt.toLocaleString() + number + "<br>" + t6 + numberI);
+
+        }
+    });
+</script>
 </body>
 </html>

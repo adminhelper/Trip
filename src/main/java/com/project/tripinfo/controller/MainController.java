@@ -1,21 +1,27 @@
 package com.project.tripinfo.controller;
 
+import com.project.tripinfo.api.ApiExplorer;
 import com.project.tripinfo.model.Member;
 import com.project.tripinfo.service.MemberService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.Map;
 
 
 @Controller
 @RequestMapping(value = "/")
 public class MainController {
+
+    @Autowired
+    ApiExplorer apiExplorer;
+
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Autowired
@@ -24,7 +30,13 @@ public class MainController {
     @RequestMapping
     public String main () {
         logger.info("=== 메인 화면 ====");
+
         return "index";
+    }
+    @RequestMapping("/api")
+    @ResponseBody
+    public Map<String, Object> api() throws Exception{
+        return apiExplorer.OpenApi();
     }
 
     @RequestMapping(value = "/login")
