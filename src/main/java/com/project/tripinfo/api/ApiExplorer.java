@@ -25,7 +25,7 @@ public class ApiExplorer {
             DateFormat format = new SimpleDateFormat("yyyyMMdd");
             Date nowDate = new Date();
             Calendar calendar = Calendar.getInstance();
-            calendar.add(Calendar.DATE, -1);
+            calendar.add(Calendar.DATE, -8);
             String today = format.format(nowDate);
             String yesterDay = format.format(calendar.getTime());
 

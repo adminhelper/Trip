@@ -8,7 +8,7 @@ import lombok.ToString;
 @Setter
 @ToString
 public class Pagination {
-
+ 
     private Criteria criteria;
 
     // 전체 데이터 개수
