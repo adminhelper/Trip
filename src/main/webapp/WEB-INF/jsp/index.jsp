@@ -2,110 +2,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="en">
-<style>
-    .content .table_wrap {
-        padding: 0 30px 40px 30px;
-    }
-
-    .table_wrap .tower_light_desc {
-        height: 255px;
-        width: 900px;
-        margin: 70px -100px;
-    }
-
-    .table_wrap .tower_light_desc .title {
-        background: url(//imgstower.ytn.co.kr/img/ico_tourinside.png) no-repeat center left;
-        padding-left: 34px;
-        font-size: 26px;
-        font-weight: 600;
-        width: 336px;
-        margin: 0 auto 30px 270px;
-    }
-
-    .table_wrap .tower_light_desc .img_light_01 {
-        float: left;
-        display: block;
-        width: 180px;
-        height: 260px;
-        background: url(//imgstower.ytn.co.kr/img/tour_inside_light_01.png) no-repeat top left;
-        background-size: 180px 180px;
-    }
-
-    .table_wrap .tower_light_desc .value {
-        margin: 195px 0 0 0;
-        text-align: center;
-        font-size: 18px;
-    }
-
-    .table_wrap .tower_light_desc .blue {
-        font-size: 24px;
-        font-weight: 600;
-        text-align: center;
-        color: #00affa;
-    }
-
-    .table_wrap .tower_light_desc .next_arrow {
-        float: left;
-        display: block;
-        width: 60px;
-        height: 180px;
-        background: url(//imgstower.ytn.co.kr/img/bt_vod_next.png) no-repeat center center;
-    }
-
-    .table_wrap .tower_light_desc .img_light_02 {
-        float: left;
-        display: block;
-        width: 180px;
-        height: 260px;
-        background: url(//imgstower.ytn.co.kr/img/tour_inside_light_02.png) no-repeat top left;
-        background-size: 180px 180px;
-    }
-
-    .table_wrap .tower_light_desc .value {
-        margin: 195px 0 0 0;
-        text-align: center;
-        font-size: 18px;
-    }
-
-    .table_wrap .tower_light_desc .green {
-        font-size: 24px;
-        font-weight: 600;
-        text-align: center;
-        color: #049600;
-    }
-
-    .table_wrap .tower_light_desc .img_light_03 {
-        float: left;
-        display: block;
-        width: 180px;
-        height: 260px;
-        background: url(//imgstower.ytn.co.kr/img/tour_inside_light_03.png) no-repeat top left;
-        background-size: 180px 180px;
-    }
-
-    .table_wrap .tower_light_desc .yellow {
-        font-size: 24px;
-        font-weight: 600;
-        text-align: center;
-        color: #ffb400;
-    }
-
-    .table_wrap .tower_light_desc .img_light_04 {
-        float: left;
-        display: block;
-        width: 180px;
-        height: 260px;
-        background: url(//imgstower.ytn.co.kr/img/tour_inside_light_04.png) no-repeat top left;
-        background-size: 180px 180px;
-    }
-
-    .table_wrap .tower_light_desc .red {
-        font-size: 24px;
-        font-weight: 600;
-        text-align: center;
-        color: #ff0018;
-    }
-</style>
 <jsp:include page="head.jsp" flush="true"/>
 <body id="page-top">
 <!-- Navigation-->
@@ -170,7 +66,7 @@
             </div>
             <div class="col-lg-4 col-sm-6 mb-4">
                 <div class="portfolio-item">
-                    <a class="portfolio-link" href="/hongdae">
+                    <a class="portfolio-link" href="/local/hongdae">
                         <div class="portfolio-hover">
                             <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
                         </div>
@@ -466,8 +362,7 @@
                     <div class="col-lg-8">
                         <div class="modal-body">
                             <!-- Project Details Go Here-->
-                            <h2 class="text-uppercase">Project Name</h2>
-                            <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
+                            <h2 class="text-uppercase">길찾기</h2>
                             <p>
                             <div class="modal-content" id="map" style="width:700px;height:350px;"></div>
                             <script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=0db2942233bd1e50916ba2f9f084b46e"></script>
@@ -542,7 +437,7 @@
             var t1 = String(res2["data"][0].stateDt).substring(4, 8).replace(/(.{2})/, "$1월").replace(/(.{5})/, "$1일");
             var t3 = res2["data"][0].decideCnt - res2["data"][1].decideCnt;
             var t4 = res2["data"][0].clearCnt - res2["data"][1].clearCnt;
-            var t5 = res2["data"][1].examCnt - res2["data"][0].examCnt;
+            var t5 = res2["data"][0].examCnt - res2["data"][1].examCnt;
             var t6 = res2["data"][0].deathCnt - res2["data"][1].deathCnt;
             var number = "명";
             var numberI = "명" + '<i class="bi bi-arrow-up"></i>';
@@ -556,25 +451,25 @@
 
             var kk = new Array();
             var kk1 = new Array();
+
             for (var i in res2["data"]) {
-                var ch = (String(res2["data"][i].stateDt).substring(4, 8));
-                kk.push(ch);
+                if(i==0){
+                   continue;
+                }
+                kk1 = [res2["data"][i-1].decideCnt - res2["data"][i].decideCnt];
             }
 
             kk.reverse();
             kk.pop();
-            // for(var i; i <= res2["data"].length; i++){
-            //     t = res2["data"][i].decideCnt - res2["data"][i-1].decideCnt;
-            //     console.log(t);
-            // }
 
-            kk1.push(res2["data"][0].decideCnt - res2["data"][1].decideCnt
-                , res2["data"][1].decideCnt - res2["data"][2].decideCnt
-                , res2["data"][2].decideCnt - res2["data"][3].decideCnt
-                , res2["data"][3].decideCnt - res2["data"][4].decideCnt
-                , res2["data"][4].decideCnt - res2["data"][5].decideCnt
-                , res2["data"][5].decideCnt - res2["data"][6].decideCnt
-                , res2["data"][6].decideCnt - res2["data"][7].decideCnt);
+            // kk1.push(res2["data"][0].decideCnt - res2["data"][1].decideCnt
+            //     , res2["data"][1].decideCnt - res2["data"][2].decideCnt
+            //     , res2["data"][2].decideCnt - res2["data"][3].decideCnt
+            //     , res2["data"][3].decideCnt - res2["data"][4].decideCnt
+            //     , res2["data"][4].decideCnt - res2["data"][5].decideCnt
+            //     , res2["data"][5].decideCnt - res2["data"][6].decideCnt
+            //     , res2["data"][6].decideCnt - res2["data"][7].decideCnt
+            //     , res2["data"][7].decideCnt - res2["data"][8].decideCnt);
             kk1.reverse()
             var ctx = document.getElementById('myChart').getContext('2d');
             var chart = new Chart(ctx, { // type : 'bar' = 막대차트를 의미합니다.

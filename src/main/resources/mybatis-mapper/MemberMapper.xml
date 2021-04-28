@@ -8,9 +8,14 @@
     </insert>
 
     <select id="loginCheck" resultType="int">
-       SELECT count(1) FROM member where member_id = #{member_id} and member_password =  #{member_password}
+       SELECT count(1)
+       FROM member
+       where member_id = #{member_id}
+                and member_password =  #{member_password}
     </select>
     <select id="idCheck" parameterType="String" resultType="java.lang.Integer">
-        SELECT count(1) FROM member where member_id = #{member_id}
+        SELECT count(1)
+        FROM member
+        where member_id = #{member_id}
     </select>
 </mapper>

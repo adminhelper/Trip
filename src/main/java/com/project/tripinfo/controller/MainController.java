@@ -54,12 +54,6 @@ public class MainController {
         return "redirect:/";
     }
 
-    @RequestMapping(value = "/hongdae")
-    public String hongdae () {
-        logger.info("=== 카테고리 : 홍대 ===");
-        return "/local/hongdae";
-    }
-
     @RequestMapping(value = "/mypage")
     public String mypage (HttpServletRequest request) throws Exception {
         HttpSession session = request.getSession(true);

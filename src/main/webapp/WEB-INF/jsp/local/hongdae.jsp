@@ -1,276 +1,73 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="utf-8" %>
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <meta name="description" content="" />
-    <meta name="author" content="" />
-    <title>오늘의 서울</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" />
-    <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico" />
-    <!-- Font Awesome icons (free version)-->
-    <script src="https://use.fontawesome.com/releases/v5.15.1/js/all.js" crossorigin="anonymous"></script>
-    <!-- Google fonts-->
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
-    <link href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
-    <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
-    <!-- Core theme CSS (includes Bootstrap)-->
-    <link href="css/styles.css" rel="stylesheet" />
-  </head>
-  <body id="page-top">
-    <!-- Navigation-->
-    <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
-      <div class="container">
-        <a class="navbar-brand js-scroll-trigger" href="#page-top"><img src="assets/img/navbar-logo.svg" alt="" /></a>
-        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-          Menu
-          <i class="fas fa-bars ml-1"></i>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-          <ul class="navbar-nav text-uppercase ml-auto">
-            <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#services">오늘의 서울</a></li>
-            <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#portfolio">지역</a></li>
-            <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#about">후기</a></li>
-            <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#team">여행정보</a></li>
-          </ul>
-          <ul class="navbar-nav text-uppercase ml-auto">
-            <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#contact">검색</a></li>
-            <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#contact">로그인</a></li>
-            <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#contact">한국어</a></li>
-          </ul>
-        </div>
-      </div>
-    </nav>
-    <header class="masthead">
-      <div class="container">
-        <div class="masthead-subheading">Welcom to SEOUL</div>
-        <div class="masthead-heading text-uppercase">어서와 서울은 처음이지?</div>
-        <!-- <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="#services">Tell Me More</a> -->
-      </div>
-    </header>
-    <section class="page-section bg-s" id="portfolio">
-      <div class="container">
+
+<jsp:include page="../head.jsp" flush="true"/>
+<body id="page-top">
+<!-- Navigation-->
+<jsp:include page="../header.jsp" flush="true"/>
+<section class="page-section bg-s" id="portfolio">
+    <div class="container">
         <div class="text-center">
-          <h2 class="section-heading text-uppercase">홍대</h2>
-          <h3 class="section-subheading text-muted">서울의 3대 번화가 중 교풍이 개방적이다</h3>
+            <h2 class="section-heading text-uppercase">홍대</h2>
+            <h3 class="section-subheading text-muted">서울의 3대 번화가 중 교풍이 개방적이다</h3>
         </div>
         <div class="row">
-          <div class="col-lg-3 col-sm-6 mb-4">
-            <div class="portfolio-item">
-              <a class="portfolio-link" data-toggle="modal" href="#portfolioModal1">
-                <div class="portfolio-hover">
-                  <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
+            <div class="col-lg-3 col-sm-6">
+                <div class="portfolio-item">
+                    <a class="portfolio-link" data-toggle="modal" href="">
+                        <div class="portfolio-hover">
+                            <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
+                        </div>
+                        <img class="img-fluid" id="img" alt=""/>
+                    </a>
+                    <div class="portfolio-caption">
+                        <div class="portfolio-caption-heading" id="title"></div>
+                        <div class="portfolio-caption-subheading tex" id="addr"></div>
+                    </div>
                 </div>
-                <img class="img-fluid" src="assets/img/portfolio/01-thumbnail.jpg" alt="" />
-              </a>
-              <div class="portfolio-caption">
-                <div class="portfolio-caption-heading">강남</div>
-                <div class="portfolio-caption-subheading text-muted">GANGNAM</div>
-              </div>
             </div>
-          </div>
-          <div class="col-lg-3 col-sm-6 mb-4">
-            <div class="portfolio-item">
-              <a class="portfolio-link" href="hongdae.html">
-                <div class="portfolio-hover">
-                  <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
-                </div>
-                <img class="img-fluid" src="assets/img/portfolio/02-thumbnail.jpg" alt="" />
-              </a>
-              <div class="portfolio-caption">
-                <div class="portfolio-caption-heading">홍대</div>
-                <div class="portfolio-caption-subheading text-muted">HONGDAE</div>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-3 col-sm-6 mb-4">
-            <div class="portfolio-item">
-              <a class="portfolio-link" data-toggle="modal" href="#portfolioModal3">
-                <div class="portfolio-hover">
-                  <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
-                </div>
-                <img class="img-fluid" src="assets/img/portfolio/03-thumbnail.jpg" alt="" />
-              </a>
-              <div class="portfolio-caption">
-                <div class="portfolio-caption-heading">이태원</div>
-                <div class="portfolio-caption-subheading text-muted">ITAEWON</div>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-3 col-sm-6 mb-4 mb-lg-0">
-            <div class="portfolio-item">
-              <a class="portfolio-link" href="hongdae-detail.html">
-                <div class="portfolio-hover">
-                  <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
-                </div>
-                <img class="img-fluid" src="assets/img/portfolio/04-thumbnail.jpg" alt="" />
-              </a>
-              <div class="portfolio-caption">
-                <div class="portfolio-caption-heading">빛나는 빵집</div>
-                <div class="portfolio-caption-subheading text-muted"></div>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-3 col-sm-6 mb-4 mb-sm-0">
-            <div class="portfolio-item">
-              <a class="portfolio-link" data-toggle="modal" href="#portfolioModal5">
-                <div class="portfolio-hover">
-                  <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
-                </div>
-                <img class="img-fluid" src="assets/img/portfolio/05-thumbnail.jpg" alt="" />
-              </a>
-              <div class="portfolio-caption">
-                <div class="portfolio-caption-heading">명동</div>
-                <div class="portfolio-caption-subheading text-muted">MYEONGDONG</div>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-3 col-sm-6 mb-4 mb-sm-0">
-            <div class="portfolio-item">
-              <a class="portfolio-link" data-toggle="modal" href="#portfolioModal5">
-                <div class="portfolio-hover">
-                  <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
-                </div>
-                <img class="img-fluid" src="assets/img/portfolio/05-thumbnail.jpg" alt="" />
-              </a>
-              <div class="portfolio-caption">
-                <div class="portfolio-caption-heading">명동</div>
-                <div class="portfolio-caption-subheading text-muted">MYEONGDONG</div>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-3 col-sm-6">
-            <div class="portfolio-item">
-              <a class="portfolio-link" data-toggle="modal" href="#portfolioModal6">
-                <div class="portfolio-hover">
-                  <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
-                </div>
-                <img class="img-fluid" src="assets/img/portfolio/06-thumbnail.jpg" alt="" />
-              </a>
-              <div class="portfolio-caption">
-                <div class="portfolio-caption-heading">광화문</div>
-                <div class="portfolio-caption-subheading text-muted">GWANGHWAMUN</div>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-3 col-sm-6">
-            <div class="portfolio-item">
-              <a class="portfolio-link" data-toggle="modal" href="#portfolioModal6">
-                <div class="portfolio-hover">
-                  <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
-                </div>
-                <img class="img-fluid" src="assets/img/portfolio/06-thumbnail.jpg" alt="" />
-              </a>
-              <div class="portfolio-caption">
-                <div class="portfolio-caption-heading">광화문</div>
-                <div class="portfolio-caption-subheading text-muted">GWANGHWAMUN</div>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-3 col-sm-6">
-            <div class="portfolio-item">
-              <a class="portfolio-link" data-toggle="modal" href="#portfolioModal6">
-                <div class="portfolio-hover">
-                  <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
-                </div>
-                <img class="img-fluid" src="assets/img/portfolio/06-thumbnail.jpg" alt="" />
-              </a>
-              <div class="portfolio-caption">
-                <div class="portfolio-caption-heading">광화문</div>
-                <div class="portfolio-caption-subheading text-muted">GWANGHWAMUN</div>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-3 col-sm-6">
-            <div class="portfolio-item">
-              <a class="portfolio-link" data-toggle="modal" href="#portfolioModal6">
-                <div class="portfolio-hover">
-                  <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
-                </div>
-                <img class="img-fluid" src="assets/img/portfolio/06-thumbnail.jpg" alt="" />
-              </a>
-              <div class="portfolio-caption">
-                <div class="portfolio-caption-heading">광화문</div>
-                <div class="portfolio-caption-subheading text-muted">GWANGHWAMUN</div>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-3 col-sm-6">
-            <div class="portfolio-item">
-              <a class="portfolio-link" data-toggle="modal" href="#portfolioModal6">
-                <div class="portfolio-hover">
-                  <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
-                </div>
-                <img class="img-fluid" src="assets/img/portfolio/06-thumbnail.jpg" alt="" />
-              </a>
-              <div class="portfolio-caption">
-                <div class="portfolio-caption-heading">광화문</div>
-                <div class="portfolio-caption-subheading text-muted">GWANGHWAMUN</div>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-3 col-sm-6">
-            <div class="portfolio-item">
-              <a class="portfolio-link" data-toggle="modal" href="#portfolioModal6">
-                <div class="portfolio-hover">
-                  <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
-                </div>
-                <img class="img-fluid" src="assets/img/portfolio/06-thumbnail.jpg" alt="" />
-              </a>
-              <div class="portfolio-caption">
-                <div class="portfolio-caption-heading">광화문</div>
-                <div class="portfolio-caption-subheading text-muted">GWANGHWAMUN</div>
-              </div>
-            </div>
-          </div>
         </div>
-      </div>
-      <nav aria-label="Page navigation example">
-        <ul class="pagination justify-content-center">
-          <li class="page-item">
-            <a class="page-link" style="color: black" href="#" aria-label="Previous">
-              <span aria-hidden="true">&laquo;</span>
-              <span class="sr-only">Previous</span>
-            </a>
-          </li>
-          <li class="page-item"><a class="page-link" style="color: black" href="#">1</a></li>
-          <li class="page-item"><a class="page-link" style="color: black" href="#">2</a></li>
-          <li class="page-item"><a class="page-link" style="color: black" href="#">3</a></li>
-          <li class="page-item">
-            <a class="page-link" style="color: black" href="#" aria-label="Next">
-              <span aria-hidden="true">&raquo;</span>
-              <span class="sr-only">Next</span>
-            </a>
-          </li>
-        </ul>
-      </nav>
-    </section>
-    <!-- Footer-->
-    <footer class="footer py-4">
-      <div class="container">
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+            integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+            crossorigin="anonymous"></script>
+    <script>
+        $.getJSON("http://api.visitkorea.or.kr/openapi/service/rest/KorService/areaBasedList?ServiceKey=eINnILMCN0yU29m4Benu%2FUsOUQVNRVwmY663W6zfP21jQ3GvK1XXNIao0dPJ1HrPqA%2BmzupuLD%2F8qPXnLRkWSw%3D%3D&contentTypeId=&areaCode=1&sigunguCode=13&cat1=&cat2=&cat3=&listYN=Y&MobileOS=ETC&MobileApp=TourAPI3.0_Guide&arrange=A&numOfRows=12&pageNo=1&_type=json", function (result) {
+            // $(".ctemp").append(Math.ceil(result.main.temp) + " 도");
+            $("#title").append(result.response.body.items.item[0].title);
+            var url = result.response.body.items.item[0].firstimage;
+            $("#img").attr("src", url);
+            $("#addr").append(result.response.body.items.item[0].addr1);
+            console.log(result.response.body.items.item[0]);
+        });
+    </script>
+</section>
+<!-- Footer-->
+<footer class="footer py-4">
+    <div class="container">
         <div class="row align-items-center">
-          <div class="col-lg-4 text-lg-left">Copyright © Your Website 2020</div>
-          <div class="col-lg-4 my-3 my-lg-0">
-            <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-twitter"></i></a>
-            <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-facebook-f"></i></a>
-            <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-linkedin-in"></i></a>
-          </div>
-          <div class="col-lg-4 text-lg-right">
-            <a class="mr-3" href="#!">Privacy Policy</a>
-            <a href="#!">Terms of Use</a>
-          </div>
+            <div class="col-lg-4 text-lg-left">Copyright © Your Website 2020</div>
+            <div class="col-lg-4 my-3 my-lg-0">
+                <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-twitter"></i></a>
+                <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-facebook-f"></i></a>
+                <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+            <div class="col-lg-4 text-lg-right">
+                <a class="mr-3" href="#!">Privacy Policy</a>
+                <a href="#!">Terms of Use</a>
+            </div>
         </div>
-      </div>
-    </footer>
-  </body>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"></script>
-  <!-- Third party plugin JS-->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
-  <!-- Contact form JS-->
-  <script src="assets/mail/jqBootstrapValidation.js"></script>
-  <script src="assets/mail/contact_me.js"></script>
-  <!-- Core theme JS-->
-  <script src="js/scripts.js"></script>
+    </div>
+</footer>
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Third party plugin JS-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+<!-- Contact form JS-->
+<script src="../../resources/static/assets/mail/jqBootstrapValidation.js"></script>
+<script src="../../resources/static/assets/mail/contact_me.js"></script>
+<!-- Core theme JS-->
+<script src="../../resources/static/js/scripts.js"></script>
 </html>
