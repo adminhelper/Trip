@@ -3,10 +3,12 @@ package com.project.tripinfo.controller;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.List;
+import javax.servlet.http.HttpServletRequest;
+import java.util.Collection;
+import java.util.HashMap;
 import java.util.Map;
 
 
@@ -27,9 +29,12 @@ public class LocationController {
         return "/local/hondaeDetail";
     }
 
-    @RequestMapping(value = "/check", method = RequestMethod.POST)
-    @ResponseBody
-    public void check (@RequestParam(value = "data",required = false) List<String> data) throws Exception {
-        System.out.println(data.toString());
+    @RequestMapping(value = "/check", method = {RequestMethod.GET,RequestMethod.POST})
+    public String check (HttpServletRequest request, String[] data, Model model) throws Exception {
+        Map<String, String> contentId = new HashMap<>();
+        for(int i=0; i<data.length; i++){
+        model.addAttribute("ct",contentId.put("tt",data[i]));
+        }
+        return  model
     }
 }

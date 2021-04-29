@@ -54,15 +54,16 @@
             $('[name=test]').click((e) => {
                 var test = $(e.target).siblings('input');
                 for (var t of test) {
+                    //     data.push($(t).val());
                     data.push($(t).val());
                 }
                 console.log(data);
                 // location.href = 'http://api.visitkorea.or.kr/openapi/service/rest/KorService/detailCommon?ServiceKey=eINnILMCN0yU29m4Benu%2FUsOUQVNRVwmY663W6zfP21jQ3GvK1XXNIao0dPJ1HrPqA%2BmzupuLD%2F8qPXnLRkWSw%3D%3D&contentTypeId=' + data[1] + '&contentId=' + data[0] + '&MobileOS=ETC&MobileApp=TourAPI3.0_Guide&defaultYN=Y&firstImageYN=Y&areacodeYN=Y&catcodeYN=Y&addrinfoYN=Y&mapinfoYN=Y&overviewYN=Y&transGuideYN=Y&_type=json';
                 $.ajax({
                     url: "/local/check",
-                    type: "POST",
-                    dataType: 'json',
-                    data: data,
+                    type: "GET",
+                    traditional : true,
+                    data: {"data": data},
                     success: function (data) {
                         console.log("성공 :" + data);
                     },
@@ -97,6 +98,7 @@
 <!-- Third party plugin JS-->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
 <!-- Contact form JS-->
+
 <script src="/assets/mail/jqBootstrapValidation.js"></script>
 <script src="/assets/mail/contact_me.js"></script>
 <!-- Core theme JS-->
