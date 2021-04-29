@@ -1,7 +1,5 @@
 package com.project.tripinfo.config;
 
-import org.apache.catalina.mapper.Mapper;
-import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringBootConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
@@ -25,6 +23,4 @@ public class WebMvcConfig implements WebMvcConfigurer {
         multipartResolver.setMaxUploadSizePerFile(5 * 1024 * 1024); // 파일당 업로드 크기 제한 (5MB)
         return multipartResolver;
     }
-;
-
 }

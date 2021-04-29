@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="utf-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -19,11 +20,11 @@
                         <div class="portfolio-hover">
                             <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
                         </div>
-                        <img class="img-fluid" id="img" alt=""/>
+                        <div id="img-item" data-toggle="modal" class="portfolio-link"></div>
                     </a>
                     <div class="portfolio-caption">
                         <div class="portfolio-caption-heading" id="title"></div>
-                        <div class="portfolio-caption-subheading tex" id="addr"></div>
+                        <div class="portfolio-caption-subheading tex" id="addr1"></div>
                     </div>
                 </div>
             </div>
@@ -34,12 +35,42 @@
             crossorigin="anonymous"></script>
     <script>
         $.getJSON("http://api.visitkorea.or.kr/openapi/service/rest/KorService/areaBasedList?ServiceKey=eINnILMCN0yU29m4Benu%2FUsOUQVNRVwmY663W6zfP21jQ3GvK1XXNIao0dPJ1HrPqA%2BmzupuLD%2F8qPXnLRkWSw%3D%3D&contentTypeId=&areaCode=1&sigunguCode=13&cat1=&cat2=&cat3=&listYN=Y&MobileOS=ETC&MobileApp=TourAPI3.0_Guide&arrange=A&numOfRows=12&pageNo=1&_type=json", function (result) {
-            // $(".ctemp").append(Math.ceil(result.main.temp) + " 도");
-            $("#title").append(result.response.body.items.item[0].title);
-            var url = result.response.body.items.item[0].firstimage;
-            $("#img").attr("src", url);
-            $("#addr").append(result.response.body.items.item[0].addr1);
-            console.log(result.response.body.items.item[0]);
+            // $("#title").append(result.response.body.items.item[0].title);
+            //var url = result.response.body.items.item[0].firstimage;
+            //$("#img").attr("src", url);
+            // $("#addr1").append(result.response.body.items.item[0].addr1);
+
+            var html = '';
+            for (var i of result.response.body.items.item) {
+                html += '<div name="test">' +
+                    '<input type="hidden" value="' + i.contentid + '">' +
+                    '<input type="hidden" value="' + i.contenttypeid + '">' +
+                    '<img class="img-fluid" src="' + i.firstimage + '" alt=""/>' +
+                    '</div>'
+            }
+            $('#img-item').html(html);
+
+            var data = new Array();
+            $('[name=test]').click((e) => {
+                var test = $(e.target).siblings('input');
+                for (var t of test) {
+                    data.push($(t).val());
+                }
+                console.log(data);
+                // location.href = 'http://api.visitkorea.or.kr/openapi/service/rest/KorService/detailCommon?ServiceKey=eINnILMCN0yU29m4Benu%2FUsOUQVNRVwmY663W6zfP21jQ3GvK1XXNIao0dPJ1HrPqA%2BmzupuLD%2F8qPXnLRkWSw%3D%3D&contentTypeId=' + data[1] + '&contentId=' + data[0] + '&MobileOS=ETC&MobileApp=TourAPI3.0_Guide&defaultYN=Y&firstImageYN=Y&areacodeYN=Y&catcodeYN=Y&addrinfoYN=Y&mapinfoYN=Y&overviewYN=Y&transGuideYN=Y&_type=json';
+                $.ajax({
+                    url: "/local/check",
+                    type: "POST",
+                    dataType: 'json',
+                    data: data,
+                    success: function (data) {
+                        console.log("성공 :" + data);
+                    },
+                    error: function (data) {
+                        console.log("실패 :" + data);
+                    }
+                });
+            });
         });
     </script>
 </section>
@@ -60,14 +91,15 @@
         </div>
     </div>
 </footer>
-</body>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"></script>
 <!-- Third party plugin JS-->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
 <!-- Contact form JS-->
-<script src="../../resources/static/assets/mail/jqBootstrapValidation.js"></script>
-<script src="../../resources/static/assets/mail/contact_me.js"></script>
+<script src="/assets/mail/jqBootstrapValidation.js"></script>
+<script src="/assets/mail/contact_me.js"></script>
 <!-- Core theme JS-->
-<script src="../../resources/static/js/scripts.js"></script>
+<script src="/js/scripts.js"></script>
+</body>
 </html>
