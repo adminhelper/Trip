@@ -50,29 +50,27 @@
             }
             $('#img-item').html(html);
 
-            var data = null;
+            var data = new Array();
             $('[name=test]').click((e) => {
-                data = new Array();
                 var test = $(e.target).siblings('input');
                 for (var t of test) {
                     //     data.push($(t).val());
                     data.push($(t).val());
                 }
                 console.log(data);
-                location.href = '/local/check?data='+data;
                 // location.href = 'http://api.visitkorea.or.kr/openapi/service/rest/KorService/detailCommon?ServiceKey=eINnILMCN0yU29m4Benu%2FUsOUQVNRVwmY663W6zfP21jQ3GvK1XXNIao0dPJ1HrPqA%2BmzupuLD%2F8qPXnLRkWSw%3D%3D&contentTypeId=' + data[1] + '&contentId=' + data[0] + '&MobileOS=ETC&MobileApp=TourAPI3.0_Guide&defaultYN=Y&firstImageYN=Y&areacodeYN=Y&catcodeYN=Y&addrinfoYN=Y&mapinfoYN=Y&overviewYN=Y&transGuideYN=Y&_type=json';
-                // $.ajax({
-                //     url: "/local/check",
-                //     type: "GET",
-                //     traditional : true,
-                //     data: {"data": data},
-                //     success: function (data) {
-                //         console.log("성공 :" + data);
-                //     },
-                //     error: function (data) {
-                //         console.log("실패 :" + data);
-                //     }
-                // });
+                $.ajax({
+                    url: "/local/check",
+                    type: "GET",
+                    traditional : true,
+                    data: {"data": data},
+                    success: function (data) {
+                        console.log("성공 :" + data);
+                    },
+                    error: function (data) {
+                        console.log("실패 :" + data);
+                    }
+                });
             });
         });
     </script>

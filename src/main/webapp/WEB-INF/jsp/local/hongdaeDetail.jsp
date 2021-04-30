@@ -9,7 +9,7 @@
 <section class="page-section bg-s" id="portfolio">
     <div class="container">
         <div class="text-center">
-            <h3 class="section-heading">후기</h3>
+            <h3 class="section-heading">홍대${param.data}</h3>
         </div>
         <div class="container">
             <hr size="10px">
