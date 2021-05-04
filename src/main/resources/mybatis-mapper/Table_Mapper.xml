@@ -20,7 +20,7 @@
             AND contenttypeid = #{contenttypeid}
         </if>
         ORDER BY info_seq DESC
-        LIMIT #{criteria.pageStart}, #{criteria.endPage}
+        LIMIT #{criteria.pageStart}, #{criteria.amount}
     </select>
     <select id="checkTable" resultType="int" parameterType="int">
         select count(1)
@@ -34,11 +34,13 @@
         where contentid = #{contentId}
           and contenttypeid = #{typeId}
     </select>
-    <select id="LocalListCnt" resultType="java.lang.Integer" parameterType="int">
+    <select id="LocalListCnt" resultType="java.lang.Integer" parameterType="java.lang.Integer">
         select count(*)
         from table_name
+        where areacode = 1
+          AND sigungucode = 13
         <if test="contenttypeid!=null and !contenttypeid.equals('')">
-            where contenttypeid = #{contenttypeid}
+            AND contenttypeid = #{contenttypeid}
         </if>
     </select>
 

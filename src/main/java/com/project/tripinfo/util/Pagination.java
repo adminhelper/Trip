@@ -39,7 +39,7 @@ public class Pagination {
     private void pagingData () {
         endPage = (int) (Math.ceil(criteria.getPageNum() / (double) totalPageCount) * totalPageCount);
         // endPage = (현재 페이지 번호 / 화면에 보여질 페이지 번호의 개수) * 화면에 보여질 페이지 번호의 개수
-        startPage = (endPage - totalPageCount) + 1;
+        startPage = (endPage - totalPageCount) + 1 ;
         // startPage = (끝 페이지 번호 - 화면에 보여질 페이지 번호의 개수) + 1
 
         int tempEndPage = (int) (Math.ceil(totalCount / (double) criteria.getAmount()));
@@ -53,6 +53,9 @@ public class Pagination {
         next = endPage * criteria.getAmount() >= totalCount ? false : true;
         // 다음 버튼 생성 여부 = 끝 페이지 번호 * 한 페이지당 보여줄 게시글의 개수가 총 게시글의 수보다
         // 크거나 같으면 false, 아니면 true
+
+        System.out.println(endPage);
+        System.out.println(startPage);
     }
 
 

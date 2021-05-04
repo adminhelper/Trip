@@ -8,7 +8,6 @@ import com.project.tripinfo.util.Pagination;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,15 +29,16 @@ public class LocationController {
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @RequestMapping(value = "/hongdae")
-    public String hongdae (Criteria criteria, Model model,@RequestParam(required = false) Integer contenttypeid) throws Exception {
-        int boardCnt = tableService.LocalListCnt(contenttypeid);
+    public String hongdae (Criteria criteria, Model model, @RequestParam(required = false) Integer contenttypeid) throws Exception {
+        int num = tableService.LocalListCnt(contenttypeid);
         //페이징 객체
         Pagination paging = new Pagination();
         paging.setCriteria(criteria);
-        paging.setTotalCount(boardCnt);
-        List<Map<String, Object>> list = tableService.selectHongdae(criteria,contenttypeid);
+        paging.setTotalCount(num);
+        List<Map<String, Object>> list = tableService.selectHongdae(criteria, contenttypeid);
         model.addAttribute("paging", paging);
         model.addAttribute("table", list);
+        model.addAttribute("type",contenttypeid);
         logger.info("=== 카테고리   : 홍대 ===");
         return "/local/hongdae";
     }

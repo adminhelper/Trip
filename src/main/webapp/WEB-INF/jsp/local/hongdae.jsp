@@ -15,7 +15,7 @@
             <h3 class="section-subheading text-muted">서울의 3대 번화가 중 교풍이 개방적이다</h3>
         </div>
         <div class="tag-element">
-            <button onclick="onBtn(1)">전체</button>
+            <button onclick="onBtn()">전체</button>
             <button onclick="onBtn(15)">축제&amp;행사</button>
             <button onclick="onBtn(12)">명소</button>
             <button onclick="onBtn(39)">음식</button>
@@ -36,7 +36,7 @@
                             <div id="img-item" data-toggle="modal" class="portfolio-link"></div>
 
                             <div class="portfolio-caption">
-                                <img class="img-fluid" src="${data.firstimage2}">
+                                <img style="height : 120px" class="img-fluid" onerror="this.src='https://blog.kakaocdn.net/dn/bQeafp/btqDdIoJHbj/5HRBiW160574C7bMOIvBTK/img.png'" src="${data.firstimage2}">
                                 <div class="portfolio-caption-heading" id="title">${data.title}</div>
                             </div>
                         </a>
@@ -50,27 +50,27 @@
             <c:if test="${paging.prev}">
                 <li class="page-item">
 
-                    <a class="page-link" style="color: black"
-                       href="<c:url value='hongdae?pageNum=${paging.startPage-1}'/>" aria-label="Previous">
+                    <a class="page-link" style="color: black" onclick="test(${paging.startPage - 1})"
+                       aria-label="Previous">
                         이전
                     </a>
 
                 </li>
             </c:if>
             <c:forEach begin="${paging.startPage}" end="${paging.endPage}" var="num">
-                <li class="page-item"><a class="page-link" style="color: black"
-                                         href="<c:url value='hongdae?pageNum=${num}'/>">${num}</a></li>
+                <li class="page-item">
+                    <a class="page-link" style="color: black" onclick="test1(${num})"
+                       href="<c:url value='hongdae?pageNum=${num}&contenttypeid=${type}'/>">${num}</a></li>
             </c:forEach>
-            <c:if test="${paging.next && paging.endPage>0}">
+            <c:if test="${paging.next && paging.endPage > 0}">
                 <li class="page-item">
                     <a class="page-link" style="color: black"
-                       href="<c:url value='hongdae?pageNum=${paging.endPage+1}'/>"
+                       href="<c:url value='hongdae?pageNum=${paging.endPage + 1}&contenttypeid=${type}'/>"
                        aria-label="Next">
                         다음
                     </a>
                 </li>
             </c:if>
-
         </ul>
     </nav>
 </section>
@@ -104,14 +104,15 @@
 <script src="/js/scripts.js"></script>
 <script>
     function onBtn(e) {
-        if (e == 1) {
-            location.href="/local/hongdae";
-            return ;
+        if(e == undefined){
+        location.href = "/local/hongdae";
+        return ;
         }
-        location="/local/hongdae?contenttypeid="+e;
+        location.href = "/local/hongdae?contenttypeid=" + e;
         $('.item').hide();
         $('.item.' + e).show();
     }
+
 </script>
 </body>
 </html>

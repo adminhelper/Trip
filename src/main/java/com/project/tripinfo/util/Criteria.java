@@ -30,6 +30,17 @@ public class Criteria {
         }
     }
 
+
+    public void setAmount (int amount) {
+
+        if (amount <= 0 || amount > 100) {
+            this.amount = 10;
+            return;
+        }
+
+        this.amount = amount;
+    }
+
     public int getPageStart () {
         return (this.pageNum - 1) * amount;
     }
