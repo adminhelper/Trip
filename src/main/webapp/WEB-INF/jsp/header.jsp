@@ -2,13 +2,13 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
     <div class="container">
-        <a class="navbar-brand js-scroll-trigger" href="/"><img src="/assets/img/navbar-logo.svg" alt=""/></a>
-        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
-                data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
-                aria-label="Toggle navigation">
-            Menu
-            <i class="fas fa-bars ml-1"></i>
-        </button>
+        <%--        <a class="navbar-brand js-scroll-trigger" href="/"><img src="/assets/img/navbar-logo.svg" alt=""/></a>--%>
+        <%--        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"--%>
+        <%--                data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"--%>
+        <%--                aria-label="Toggle navigation">--%>
+        <%--            Menu--%>
+        <%--            <i class="fas fa-bars ml-1"></i>--%>
+        <%--        </button>--%>
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav text-uppercase ml-auto">
                 <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#services">오늘의 서울</a></li>
@@ -24,14 +24,14 @@
                     <li class="nav-item"><a class="nav-link js-scroll-trigger" href="/logout">로그아웃</a></li>
                 </c:if>
                 <c:if test="${member.member_id == null}">
-                    <li class="nav-item"><a class="nav-link js-scroll-trigger" id = "lang" href="/login">로그인</a></li>
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" id="lang" href="/login">로그인</a></li>
                 </c:if>
-                <li class="dropdown text-uppercase ml-auto"><a class="nav-link js-scroll-trigger" data-toggle="dropdown" href="#">Language</a>
-                    <ul class="dropdown-menu text-uppercase ml-auto" role="menu" aria-labelledby="lang">
-                        <li><a class="dropdown-item-text" href="#">KOR</a></li>
-                        <li><a class="dropdown-item-text" href="#">ENG</a></li>
-                    </ul></li>
-            </ul >
+                <%--                <li class="dropdown text-uppercase ml-auto"><a class="nav-link js-scroll-trigger" data-toggle="dropdown" href="#">Language</a>--%>
+                <%--                    <ul class="dropdown-menu text-uppercase ml-auto" role="menu" aria-labelledby="lang">--%>
+                <%--                        <li><a class="dropdown-item-text" href="#">KOR</a></li>--%>
+                <%--                        <li><a class="dropdown-item-text" href="#">ENG</a></li>--%>
+                <%--                    </ul></li>--%>
+            </ul>
 
         </div>
 

@@ -40,7 +40,7 @@ public class ApiExplorer {
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod("GET");
             conn.setRequestProperty("Content-type", "application/json");
-            System.out.println("Response code: " + conn.getResponseCode());
+//            System.out.println("Response code: " + conn.getResponseCode());
             BufferedReader rd;
             if (conn.getResponseCode() >= 200 && conn.getResponseCode() <= 300) {
                 rd = new BufferedReader(new InputStreamReader(conn.getInputStream(), "UTF-8"));
@@ -64,14 +64,14 @@ public class ApiExplorer {
             });
             Map<String, Object> dataResponse = (Map<String, Object>) map.get("response");
             Map<String, Object> body = (Map<String, Object>) dataResponse.get("body");
-            System.out.println(body);
+//            System.out.println(body);
             Map<String, Object> items = null;
             List<Map<String, Object>> itemList = null;
             items = (Map<String, Object>) body.get("items");
             itemList = (List<Map<String, Object>>) items.get("item");
 
 //            System.out.println("### map = " + map);
-    //            System.out.println("### dataResponse = " + dataResponse);
+            //            System.out.println("### dataResponse = " + dataResponse);
 //            System.out.println("### body = " + body);
 //            System.out.println("### items = " + items);
 //            System.out.println("### itemList = " + itemList);

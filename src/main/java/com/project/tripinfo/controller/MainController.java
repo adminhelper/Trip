@@ -33,16 +33,17 @@ public class MainController {
 
         return "index";
     }
+
     @RequestMapping("/api")
     @ResponseBody
-    public Map<String, Object> api() throws Exception{
+    public Map<String, Object> api () throws Exception {
         return apiExplorer.OpenApi();
     }
 
     @RequestMapping(value = "/login")
-    public String login (HttpSession session,Member member) throws Exception {
+    public String login (HttpSession session, Member member) throws Exception {
         memberService.loginCheck(member);
-        session.setAttribute("member",member);
+        session.setAttribute("member", member);
         logger.info("=== 로그인 ===");
         return "/login";
     }

@@ -3,6 +3,7 @@ package com.project.tripinfo.util;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import org.apache.catalina.filters.ExpiresFilter;
 
 @Getter
 @Setter
@@ -23,7 +24,6 @@ public class Pagination {
     private boolean prev;
     // 다음 페이징 활설화 여부
     private boolean next;
-
 
     public void setTotalCount (int totalCount) {
         this.totalCount = totalCount;

@@ -4,7 +4,6 @@ import com.project.tripinfo.model.Board;
 import com.project.tripinfo.model.Review_File;
 import com.project.tripinfo.util.Criteria;
 import org.apache.ibatis.annotations.Mapper;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import java.util.List;
 import java.util.Map;

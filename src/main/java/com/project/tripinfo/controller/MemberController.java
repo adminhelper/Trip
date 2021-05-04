@@ -1,7 +1,6 @@
 package com.project.tripinfo.controller;
 
 import com.project.tripinfo.model.Member;
-import com.project.tripinfo.service.BoardService;
 import com.project.tripinfo.service.MemberService;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;

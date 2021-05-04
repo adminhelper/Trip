@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.project.tripinfo.repository.Table_Mapper">
+    <insert id="insertTable" parameterType="com.project.tripinfo.model.Table_name">
+        INSERT INTO table_name (addr1, areacode, cat1, cat2, cat3, contentid, contenttypeid, createdtime, firstimage,
+                                firstimage2,
+                                mapx, mapy, mlevel, modifiedtime, title, zipcode, sigungucode)
+        values (#{addr1}, #{areacode}, #{cat1}, #{cat2}, #{cat3}, #{contentid}, #{contenttypeid},
+                #{createdtime}, #{firstimage}, #{firstimage2}, #{mapx}, #{mapy}, #{mlevel}, #{modifiedtime}, #{title},
+                #{zipcode}, #{sigungucode})
+    </insert>
+
+    <select id="selectHongdae" resultType="hashmap" parameterType="hashmap">
+        SELECT *
+        FROM table_name
+        where contenttypeid = 12
+        <if test="contenttypeid!=null and !contenttypeid.equals('')">
+            AND contenttypeid = #{contenttypeid}
+        </if>
+        ORDER BY modifiedtime DESC
+        LIMIT #{criteria.pageStart}, #{criteria.amount}
+    </select>
+    <select id="checkTable" resultType="int" parameterType="int">
+        select count(1)
+        from table_name
+        where contentid = #{contentid}
+          AND contenttypeid = #{contenttypeid}
+    </select>
+    <select id="hongdaeDetail" resultType="com.project.tripinfo.model.Table_name">
+        SELECT *
+        FROM table_name
+        where contentid = #{contentId}
+          and contenttypeid = #{typeId}
+    </select>
+    <select id="LocalListCnt" resultType="java.lang.Integer" parameterType="int">
+        select count(*)
+        from table_name
+        <if test="contenttypeid!=null and !contenttypeid.equals('')">
+            where contenttypeid = #{contenttypeid}
+        </if>
+    </select>
+
+
+</mapper>

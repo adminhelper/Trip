@@ -9,49 +9,25 @@
 <section class="page-section bg-s" id="portfolio">
     <div class="container">
         <div class="text-center">
-            <h3 class="section-heading">홍대${param.data}</h3>
+            <h1 class="section-heading">${hongdae.title}</h1>
         </div>
         <div class="container">
             <hr size="10px">
+            <%--            <button type="button" onclick="location.href='/local/hongdae'">목록</button>--%>
             <div class="row justify-content-center">
                 <div class="col-lg-8">
                     <div class="modal-body">
-                        <!-- Project Details Go Here-->
-                        <form name="form" method="post">
-                            <table class="table table-striped table-bordered">
-                                <tr>
-                                    <th>글번호</th>
-                                    <td>${board.board_no}</td>
-                                </tr>
-                                <tr>
-                                    <th>제목</th>
-                                    <td><input readonly="readonly" name="board_title" id="board_title"
-                                               value="${board.board_title}"></td>
-                                </tr>
-                                <tr>
-                                    <th>작성자</th>
-                                    <td><input readonly="readonly" name="member_id" id="member_id"
-                                               value="${board.member_id}"></td>
-                                </tr>
-                                <tr>
-                                    <th>내용</th>
-                                    <td><input readonly="readonly" name="board_contents" id="board_contents"
-                                               value="${board.board_contents}"></td>
-                                </tr>
-                                <button type="button" onclick="location.href='/board/review/boardlist'">목록</button>
-                                <button id="modify" type="button"
-                                        onclick="location.href='/board/review/modifyform?no=${board.board_no}'">수정
-                                </button>
-                                <button id="delete" type="button"
-                                        onclick="location.href='/board/review/delete?no=${board.board_no}'">삭제
-                                </button>
-                            </table>
-                        </form>
+                        <img src="${hongdae.firstimage}">
+                        <dl>
+                            <dt>주소</dt>
+                            <dd>${hongdae.addr1}</dd>
+                        </dl>
                     </div>
                 </div>
             </div>
             <hr size="10px">
         </div>
+    </div>
 </section>
 <!-- Footer-->
 <footer class="footer py-4">
