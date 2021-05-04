@@ -14,12 +14,13 @@
     <select id="selectHongdae" resultType="hashmap" parameterType="hashmap">
         SELECT *
         FROM table_name
-        where contenttypeid = 12
+        where areacode = 1
+          AND sigungucode = 13
         <if test="contenttypeid!=null and !contenttypeid.equals('')">
             AND contenttypeid = #{contenttypeid}
         </if>
-        ORDER BY modifiedtime DESC
-        LIMIT #{criteria.pageStart}, #{criteria.amount}
+        ORDER BY info_seq DESC
+        LIMIT #{criteria.pageStart}, #{criteria.endPage}
     </select>
     <select id="checkTable" resultType="int" parameterType="int">
         select count(1)

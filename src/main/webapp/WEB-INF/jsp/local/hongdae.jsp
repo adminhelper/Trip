@@ -15,13 +15,13 @@
             <h3 class="section-subheading text-muted">서울의 3대 번화가 중 교풍이 개방적이다</h3>
         </div>
         <div class="tag-element">
-            <button onclick="location.href='/local/hongdae'">전체</button>
-            <button onclick="onBtn(11)" >축제&amp;행사</button>
-            <button onclick="onBtn(12)" >명소</button>
-            <button onclick="onBtn(13)" >음식</button>
-            <button onclick="onBtn(14)" >쇼핑</button>
-            <button onclick="onBtn(15)">자연&amp;관광</button>
-            <button onclick="onBtn(16)" >엔터테인먼트</button>
+            <button onclick="onBtn(1)">전체</button>
+            <button onclick="onBtn(15)">축제&amp;행사</button>
+            <button onclick="onBtn(12)">명소</button>
+            <button onclick="onBtn(39)">음식</button>
+            <button onclick="onBtn(38)">쇼핑</button>
+            <button onclick="onBtn(32)">숙박</button>
+            <button onclick="onBtn(12)">관광</button>
         </div>
 
         <div class="row">
@@ -103,9 +103,14 @@
 <!-- Core theme JS-->
 <script src="/js/scripts.js"></script>
 <script>
-    function onBtn(e){
+    function onBtn(e) {
+        if (e == 1) {
+            location.href="/local/hongdae";
+            return ;
+        }
+        location="/local/hongdae?contenttypeid="+e;
         $('.item').hide();
-        $('.item.'+e).show();
+        $('.item.' + e).show();
     }
 </script>
 </body>

@@ -14,14 +14,19 @@ public class Pagination {
 
     // 전체 데이터 개수
     private int totalCount;
+
     // 전체 페이지 개수
     private int totalPageCount = 5;
+
     //페이지 리스트 첫페이지 번호
     private int startPage;
+
     //페이지 리스트의 마지막 페이지 번호
     private int endPage;
+
     // 이전 페이징 활성화 여부
     private boolean prev;
+
     // 다음 페이징 활설화 여부
     private boolean next;
 
