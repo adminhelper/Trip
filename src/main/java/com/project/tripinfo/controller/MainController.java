@@ -1,8 +1,10 @@
 package com.project.tripinfo.controller;
 
 import com.project.tripinfo.api.ApiExplorer;
+import com.project.tripinfo.api.Hongdae;
 import com.project.tripinfo.model.Member;
 import com.project.tripinfo.service.MemberService;
+import com.project.tripinfo.service.TableService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,9 +30,8 @@ public class MainController {
     private MemberService memberService;
 
     @RequestMapping
-    public String main () {
+    public String main () throws Exception {
         logger.info("=== 메인 화면 ====");
-
         return "index";
     }
 

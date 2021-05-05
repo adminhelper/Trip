@@ -10,6 +10,20 @@
                 #{createdtime}, #{firstimage}, #{firstimage2}, #{mapx}, #{mapy}, #{mlevel}, #{modifiedtime}, #{title},
                 #{zipcode}, #{sigungucode})
     </insert>
+    <update id="insertDetailTable" parameterType="com.project.tripinfo.model.Table_name">
+        UPDATE table_name
+        SET overview    = #{overview}
+        WHERE contentid = #{contentid}
+    </update>
+    <select id="checkDetailTable" resultType="int" parameterType="int">
+        select count(1)
+        from table_name
+        where contentid = #{contentid}
+    </select>
+    <select id="checkDetail" resultType="map">
+        select contentid
+        from table_name
+    </select>
 
     <select id="selectHongdae" resultType="hashmap" parameterType="hashmap">
         SELECT *
@@ -43,6 +57,4 @@
             AND contenttypeid = #{contenttypeid}
         </if>
     </select>
-
-
 </mapper>

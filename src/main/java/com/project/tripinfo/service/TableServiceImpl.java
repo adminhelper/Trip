@@ -26,13 +26,23 @@ public class TableServiceImpl implements TableService {
     }
 
     @Override
-    public List<Map<String, Object>> selectHongdae (Criteria criteria,Integer contenttypeid) throws Exception {
+    public void insertDetailTable (Table_name table_name) throws Exception {
+        int tm = table_mapper.checkDetailTable(table_name.getContentid());
+        if (tm == 1) {
+            table_mapper.insertDetailTable(table_name.getOverview(),table_name.getContentid());
+        } else {
+            System.out.println("없음");
+        }
+    }
+
+    @Override
+    public List<Map<String, Object>> selectHongdae (Criteria criteria, Integer contenttypeid) throws Exception {
         return table_mapper.selectHongdae(criteria, contenttypeid);
     }
 
     @Override
-    public int checkTable (int num1, int num2) throws Exception {
-        return table_mapper.checkTable(num1, num2);
+    public int checkTable (int contentid, int contenttypeid) throws Exception {
+        return table_mapper.checkTable(contentid, contenttypeid);
     }
 
     @Override
@@ -44,4 +54,10 @@ public class TableServiceImpl implements TableService {
     public int LocalListCnt (Integer contenttypeid) throws Exception {
         return table_mapper.LocalListCnt(contenttypeid);
     }
+
+    @Override
+    public List<Map<String, Object>> checkDetail () throws Exception {
+        return table_mapper.checkDetail();
+    }
+
 }

@@ -30,5 +30,6 @@ public class Table_name {
     private String tel;
     private String title;
     private String zipcode;
+    private String overview;
 
 }

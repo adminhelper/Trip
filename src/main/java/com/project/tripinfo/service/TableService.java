@@ -15,4 +15,8 @@ public interface TableService {
     Table_name hongdaeDetail (int contentId, int typeId) throws Exception;
 
     int LocalListCnt(Integer contenttypeid) throws Exception;
+
+    List<Map<String,Object>> checkDetail() throws Exception;
+
+    void insertDetailTable (Table_name table_name) throws Exception;
 }

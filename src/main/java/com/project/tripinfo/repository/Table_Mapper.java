@@ -14,7 +14,14 @@ public interface Table_Mapper {
     List<Map<String,Object>> selectHongdae (Criteria criteria,Integer contenttypeid) throws Exception;
 
     int checkTable (int contentid, int contenttypeid) throws Exception;
+
+    int checkDetailTable (int contentid);
+
     Table_name hongdaeDetail (int contentId, int typeId) throws Exception;
 
     int LocalListCnt (Integer contenttypeid) throws Exception;
+
+    List<Map<String,Object>> checkDetail() throws Exception;
+
+    void insertDetailTable (String overview, int contentid);
 }

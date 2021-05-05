@@ -45,6 +45,7 @@
                                 <button id="delete" type="button"
                                         onclick="location.href='/board/review/delete?no=${board.board_no}'">삭제
                                 </button>
+
                             </table>
                         </form>
                     </div>

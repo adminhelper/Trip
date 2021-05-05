@@ -9,7 +9,7 @@ import org.springframework.boot.autoconfigure.web.servlet.MultipartAutoConfigura
 @SpringBootApplication(exclude = {MultipartAutoConfiguration.class})
 public class DnApplication {
 
-    public static void main (String[] args) {
+    public static void main (String[] args) throws Exception {
         SpringApplication.run(DnApplication.class, args);
     }
 
