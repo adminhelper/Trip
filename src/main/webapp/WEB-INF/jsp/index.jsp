@@ -252,18 +252,23 @@
         </div>
 
         <ul class="timeline">
-            <li>
-                <a href="https://www.naver.com/">
-                    <div class="timeline-image"><img class="rounded-circle img-fluid" src="/assets/img/about/1.jpg"
-                                                     alt=""/></div>
-                    <div class="timeline-panel">
-                        <div class="timeline-heading">
-                            <hx4 class="subheading">[정원영] 생생한 후기 !</hx4>
+            <c:forEach items="${review}" var="data">
+                <li>
+                    <a class="link" href="/board/review/detail?no=${data.board_no}">
+                        <div class="timeline-image"><img class="rounded-circle img-fluid" src="/assets/img/about/1.jpg"
+                                                         alt=""/></div>
+                        <div class="timeline-panel">
+                            <div class="timeline-heading">
+                                <hx4 class="subheading">제목 : ${data.board_title}</hx4>
+                            </div>
+                            <div class="timeline-heading">
+                                <hx4 class="subheading">${data.member_nickname}</hx4>
+                            </div>
+                            <div class="timeline-body"><p class="text-muted">조회수 ${data.board_likecnt}</div>
                         </div>
-                        <div class="timeline-body"><p class="text-muted">잘나왔습니다</div>
-                    </div>
-                </a>
-            </li>
+                    </a>
+                </li>
+            </c:forEach>
         </ul>
     </div>
 </section>
@@ -541,7 +546,7 @@
             var t1 = String(res2["data"][0].stateDt).substring(4, 8).replace(/(.{2})/, "$1월").replace(/(.{5})/, "$1일");
             var t3 = res2["data"][0].decideCnt - res2["data"][1].decideCnt;
             var t4 = res2["data"][0].clearCnt - res2["data"][1].clearCnt;
-            var t5 = res2["data"][0].examCnt - res2["data"][1].examCnt;
+            var t5 = res2["data"][1].examCnt - res2["data"][0].examCnt;
             var t6 = res2["data"][0].deathCnt - res2["data"][1].deathCnt;
             var number = "명";
             var numberI = "명" + '<i class="bi bi-arrow-up"></i>';

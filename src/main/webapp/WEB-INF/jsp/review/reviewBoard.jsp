@@ -22,12 +22,12 @@
                             <div class="portfolio-hover">
                                 <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
                             </div>
-                            <img class="img-fluid" src="/assets/img/portfolio/06-thumbnail.jpg" alt=""/>
+                            <img class="img-fluid" src="${data.file_name}"/>
                         </a>
 
                         <div class="portfolio-caption">
                             <div class="portfolio-caption-heading">${data.board_title}</div>
-                            <div class="portfolio-caption-subheading text-muted">${data.member_id}</div>
+                            <div class="portfolio-caption-subheading text-muted">${data.member_nickname}      조회수 ${data.board_likecnt}</div>
                         </div>
 
                     </div>
@@ -66,27 +66,24 @@
                     </a>
                 </li>
             </c:if>
-
         </ul>
-    </nav>
-</section>
-<!-- Footer-->
-<footer class="footer py-4">
-    <div class="container">
-        <div class="row align-items-center">
-            <div class="col-lg-4 text-lg-left">Copyright © Your Website 2020</div>
-            <div class="col-lg-4 my-3 my-lg-0">
-                <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-twitter"></i></a>
-                <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-facebook-f"></i></a>
-                <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-linkedin-in"></i></a>
+        <div class="form-group row justify-content-center">
+            <div class="w100" style="padding-right:10px">
+                <select class="form-control form-control-sm" name="searchType" id="searchType">
+                    <option value="t">제목</option>
+                    <option value="c">작성자</option>
+                </select>
             </div>
-            <div class="col-lg-4 text-lg-right">
-                <a class="mr-3" href="#!">Privacy Policy</a>
-                <a href="#!">Terms of Use</a>
+            <div class="w300" style="padding-right:10px">
+                <input type="text" class="form-control form-control-sm" name="keyword" id="keyword">
+            </div>
+            <div>
+                <button class="btn btn-sm btn-primary" name="btnSearch" id="btnSearch">검색</button>
             </div>
         </div>
-    </div>
-</footer>
+    </nav>
+</section>
+
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"></script>
@@ -97,15 +94,15 @@
 <script src="/assets/mail/contact_me.js"></script>
 <!-- Core theme JS-->
 <script src="/js/scripts.js"></script>
+<c:url var="getBoardListURL" value="/board/review/boardlist"></c:url>
 <script>
 
     $("#ck").click(function () {
-        if (${sessionScope.member eq null || review.member_id eq null}) {
+        if (${empty sessionScope.member}) {
             alert("로그인해주세요");
             location.href = "/login";
         }
     })
+
 </script>
-
-
 </html>

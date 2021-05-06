@@ -32,4 +32,5 @@ public class BoardLikeServiceImpl implements BoardLikeService {
     public void updateBoardLike (int board_no) throws Exception {
         boardLikeMapper.updateBoardLike(board_no);
     }
+
 }

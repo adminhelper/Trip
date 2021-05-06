@@ -2,6 +2,7 @@ package com.project.tripinfo.repository;
 
 import com.project.tripinfo.model.Table_name;
 import com.project.tripinfo.util.Criteria;
+import com.project.tripinfo.util.file.model.FileUtils;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -24,4 +25,5 @@ public interface Table_Mapper {
     List<Map<String,Object>> checkDetail() throws Exception;
 
     void insertDetailTable (String overview, int contentid);
+
 }

@@ -26,11 +26,12 @@ public class ApiExplorer {
             Date nowDate = new Date();
             Calendar calendar = Calendar.getInstance();
             calendar.add(Calendar.DATE, -8);
-            String today = format.format(nowDate);
             String yesterDay = format.format(calendar.getTime());
 
+            String today = format.format(new Date());
+
             StringBuilder urlBuilder = new StringBuilder("http://openapi.data.go.kr/openapi/service/rest/Covid19/getCovid19InfStateJson"); /*URL*/
-            urlBuilder.append("?" + URLEncoder.encode("ServiceKey", "UTF-8") + "TbL0qkD2j2dTnn5GAHzt2M3kxzKwCfqfzX7y%2BbxkZwibdP7n1WFDOSXM2Px7Bz91U0bezSBG1eoVWbnqhBn7PA%3D%3D"); /*Service Key*/
+            urlBuilder.append("?" + URLEncoder.encode("ServiceKey", "UTF-8") + "=" + "TbL0qkD2j2dTnn5GAHzt2M3kxzKwCfqfzX7y%2BbxkZwibdP7n1WFDOSXM2Px7Bz91U0bezSBG1eoVWbnqhBn7PA%3D%3D"); /*Service Key*/
             urlBuilder.append("&" + URLEncoder.encode("ServiceKey", "UTF-8") + "=" + URLEncoder.encode("-", "UTF-8")); /*공공데이터포털에서 받은 인증키*/
             urlBuilder.append("&" + URLEncoder.encode("pageNo", "UTF-8") + "=" + URLEncoder.encode("1", "UTF-8")); /*페이지번호*/
             urlBuilder.append("&" + URLEncoder.encode("numOfRows", "UTF-8") + "=" + URLEncoder.encode("10", "UTF-8")); /*한 페이지 결과 수*/
@@ -39,8 +40,6 @@ public class ApiExplorer {
             URL url = new URL(urlBuilder.toString());
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod("GET");
-            conn.setRequestProperty("Content-type", "application/json");
-//            System.out.println("Response code: " + conn.getResponseCode());
             BufferedReader rd;
             if (conn.getResponseCode() >= 200 && conn.getResponseCode() <= 300) {
                 rd = new BufferedReader(new InputStreamReader(conn.getInputStream(), "UTF-8"));
@@ -58,8 +57,6 @@ public class ApiExplorer {
             JSONObject xmlJSONObj = XML.toJSONObject(sb.toString());
             String xmlJSONObjString = xmlJSONObj.toString();
 
-            System.out.println(yesterDay);
-            System.out.println(today);
 
             ObjectMapper objectMapper = new ObjectMapper();
             Map<String, Object> map = new HashMap<>();
@@ -73,14 +70,6 @@ public class ApiExplorer {
             items = (Map<String, Object>) body.get("items");
             itemList = (List<Map<String, Object>>) items.get("item");
 
-
-            System.out.println(itemList.toString());
-//            System.out.println("### map = " + map);
-            //            System.out.println("### dataResponse = " + dataResponse);
-//            System.out.println("### body = " + body);
-//            System.out.println("### items = " + items);
-//            System.out.println("### itemList = " + itemList);
-
             resultMap.put("Result", "0000");
             resultMap.put("numOfRows", body.get("numOfRows"));
             resultMap.put("pageNo", body.get("pageNo"));
@@ -89,11 +78,7 @@ public class ApiExplorer {
 
 
         } catch (Exception e) {
-            e.printStackTrace();
-            resultMap.clear();
-            resultMap.put("Result", "0001");
         }
-
         return resultMap;
     }
 }

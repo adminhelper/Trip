@@ -44,7 +44,6 @@ public class MemberController {
     public int idCheck (@RequestBody String member_id) throws Exception {
         int count = 0;
         count = memberService.idCheck(member_id);
-        System.out.println(member_id);
         return count;
     }
 
@@ -55,14 +54,9 @@ public class MemberController {
         logger.info("=== 로그인 체크 ===");
         HttpSession session = request.getSession();
 
-        if (session.getAttribute("member") != null) {
-            session.removeAttribute("member");
-            System.out.println("===  세션 삭제 ===");
-        }
-        int result = memberService.loginCheck(member);
-        System.out.println(session.toString());
         if (member != null) {
-            System.out.println(" === 1 ===");
+            int result = memberService.loginCheck(member);
+            member = memberService.selectCheck(member);
             session.setAttribute("member", member);
             return result;
         } else {

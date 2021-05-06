@@ -18,4 +18,14 @@
         FROM member
         where member_id = #{member_id}
     </select>
+    <select id="selectCheck" resultType="com.project.tripinfo.model.Member">
+        SELECT *
+            FROM member
+            where member_id = #{member_id}
+    </select>
+    <update id="pwdCheck" parameterType="com.project.tripinfo.model.Member">
+        UPDATE member
+        SET member_password = #{member_password}
+        where member_id = #{member_id}
+    </update>
 </mapper>

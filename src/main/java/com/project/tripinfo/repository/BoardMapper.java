@@ -3,6 +3,7 @@ package com.project.tripinfo.repository;
 import com.project.tripinfo.model.Board;
 import com.project.tripinfo.model.Review_File;
 import com.project.tripinfo.util.Criteria;
+import com.project.tripinfo.util.file.model.FileUtils;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -35,4 +36,5 @@ public interface BoardMapper {
     void reviewBoardModify (Board board) throws Exception;
 
 
+    List<Map<String, Object>> reviewMainList () throws Exception;
 }

@@ -31,11 +31,6 @@ public class BoardServiceImpl implements BoardService {
     }
 
     @Override
-    public List<Board> ListPaging (Criteria criteria) {
-        return boardMapper.ListPaging(criteria);
-    }
-
-    @Override
     public void reviewBoardInsert (Board board, MultipartHttpServletRequest multipartHttpServletRequest) throws Exception {
         boardMapper.reviewBoardInsert(board);
 
@@ -43,7 +38,6 @@ public class BoardServiceImpl implements BoardService {
         if(CollectionUtils.isEmpty(list) == false){
             boardMapper.reviewBoardFileInsert(list);
         }
-        System.out.println(list.toString());
     }
     @Override
     public Board reviewBoardDetail (int board_no) throws Exception {
@@ -63,6 +57,11 @@ public class BoardServiceImpl implements BoardService {
     @Override
     public int boardListCnt () throws Exception {
          return boardMapper.boardListCnt();
+    }
+
+    @Override
+    public List<Map<String, Object>> reviewMainList () throws Exception {
+        return boardMapper.reviewMainList();
     }
 
 }

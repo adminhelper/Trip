@@ -7,7 +7,9 @@ import com.project.tripinfo.service.BoardLikeService;
 import com.project.tripinfo.service.BoardService;
 import com.project.tripinfo.util.Criteria;
 import com.project.tripinfo.util.Pagination;
+import com.project.tripinfo.util.file.model.FileUtils;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.catalina.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,6 +21,8 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+import java.io.File;
 import java.util.List;
 import java.util.Map;
 
@@ -44,6 +48,7 @@ public class BoardController {
         List<Map<String, Object>> list = boardService.reviewBoardList(criteria);
         model.addAttribute("review", list);
         model.addAttribute("paging", paging);
+
         return "review/reviewBoard";
     }
 
@@ -106,15 +111,13 @@ public class BoardController {
 
         int heart = Integer.parseInt(httpRequest.getParameter("heart"));
         int boardId = Integer.parseInt(httpRequest.getParameter("boardId"));
-        String userid = httpRequest.getSession().toString();
+        HttpSession session = httpRequest.getSession();
+        Member member = (Member) session.getAttribute("member");
+        String userid = member.getMember_id();
 
-        System.out.println(userid);
         BoardLike boardLike = new BoardLike();
-
         boardLike.setBoard_no(boardId);
         boardLike.setMember_id(userid);
-
-        System.out.println(heart);
 
         if (heart >= 1) {
             boardLikeService.deleteBoardLike(boardLike);
@@ -123,9 +126,6 @@ public class BoardController {
             boardLikeService.insertBoardLike(boardLike);
             heart = 1;
         }
-
         return heart;
-
     }
-
 }

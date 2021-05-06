@@ -63,5 +63,4 @@
             AND contenttypeid = #{contenttypeid}
         </if>
     </select>
-
 </mapper>

@@ -2,6 +2,7 @@ package com.project.tripinfo.service;
 
 import com.project.tripinfo.model.Board;
 import com.project.tripinfo.util.Criteria;
+import com.project.tripinfo.util.file.model.FileUtils;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import java.util.List;
@@ -13,8 +14,6 @@ public interface BoardService {
 
      List<Map<String, Object>> reviewBoardList (Criteria criteria) throws Exception;
 
-     List<Board> ListPaging (Criteria criteria);
-
      void reviewBoardInsert (Board board, MultipartHttpServletRequest multipartHttpServletRequest) throws Exception;
 
 
@@ -25,4 +24,6 @@ public interface BoardService {
      void reviewBoardModify (Board board) throws Exception;
 
      int boardListCnt () throws Exception;
+
+    List<Map<String, Object>> reviewMainList () throws Exception;
 }

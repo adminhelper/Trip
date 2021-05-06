@@ -79,7 +79,7 @@
         }
 
         $(".heart").on("click", function () {
-            if (${sessionScope.member eq null || board.member_id eq null}) {
+            if (${empty sessionScope.member}) {
                 alert("로그인해주세요");
             } else {
 
@@ -97,8 +97,6 @@
                         } else {
                             $('#heart').prop("src", "/img/like2.png");
                         }
-
-
                     }
                 });
             }

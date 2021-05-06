@@ -5,12 +5,10 @@ import com.project.tripinfo.repository.MemberMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.Resource;
-
 @Service
 public class MemberService implements MemberMapper {
 
-    @Autowired(required = true)
+    @Autowired
     MemberMapper memberMapper;
 
     @Override
@@ -26,6 +24,17 @@ public class MemberService implements MemberMapper {
     @Override
     public int loginCheck (Member member) throws Exception {
         return memberMapper.loginCheck(member);
+    }
+
+    @Override
+    public Member selectCheck (Member member) throws Exception {
+       return memberMapper.selectCheck(member);
+
+    }
+
+    @Override
+    public void pwdCheck (Member member) throws Exception {
+         memberMapper.pwdCheck(member);
     }
 
 

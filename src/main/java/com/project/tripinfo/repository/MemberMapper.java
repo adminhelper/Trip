@@ -10,4 +10,8 @@ public interface MemberMapper {
     int  loginCheck(Member member)throws  Exception;
 
     int idCheck (String member_id) throws  Exception;
+
+    Member selectCheck (Member member) throws Exception;
+
+    void pwdCheck(Member member) throws Exception;
 }
