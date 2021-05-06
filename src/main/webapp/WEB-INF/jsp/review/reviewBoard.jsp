@@ -100,7 +100,7 @@
 <script>
 
     $("#ck").click(function () {
-        if (${sessionScope.member eq null || review eq null}) {
+        if (${sessionScope.member eq null || review.member_id eq null}) {
             alert("로그인해주세요");
             location.href = "/login";
         }

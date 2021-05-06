@@ -581,7 +581,7 @@
                     datasets: [{
                         label: '일일 확진자',
                         backgroundColor: 'rgb(255, 99, 132)',
-                        borderColor: 'rgb(255, 99, 132)',
+                        borderColor: 'rgb(255,99,132)',
                         data: kk1
                     }]
                 },

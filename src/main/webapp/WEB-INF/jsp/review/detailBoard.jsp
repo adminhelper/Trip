@@ -45,7 +45,11 @@
                                 <button id="delete" type="button"
                                         onclick="location.href='/board/review/delete?no=${board.board_no}'">삭제
                                 </button>
-
+                                <div style="text-align: right;">
+                                    <a class="btn btn-outline-dark heart">
+                                        <img id="heart" src="">
+                                    </a>
+                                </div>
                             </table>
                         </form>
                     </div>
@@ -53,25 +57,55 @@
             </div>
             <hr size="10px">
         </div>
-</section>
-<!-- Footer-->
-<footer class="footer py-4">
-    <div class="container">
-        <div class="row align-items-center">
-            <div class="col-lg-4 text-lg-left">Copyright © Your Website 2020</div>
-            <div class="col-lg-4 my-3 my-lg-0">
-                <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-twitter"></i></a>
-                <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-facebook-f"></i></a>
-                <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-linkedin-in"></i></a>
-            </div>
-            <div class="col-lg-4 text-lg-right">
-                <a class="mr-3" href="#!">Privacy Policy</a>
-                <a href="#!">Terms of Use</a>
-            </div>
-        </div>
     </div>
-</footer>
+</section>
 </body>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+        crossorigin="anonymous"></script>
+<script>
+    $(document).ready(function () {
+
+        var heartval = ${heart};
+
+        if (heartval > 0) {
+            console.log(heartval);
+            $("#heart").prop("src", "/img/like1.png");
+            $(".heart").prop('name', heartval)
+        } else {
+            console.log(heartval);
+            $("#heart").prop("src", "/img/like2.png");
+            $(".heart").prop('name', heartval)
+        }
+
+        $(".heart").on("click", function () {
+            if (${sessionScope.member eq null || board.member_id eq null}) {
+                alert("로그인해주세요");
+            } else {
+
+                var that = $(".heart");
+
+                var sendData = {'boardId': '${board.board_no}', 'heart': that.prop('name')};
+                $.ajax({
+                    url: '/board/heart',
+                    type: 'POST',
+                    data: sendData,
+                    success: function (data) {
+                        that.prop('name', data);
+                        if (data == 1) {
+                            $('#heart').prop("src", "/img/like1.png");
+                        } else {
+                            $('#heart').prop("src", "/img/like2.png");
+                        }
+
+
+                    }
+                });
+            }
+        });
+    });
+</script>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"></script>
 <!-- Third party plugin JS-->
@@ -81,4 +115,5 @@
 <script src="/assets/mail/contact_me.js"></script>
 <!-- Core theme JS-->
 <script src="/js/scripts.js"></script>
+
 </html>

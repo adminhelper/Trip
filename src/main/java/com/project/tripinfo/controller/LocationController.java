@@ -26,10 +26,13 @@ public class LocationController {
 
     @Autowired
     Hongdae hongdae;
+
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @RequestMapping(value = "/hongdae")
     public String hongdae (Criteria criteria, Model model, @RequestParam(required = false) Integer contenttypeid) throws Exception {
+        hongdae.hongdaeTable_Detail();
+
         int num = tableService.LocalListCnt(contenttypeid);
         //페이징 객체
         Pagination paging = new Pagination();
@@ -40,7 +43,6 @@ public class LocationController {
         model.addAttribute("table", list);
         model.addAttribute("type",contenttypeid);
         logger.info("=== 카테고리   : 홍대 ===");
-
 
 
         return "/local/hongdae";

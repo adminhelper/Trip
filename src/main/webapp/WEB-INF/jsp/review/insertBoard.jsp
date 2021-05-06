@@ -51,6 +51,7 @@
             </div>
             <hr size="10px">
         </div>
+    </div>
 </section>
 <!-- Footer-->
 <footer class="footer py-4">

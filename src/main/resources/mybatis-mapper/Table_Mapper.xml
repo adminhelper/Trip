@@ -10,16 +10,19 @@
                 #{createdtime}, #{firstimage}, #{firstimage2}, #{mapx}, #{mapy}, #{mlevel}, #{modifiedtime}, #{title},
                 #{zipcode}, #{sigungucode})
     </insert>
+
     <update id="insertDetailTable" parameterType="com.project.tripinfo.model.Table_name">
         UPDATE table_name
         SET overview    = #{overview}
         WHERE contentid = #{contentid}
     </update>
+
     <select id="checkDetailTable" resultType="int" parameterType="int">
         select count(1)
         from table_name
         where contentid = #{contentid}
     </select>
+
     <select id="checkDetail" resultType="map">
         select contentid
         from table_name
@@ -36,18 +39,21 @@
         ORDER BY info_seq DESC
         LIMIT #{criteria.pageStart}, #{criteria.amount}
     </select>
+
     <select id="checkTable" resultType="int" parameterType="int">
         select count(1)
         from table_name
         where contentid = #{contentid}
           AND contenttypeid = #{contenttypeid}
     </select>
+
     <select id="hongdaeDetail" resultType="com.project.tripinfo.model.Table_name">
         SELECT *
         FROM table_name
         where contentid = #{contentId}
           and contenttypeid = #{typeId}
     </select>
+
     <select id="LocalListCnt" resultType="java.lang.Integer" parameterType="java.lang.Integer">
         select count(*)
         from table_name
@@ -57,4 +63,5 @@
             AND contenttypeid = #{contenttypeid}
         </if>
     </select>
+
 </mapper>
