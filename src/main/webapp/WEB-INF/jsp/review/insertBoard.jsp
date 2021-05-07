@@ -28,7 +28,7 @@
                                     <tr>
                                         <th>작성자</th>
                                         <td><input type="text" readonly="readonly" name="member_id"
-                                                   value="${member.member_id}">${board.member_id}</td>
+                                                   value="${member.member_id}">${reviewBoard.member_id}</td>
                                     </tr>
                                     <tr>
                                         <th>내용</th>

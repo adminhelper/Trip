@@ -3,6 +3,7 @@ package com.project.tripinfo.util;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import org.springframework.web.util.UriComponentsBuilder;
 
 @ToString
 @Setter
@@ -12,8 +13,9 @@ public class Criteria {
     private int pageNum; // 현재 페이지 번호
     private int amount; // 페이당 보여줄 게시글 수
 
-    private String type;
-    private String keyword;
+    private String searchType;
+
+    private String keyword ;
 
     public Criteria () {
         this(1, 12);
@@ -48,8 +50,5 @@ public class Criteria {
         return (this.pageNum - 1) * amount;
     }
 
-    public String[] getTypeArr() {
-        return type == null? new String[] {}: type.split("");
-    }
 
 }

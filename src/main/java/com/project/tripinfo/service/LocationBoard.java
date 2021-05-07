@@ -6,7 +6,7 @@ import com.project.tripinfo.util.Criteria;
 import java.util.List;
 import java.util.Map;
 
-public interface TableService {
+public interface LocationBoard {
 
     //홍대 API 등록
     void insertTable(Table_name table_name) throws Exception;

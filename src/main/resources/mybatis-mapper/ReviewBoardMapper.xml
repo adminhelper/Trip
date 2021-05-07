@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.project.tripinfo.repository.ReviewBoardMapper">
+    <insert id="reviewBoardInsert" parameterType="com.project.tripinfo.model.ReviewBoard" useGeneratedKeys="true"
+            keyProperty="board_no">
+        INSERT INTO review_board (board_title, board_contents, member_id)
+        values (#{board_title}, #{board_contents}, #{member_id})
+    </insert>
+
+    <insert id="reviewBoardFileInsert" parameterType="com.project.tripinfo.model.Review_File">
+        <![CDATA[
+            INSERT INTO file
+            (
+                board_no,
+                file_origin_name,
+                file_name,
+                file_size,
+                file_regdate
+            ) VALUES
+        ]]>
+        <foreach collection="list" item="item" separator=",">
+            (
+            #{item.board_no},
+            #{item.file_origin_name},
+            #{item.file_name},
+            #{item.file_size},
+            NOW()
+            )
+        </foreach>
+
+    </insert>
+    <update id="reviewBoardModify" parameterType="com.project.tripinfo.model.ReviewBoard">
+        UPDATE review_board
+        SET board_title    = #{board_title},
+            board_contents = #{board_contents}
+        WHERE board_no = #{board_no}
+    </update>
+    <update id="reviewBoardDelete" parameterType="int">
+        UPDATE review_board
+        SET TNF = 'F'
+        WHERE board_no = #{board_no}
+    </update>
+
+    <select id="reviewBoardList" resultType="hashmap" parameterType="hashmap">
+        SELECT b.board_no,b.member_id,board_title,board_contents,m.member_nickname,b.board_likecnt , file_name
+        FROM review_board b LEFT JOIN member m on b.member_id = m.member_id LEFT JOIN file f on b.board_no = f.board_no
+        WHERE TNF = 'T' AND b.board_no = f.board_no
+
+        <if test='searchType.equals("board_title")'>
+            AND b.board_title LIKE concat('%', #{keyword}, '%')
+        </if>
+        <if test='searchType.equals("member_nickname")'>
+            AND m.member_nickname LIKE concat('%', #{keyword}, '%')
+        </if>
+        ORDER BY board_no DESC
+        LIMIT #{pageStart}, #{amount}
+    </select>
+
+    <select id="reviewMainList" resultType="hashmap">
+        <![CDATA[
+        SELECT b.board_no, b.member_id, board_title, board_contents, m.member_nickname, b.board_likecnt, file_name
+        FROM review_board b
+                 LEFT JOIN member m on b.member_id = m.member_id
+                 LEFT JOIN file f on b.board_no = f.board_no
+        WHERE TNF = 'T'
+          AND b.board_no = f.board_no
+        ORDER BY board_no DESC
+
+
+        LIMIT 3
+        ]]>
+    </select>
+    <select id="reviewBoardDetail" resultType="com.project.tripinfo.model.ReviewBoard">
+        SELECT board_title, board_contents, member_id, board_no
+        FROM review_board
+        where board_no = #{board_no}
+    </select>
+
+    <select id="ListPaging" resultType="com.project.tripinfo.model.ReviewBoard">
+        SELECT *
+        FROM review_board
+        WHERE TNF = 'T'
+        ORDER BY board_no DESC
+        LIMIT #{pageNum}, #{amount}
+    </select>
+
+    <select id="boardListCnt" resultType="java.lang.Integer" parameterType="com.project.tripinfo.util.Criteria">
+        select count(*)
+        from review_board b LEFT JOIN member m on b.member_id = m.member_id
+        WHERE 1 = 1
+        <if test='searchType.equals("board_title")'>
+            AND b.board_title LIKE concat('%', #{keyword}, '%')
+        </if>
+        <if test='searchType.equals("member_nickname")'>
+            AND m.member_nickname LIKE concat('%', #{keyword}, '%')
+        </if>
+    </select>
+</mapper>

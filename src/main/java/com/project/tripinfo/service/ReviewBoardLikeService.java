@@ -3,7 +3,7 @@ package com.project.tripinfo.service;
 
 import com.project.tripinfo.model.BoardLike;
 
-public interface BoardLikeService {
+public interface ReviewBoardLikeService {
 
     int getBoardLike (BoardLike vo) throws Exception;
 

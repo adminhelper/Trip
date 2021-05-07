@@ -1,15 +1,13 @@
 package com.project.tripinfo.controller;
 
-import com.project.tripinfo.model.Board;
 import com.project.tripinfo.model.BoardLike;
 import com.project.tripinfo.model.Member;
-import com.project.tripinfo.service.BoardLikeService;
-import com.project.tripinfo.service.BoardService;
+import com.project.tripinfo.model.ReviewBoard;
+import com.project.tripinfo.service.ReviewBoardLikeService;
+import com.project.tripinfo.service.ReviewBoardService;
 import com.project.tripinfo.util.Criteria;
 import com.project.tripinfo.util.Pagination;
-import com.project.tripinfo.util.file.model.FileUtils;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.catalina.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,30 +20,37 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.io.File;
 import java.util.List;
 import java.util.Map;
 
 @Slf4j
 @Controller
 @RequestMapping("/board")
-public class BoardController {
+public class ReviewBoardController {
 
     @Autowired
-    private BoardService boardService;
+    private ReviewBoardService reviewBoardService;
 
     @Autowired
-    private BoardLikeService boardLikeService;
+    private ReviewBoardLikeService reviewBoardLikeService;
 
     @RequestMapping(value = "/review/boardlist")
     public String reviewBoard_list (Criteria criteria, Model model) throws Exception {
-//        전체 글 개수
-        int boardCnt = boardService.boardListCnt();
-//        페이징 객체
+
+        // 전체 글 개수
+        if (criteria.getKeyword() == null && criteria.getSearchType() == null) {
+            String t = "";
+            criteria.setKeyword(t);
+            criteria.setSearchType(t);
+        }
+        int boardCnt = reviewBoardService.boardListCnt(criteria);
+
+        // 페이징 객체
         Pagination paging = new Pagination();
         paging.setCriteria(criteria);
         paging.setTotalCount(boardCnt);
-        List<Map<String, Object>> list = boardService.reviewBoardList(criteria);
+
+        List<Map<String, Object>> list = reviewBoardService.reviewBoardList(criteria);
         model.addAttribute("review", list);
         model.addAttribute("paging", paging);
 
@@ -54,8 +59,8 @@ public class BoardController {
 
     //게시판 조회
     @RequestMapping(value = "/review/insert")
-    public String reviewBoard_insert (Board board, MultipartHttpServletRequest multipartHttpServletRequest) throws Exception {
-        boardService.reviewBoardInsert(board, multipartHttpServletRequest);
+    public String reviewBoard_insert (ReviewBoard reviewBoard, MultipartHttpServletRequest multipartHttpServletRequest) throws Exception {
+        reviewBoardService.reviewBoardInsert(reviewBoard, multipartHttpServletRequest);
         return "redirect:/board/review/boardlist";
     }
 
@@ -69,20 +74,20 @@ public class BoardController {
     //게시글 삭제
     @RequestMapping(value = "/review/delete")
     public String reviewBoard_Delete (@RequestParam("no") int board_no) throws Exception {
-        boardService.reviewBoardDelete(board_no);
+        reviewBoardService.reviewBoardDelete(board_no);
         return "redirect:/board/review/boardlist";
     }
 
     //게시글 조회
     @RequestMapping(value = "/review/detail")
     public String reviewBoard_Detail (@RequestParam("no") int board_no, Model model) throws Exception {
-        Board board = boardService.reviewBoardDetail(board_no);
-        model.addAttribute("board", board);
+        ReviewBoard reviewBoard = reviewBoardService.reviewBoardDetail(board_no);
+        model.addAttribute("board", reviewBoard);
 
         BoardLike boardLike = new BoardLike();
         boardLike.setBoard_no(board_no);
-        boardLike.setMember_id(board.getMember_id());
-        int boardlike = boardLikeService.getBoardLike(boardLike);
+        boardLike.setMember_id(reviewBoard.getMember_id());
+        int boardlike = reviewBoardLikeService.getBoardLike(boardLike);
         model.addAttribute("heart", boardlike);
 
         return "review/detailBoard";
@@ -91,17 +96,17 @@ public class BoardController {
     //게시글 수정
     @RequestMapping(value = "/review/modifyform")
     public String reviewBoard_ModifyForm (@RequestParam("no") int board_no, Model model) throws Exception {
-        Board board = boardService.reviewBoardDetail(board_no);
-        model.addAttribute("board", board);
+        ReviewBoard reviewBoard = reviewBoardService.reviewBoardDetail(board_no);
+        model.addAttribute("board", reviewBoard);
 
         return "review/modifyBoard";
     }
 
     //게시글 수정완료
     @RequestMapping(value = "/review/modify")
-    public String reviewBoard_Modify (RedirectAttributes rtt, Board board) throws Exception {
-        boardService.reviewBoardModify(board);
-        rtt.addAttribute("no", board.getBoard_no());
+    public String reviewBoard_Modify (RedirectAttributes rtt, ReviewBoard reviewBoard) throws Exception {
+        reviewBoardService.reviewBoardModify(reviewBoard);
+        rtt.addAttribute("no", reviewBoard.getBoard_no());
         return "redirect:/board/review/detail";
     }
 
@@ -120,10 +125,10 @@ public class BoardController {
         boardLike.setMember_id(userid);
 
         if (heart >= 1) {
-            boardLikeService.deleteBoardLike(boardLike);
+            reviewBoardLikeService.deleteBoardLike(boardLike);
             heart = 0;
         } else {
-            boardLikeService.insertBoardLike(boardLike);
+            reviewBoardLikeService.insertBoardLike(boardLike);
             heart = 1;
         }
         return heart;

@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 import org.apache.catalina.filters.ExpiresFilter;
+import org.springframework.web.util.UriComponentsBuilder;
 
 @Getter
 @Setter

@@ -50,7 +50,7 @@
             <ul class="navbar-nav text-uppercase ml-auto">
                 <li class="nav-item"><a class="nav-link js-scroll-trigger" href="/">오늘의 서울</a></li>
                 <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#portfolio">지역</a></li>
-                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="/board/review/boardlist">후기</a></li>
+                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="/reviewBoard/review/boardlist">후기</a></li>
                 <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#team">여행정보</a></li>
             </ul>
             <ul class="navbar-nav text-uppercase ml-auto">

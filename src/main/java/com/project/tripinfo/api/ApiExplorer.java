@@ -64,7 +64,6 @@ public class ApiExplorer {
             });
             Map<String, Object> dataResponse = (Map<String, Object>) map.get("response");
             Map<String, Object> body = (Map<String, Object>) dataResponse.get("body");
-//            System.out.println(body);
             Map<String, Object> items = null;
             List<Map<String, Object>> itemList = null;
             items = (Map<String, Object>) body.get("items");

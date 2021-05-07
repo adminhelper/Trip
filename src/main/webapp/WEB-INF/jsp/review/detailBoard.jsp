@@ -38,6 +38,7 @@
                                     <td><input readonly="readonly" name="board_contents" id="board_contents"
                                                value="${board.board_contents}"></td>
                                 </tr>
+                                <div style="text-align: right;">
                                 <button type="button" onclick="location.href='/board/review/boardlist'">목록</button>
                                 <button id="modify" type="button"
                                         onclick="location.href='/board/review/modifyform?no=${board.board_no}'">수정
@@ -45,9 +46,9 @@
                                 <button id="delete" type="button"
                                         onclick="location.href='/board/review/delete?no=${board.board_no}'">삭제
                                 </button>
-                                <div style="text-align: right;">
-                                    <a class="btn btn-outline-dark heart">
-                                        <img id="heart" src="">
+
+                                    <a class="btn btn-outline-dark heart" style="border : 0px solid";>
+                                        <img id="heart" src="" style="width: 30px">
                                     </a>
                                 </div>
                             </table>

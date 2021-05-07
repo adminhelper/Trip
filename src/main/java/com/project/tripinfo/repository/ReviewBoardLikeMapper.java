@@ -5,7 +5,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 @Mapper
-public interface BoardLikeMapper {
+public interface ReviewBoardLikeMapper {
 
     void createBoardLike (BoardLike board) throws Exception;
 

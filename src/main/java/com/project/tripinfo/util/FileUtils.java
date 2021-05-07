@@ -1,4 +1,4 @@
-package com.project.tripinfo.util.file.model;
+package com.project.tripinfo.util;
 
 import com.project.tripinfo.model.Member;
 import com.project.tripinfo.model.Review_File;

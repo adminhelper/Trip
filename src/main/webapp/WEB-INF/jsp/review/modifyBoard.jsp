@@ -16,17 +16,17 @@
             <div class="row justify-content-center">
                 <div class="col-lg-100">
                     <div class="modal-body">
-                        <form name="form" action="/board/review/modify" method="post">
+                        <form name="form" action="/reviewBoard/review/modify" method="post">
                             <div class="text-center">
-                                글번호<input readonly="readonly" name="board_no" id="board_no" value="${board.board_no}">
+                                글번호<input readonly="readonly" name="board_no" id="board_no" value="${reviewBoard.board_no}">
                                 작성자<input readonly="readonly" name="member_id" id="member_id"
-                                          value="${board.member_id}">
+                                          value="${reviewBoard.member_id}">
                                 제목<input name="board_title" id="board_title"
-                                         value="${board.board_title}">
+                                         value="${reviewBoard.board_title}">
                                 내용<input name="board_contents" id="board_contents"
-                                         value="${board.board_contents}">
+                                         value="${reviewBoard.board_contents}">
                             </div>
-                            <input type="hidden" name="board_no" value="${board.board_no}">
+                            <input type="hidden" name="board_no" value="${reviewBoard.board_no}">
                             <button type="button" onclick="history.back()">돌아가</button>
                             <button id="modify" type="submit">수정완료</button>
                         </form>

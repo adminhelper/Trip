@@ -40,7 +40,8 @@
 
     <nav aria-label="Page navigation example">
         <ul class="pagination justify-content-center">
-            <button class="btn btn-primary" type="button" id="ck" onclick="location.href='/board/review/insertboard'">
+            <button class="btn btn-primary" type="button" id="ck"
+                    onclick="location.href='/board/review/insertboard'">
                 글쓰기
             </button>
             <c:if test="${paging.prev}">
@@ -70,8 +71,8 @@
         <div class="form-group row justify-content-center">
             <div class="w100" style="padding-right:10px">
                 <select class="form-control form-control-sm" name="searchType" id="searchType">
-                    <option value="t">제목</option>
-                    <option value="c">작성자</option>
+                    <option value="board_title">제목</option>
+                    <option value="member_nickname">작성자</option>
                 </select>
             </div>
             <div class="w300" style="padding-right:10px">
@@ -96,13 +97,21 @@
 <script src="/js/scripts.js"></script>
 <c:url var="getBoardListURL" value="/board/review/boardlist"></c:url>
 <script>
+    $(document).on('click','#btnSearch', function(e) {
+       e.preventDefault();
+       var url = "${getBoardListURL}";
+       url = url + "?searchType=" + $('#searchType').val();
+       url = url + "&keyword=" + $('#keyword').val();
+       location.href = url;
+       console.log(url);
+    });
 
     $("#ck").click(function () {
         if (${empty sessionScope.member}) {
             alert("로그인해주세요");
             location.href = "/login";
         }
-    })
+    });
 
 </script>
 </html>
