@@ -9,17 +9,17 @@
 <section class="page-section bg-s" id="portfolio">
     <div class="container">
         <div class="text-center">
-            <h1 class="section-heading">${hongdae.title}</h1>
+            <h1 class="section-heading">${gangnam.title}</h1>
         </div>
         <div class="container">
             <hr size="10px">
             <div class="row justify-content-center">
                 <div class="col-lg-8">
                     <div class="modal-body">
-                        <img src="${hongdae.firstimage}">
+                        <img src="${gangnam.firstimage}">
                         <dl>
                             <dt>주소</dt>
-                            <dd>${hongdae.addr1}</dd>
+                            <dd>${gangnam.addr1}</dd>
                         </dl>
                     </div>
                 </div>

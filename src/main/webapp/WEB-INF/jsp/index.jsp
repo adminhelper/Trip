@@ -109,7 +109,7 @@
 <jsp:include page="head.jsp" flush="true"/>
 <body id="page-top">
 <!-- Navigation-->
-<jsp:include page="header.jsp" flush="true"/>
+<jsp:include page="headermain.jsp" flush="true"/>
 <!-- Services-->
 <section class="page-section" id="services">
     <div class="container">
@@ -156,7 +156,7 @@
         <div class="row">
             <div class="col-lg-4 col-sm-6 mb-4">
                 <div class="portfolio-item">
-                    <a class="portfolio-link" data-toggle="modal" href="#portfolioModal1">
+                    <a class="portfolio-link" href="/local/gangnam">
                         <div class="portfolio-hover">
                             <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
                         </div>
@@ -264,7 +264,7 @@
                             <div class="timeline-heading">
                                 <hx4 class="subheading">${data.member_nickname}</hx4>
                             </div>
-                            <div class="timeline-body"><p class="text-muted">조회수 ${data.board_likecnt}</div>
+                            <div class="timeline-body"><p class="text-muted">추천 ${data.board_likecnt}</div>
                         </div>
                     </a>
                 </li>
@@ -310,42 +310,7 @@
         </div>
     </div>
 </section>
-<!-- Clients-->
-<div class="py-5">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-3 col-sm-6 my-3">
-                <a href="#!"><img class="img-fluid d-block mx-auto" src="/assets/img/logos/envato.jpg" alt=""/></a>
-            </div>
-            <div class="col-md-3 col-sm-6 my-3">
-                <a href="#!"><img class="img-fluid d-block mx-auto" src="/assets/img/logos/designmodo.jpg" alt=""/></a>
-            </div>
-            <div class="col-md-3 col-sm-6 my-3">
-                <a href="#!"><img class="img-fluid d-block mx-auto" src="/assets/img/logos/themeforest.jpg" alt=""/></a>
-            </div>
-            <div class="col-md-3 col-sm-6 my-3">
-                <a href="#!"><img class="img-fluid d-block mx-auto" src="/assets/img/logos/creative-market.jpg" alt=""/></a>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- Footer-->
-<footer class="footer py-4">
-    <div class="container">
-        <div class="row align-items-center">
-            <div class="col-lg-4 text-lg-left">Copyright © Your Website 2020</div>
-            <div class="col-lg-4 my-3 my-lg-0">
-                <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-twitter"></i></a>
-                <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-facebook-f"></i></a>
-                <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-linkedin-in"></i></a>
-            </div>
-            <div class="col-lg-4 text-lg-right">
-                <a class="mr-3" href="#!">Privacy Policy</a>
-                <a href="#!">Terms of Use</a>
-            </div>
-        </div>
-    </div>
-</footer>
+
 <!-- Portfolio Modals-->
 <!-- Modal 1-->
 <div class="portfolio-modal modal fade" id="weather" tabindex="-1" role="dialog" aria-hidden="true">

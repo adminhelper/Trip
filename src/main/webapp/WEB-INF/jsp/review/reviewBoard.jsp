@@ -27,7 +27,7 @@
 
                         <div class="portfolio-caption">
                             <div class="portfolio-caption-heading">${data.board_title}</div>
-                            <div class="portfolio-caption-subheading text-muted">${data.member_nickname}      조회수 ${data.board_likecnt}</div>
+                            <div class="portfolio-caption-subheading text-muted">${data.member_nickname}      추천 ${data.board_likecnt}</div>
                         </div>
 
                     </div>

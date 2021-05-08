@@ -8,20 +8,33 @@ import java.util.Map;
 
 public interface LocationBoard {
 
-    //홍대 API 등록
+    //API 등록
     void insertTable(Table_name table_name) throws Exception;
+
+    //API 상세페이지 등록
+    void insertDetailTable (Table_name table_name) throws Exception;
+
+    //API 테이블 체크
+    int checkTable (int contentid, int contenttypeid)throws  Exception;
+
+    //API 디테일 조회
+    List<Map<String,Object>> checkDetail() throws Exception;
 
     //홍대 페이지 조회
     List<Map<String,Object>> selectHongdae(Criteria criteria,Integer contenttypeid) throws Exception;
 
-    //홍대 API 테이블 체크
-    int checkTable (int contentid, int contenttypeid)throws  Exception;
-
+    //홍대 상세조회
     Table_name hongdaeDetail (int contentId, int typeId) throws Exception;
 
-    int LocalListCnt(Integer contenttypeid) throws Exception;
+    //홍대 총갯수 카운팅
+    int hongdaeListCnt(Integer contenttypeid) throws Exception;
 
-    List<Map<String,Object>> checkDetail() throws Exception;
+    //강남 페이지 조회
+    List<Map<String,Object>> selectGangnam(Criteria criteria,Integer contenttypeid) throws Exception;
 
-    void insertDetailTable (Table_name table_name) throws Exception;
+    //강남 상세페이지 조회
+    Table_name gangnamDetail (int contentId, int typeId) throws Exception;
+
+    //강남 총갯수 카운팅
+    int gangnamListCnt(Integer contenttypeid) throws Exception;
 }

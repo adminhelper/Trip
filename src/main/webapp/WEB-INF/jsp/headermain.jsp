@@ -4,14 +4,13 @@
     <div class="container">
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav text-uppercase ml-auto">
-                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="/">오늘의 서울</a></li>
-                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="/">지역</a></li>
-                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="/board/review/boardlist">후기</a></li>
-                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="/">여행정보</a></li>
+                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#services">오늘의 서울</a></li>
+                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#portfolio">지역</a></li>
+                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#about">후기</a></li>
+                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#team">여행정보</a></li>
             </ul>
             <ul class="navbar-nav text-uppercase ml-auto">
-                <li class="nav-item"><a class="nav-link text-center" data-target="#myModal" data-toggle="modal"
-                                        href="#myModal">검색</a>
+                <li class="nav-item"><a class="nav-link text-center" data-target="#myModal" data-toggle="modal" href="#myModal">검색</a>
                 </li>
                 <c:if test="${member.member_id != null}">
                     <li class="nav-item"><a class="nav-link js-scroll-trigger" href="/mypage">${member.member_id}님</a>
@@ -21,6 +20,11 @@
                 <c:if test="${member.member_id == null}">
                     <li class="nav-item"><a class="nav-link js-scroll-trigger" id="lang" href="/login">로그인</a></li>
                 </c:if>
+                <%--                <li class="dropdown text-uppercase ml-auto"><a class="nav-link js-scroll-trigger" data-toggle="dropdown" href="#">Language</a>--%>
+                <%--                    <ul class="dropdown-menu text-uppercase ml-auto" role="menu" aria-labelledby="lang">--%>
+                <%--                        <li><a class="dropdown-item-text" href="#">KOR</a></li>--%>
+                <%--                        <li><a class="dropdown-item-text" href="#">ENG</a></li>--%>
+                <%--                    </ul></li>--%>
             </ul>
 
         </div>
@@ -53,6 +57,7 @@
     <div class="container">
         <div class="masthead-subheading">Welcom to SEOUL</div>
         <div class="masthead-heading text-uppercase">어서와 서울은 처음이지?</div>
+        <!-- <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="#services">Tell Me More</a> -->
     </div>
 </header>
 

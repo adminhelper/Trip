@@ -2,6 +2,8 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.project.tripinfo.repository.LocationBoardMapper">
+
+    <!-- API 등록 -->
     <insert id="insertTable" parameterType="com.project.tripinfo.model.Table_name">
         INSERT INTO location_board (addr1, areacode, cat1, cat2, cat3, contentid, contenttypeid, createdtime, firstimage,
                                 firstimage2,
@@ -11,35 +13,21 @@
                 #{zipcode}, #{sigungucode})
     </insert>
 
+    <!-- API 디테일 등록   -->
     <update id="insertDetailTable" parameterType="com.project.tripinfo.model.Table_name">
         UPDATE location_board
         SET overview    = #{overview}
         WHERE contentid = #{contentid}
     </update>
 
+    <!--  API 테이블 중복 체크  -->
     <select id="checkDetailTable" resultType="int" parameterType="int">
         select count(1)
         from location_board
         where contentid = #{contentid}
     </select>
 
-    <select id="checkDetail" resultType="map">
-        select contentid
-        from location_board
-    </select>
-
-    <select id="selectHongdae" resultType="hashmap" parameterType="hashmap">
-        SELECT *
-        FROM location_board
-        where areacode = 1
-          AND sigungucode = 13
-        <if test="contenttypeid!=null and !contenttypeid.equals('')">
-            AND contenttypeid = #{contenttypeid}
-        </if>
-        ORDER BY info_seq DESC
-        LIMIT #{criteria.pageStart}, #{criteria.amount}
-    </select>
-
+    <!-- API 디테일 중복 체크   -->
     <select id="checkTable" resultType="int" parameterType="int">
         select count(1)
         from location_board
@@ -47,6 +35,20 @@
           AND contenttypeid = #{contenttypeid}
     </select>
 
+    <!-- 홍대 페이지 조회  -->
+    <select id="selectHongdae" resultType="hashmap" parameterType="hashmap">
+        SELECT *
+        FROM location_board
+        where areacode = 1
+          AND sigungucode = 13
+        <if test="contenttypeid !=null and !contenttypeid.equals('')">
+            AND contenttypeid = #{contenttypeid}
+        </if>
+        ORDER BY info_seq DESC
+        LIMIT #{criteria.pageStart}, #{criteria.amount}
+    </select>
+
+    <!-- 홍대 상세 페이지 조회  -->
     <select id="hongdaeDetail" resultType="com.project.tripinfo.model.Table_name">
         SELECT *
         FROM location_board
@@ -54,13 +56,50 @@
           and contenttypeid = #{typeId}
     </select>
 
-    <select id="LocalListCnt" resultType="java.lang.Integer" parameterType="java.lang.Integer">
+    <!--  홍대 게시글 갯수 조회  -->
+    <select id="hongdaeListCnt" resultType="java.lang.Integer" parameterType="java.lang.Integer">
         select count(*)
         from location_board
         where areacode = 1
           AND sigungucode = 13
-        <if test="contenttypeid!=null and !contenttypeid.equals('')">
+        <if test="contenttypeid !=null and !contenttypeid.equals('')">
             AND contenttypeid = #{contenttypeid}
         </if>
     </select>
+
+    <!--  강남 페이지 조회  -->
+    <select id="selectGangnam" resultType="hashmap" parameterType="hashmap">
+        SELECT *
+        FROM location_board
+        where areacode = 1
+        AND sigungucode = 1
+        <if test="contenttypeid !=null and !contenttypeid.equals('')">
+            AND contenttypeid = #{contenttypeid}
+        </if>
+        ORDER BY info_seq DESC
+        LIMIT #{criteria.pageStart}, #{criteria.amount}
+    </select>
+
+    <!--  강남 상세 페이지 조회  -->
+    <select id="gangnamDetail" resultType="com.project.tripinfo.model.Table_name">
+        SELECT *
+        FROM location_board
+        where contentid = #{contentId}
+          and contenttypeid = #{typeId}
+    </select>
+
+    <!-- 강남 게시글 갯수 조회  -->
+    <select id="gangnamListCnt" resultType="java.lang.Integer" parameterType="java.lang.Integer">
+        SELECT count(*)
+        FROM location_board
+        where areacode = 1
+        AND sigungucode = 1
+        <if test="contenttypeid !=null and !contenttypeid.equals('')">
+            AND contenttypeid = #{contenttypeid}
+        </if>
+    </select>
+    <select id="checkDetail">
+
+    </select>
+
 </mapper>

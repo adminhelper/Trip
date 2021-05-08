@@ -2,30 +2,40 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.project.tripinfo.repository.MemberMapper">
+
+    <!-- 회원 가입  -->
     <insert id="memberRegister">
         INSERT INTO member(member_id, member_password, member_nickname)
         VALUES (#{member_id}, #{member_password}, #{member_nickname})
     </insert>
 
+    <!--  로그인 체크  -->
     <select id="loginCheck" resultType="int">
         SELECT count(1)
         FROM member
         where member_id = #{member_id}
           and member_password = #{member_password}
     </select>
+
+    <!--  아이디 체크  -->
     <select id="idCheck" parameterType="String" resultType="java.lang.Integer">
         SELECT count(1)
         FROM member
         where member_id = #{member_id}
     </select>
+
+    <!-- 아이디 체크   -->
     <select id="selectCheck" resultType="com.project.tripinfo.model.Member">
         SELECT *
             FROM member
             where member_id = #{member_id}
     </select>
+
+    <!-- 비밀번호 체크   -->
     <update id="pwdCheck" parameterType="com.project.tripinfo.model.Member">
         UPDATE member
         SET member_password = #{member_password}
         where member_id = #{member_id}
     </update>
+
 </mapper>
