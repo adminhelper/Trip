@@ -17,6 +17,7 @@
                 <div class="col-lg-8">
                     <div class="modal-body">
                         <img src="${hongdae.firstimage}">
+                        <div>${hongdae.overview}</div>
                         <dl>
                             <dt>주소</dt>
                             <dd>${hongdae.addr1}</dd>

@@ -76,7 +76,6 @@ public class LocationBoardImpl implements LocationBoard {
         }
     }
 
-    //
     @Override
     public int checkTable (int contentid, int contenttypeid) throws Exception {
         return locationBoard_mapper.checkTable(contentid, contenttypeid);

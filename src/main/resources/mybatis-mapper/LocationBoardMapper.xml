@@ -20,6 +20,12 @@
         WHERE contentid = #{contentid}
     </update>
 
+    <!-- API 디테일 Content 체크   -->
+    <select id="checkDetail" resultType="map">
+        select contentid
+        from location_board
+    </select>
+
     <!--  API 테이블 중복 체크  -->
     <select id="checkDetailTable" resultType="int" parameterType="int">
         select count(1)
@@ -97,9 +103,6 @@
         <if test="contenttypeid !=null and !contenttypeid.equals('')">
             AND contenttypeid = #{contenttypeid}
         </if>
-    </select>
-    <select id="checkDetail">
-
     </select>
 
 </mapper>

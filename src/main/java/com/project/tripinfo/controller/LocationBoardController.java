@@ -1,5 +1,6 @@
 package com.project.tripinfo.controller;
 
+import com.project.tripinfo.api.Gangnam;
 import com.project.tripinfo.api.Hongdae;
 import com.project.tripinfo.model.Table_name;
 import com.project.tripinfo.service.LocationBoard;
@@ -27,6 +28,9 @@ public class LocationBoardController {
     @Autowired
     Hongdae hongdae;
 
+    @Autowired
+    Gangnam gangnam;
+
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
 
@@ -34,6 +38,7 @@ public class LocationBoardController {
     @RequestMapping(value = "/hongdae")
     public String hongdae (Criteria criteria, Model model, @RequestParam(required = false) Integer contenttypeid) throws Exception {
 
+        hongdae.DetailAll();
         int num = locationBoard.hongdaeListCnt(contenttypeid);
         Pagination paging = new Pagination();
         paging.setCriteria(criteria);
@@ -58,7 +63,6 @@ public class LocationBoardController {
     // 강남 페이지 조회
     @RequestMapping(value = "/gangnam")
     public String gangnam (Criteria criteria, Model model, @RequestParam(required = false) Integer contenttypeid) throws Exception {
-
         int num = locationBoard.gangnamListCnt(contenttypeid);
         //페이징 객체
         Pagination paging = new Pagination();
