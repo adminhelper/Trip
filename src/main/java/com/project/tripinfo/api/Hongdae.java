@@ -92,7 +92,7 @@ public class Hongdae {
         List<Map<String, Object>> ad = location.checkDetail();
         for (int i = 0; i < ad.size(); i++) {
             StringBuilder urlBuilder = new StringBuilder("http://api.visitkorea.or.kr/openapi/service/rest/KorService/detailCommon"); /*URL*/
-            urlBuilder.append("?" + URLEncoder.encode("ServiceKey", "UTF-8") + "=" + "TbL0qkD2j2dTnn5GAHzt2M3kxzKwCfqfzX7y%2BbxkZwibdP7n1WFDOSXM2Px7Bz91U0bezSBG1eoVWbnqhBn7PA%3D%3D"); /*Service Key*/
+            urlBuilder.append("?" + URLEncoder.encode("ServiceKey", "UTF-8") + "=" + "gSu1lemgQIBSMiK4iENsi4VPY28J0Rrs5vp8maFdr0yeX5DYDcWVWelUnMw78ajSy53MBD%2F36W3V2rQHGw78qg%3D%3D"); /*Service Key*/
             urlBuilder.append("&" + URLEncoder.encode("numOfRows", "UTF-8") + "=" + URLEncoder.encode("12", "UTF-8")); /*한 페이지 결과 수*/
             urlBuilder.append("&" + URLEncoder.encode("pageNo", "UTF-8") + "=" + URLEncoder.encode("1", "UTF-8")); /*현재 페이지 번호*/
             urlBuilder.append("&" + URLEncoder.encode("MobileOS", "UTF-8") + "=" + URLEncoder.encode("ETC", "UTF-8")); /*IOS(아이폰),AND(안드로이드),WIN(원도우폰),ETC*/
@@ -126,39 +126,24 @@ public class Hongdae {
             rd.close();
             conn.disconnect();
             String tt = sb.toString();
+            System.out.println(tt);
 
             JSONParser parser = new JSONParser();
             JSONObject obj = (JSONObject) parser.parse(tt);
-
-
             JSONObject parse_response = (JSONObject) obj.get("response");
             JSONObject parse_body = (JSONObject) parse_response.get("body");
-            if (((JSONObject) parse_body.get("items")) == null) {
-                System.out.println("ddddddddddddddddddddddddd");
+            if(parse_body.get("items").equals(null)){
+                break;
             }
-            JSONObject parse_items = (JSONObject) parse_body.get("items");
-            if (((JSONObject) parse_items.get("item")).get("contentid") == null) {
-            JSONObject parse_item = (JSONObject) parse_items.get("item");
-                Table_name table_name = new Table_name();
-                Integer e = Integer.valueOf(parse_item.get("contentid").toString());
-                String t = null;
-                table_name.setContentid(e);
-                table_name.setOverview(t);
-                location.insertDetailTable(table_name);
-            } else {
-                JSONObject parse_item = (JSONObject) parse_items.get("item");
-                Table_name table_name = new Table_name();
-                Integer e = Integer.valueOf(parse_item.get("contentid").toString());
-                String t = parse_item.get("overview").toString();
-                table_name.setContentid(e);
-                table_name.setOverview(t);
-                location.insertDetailTable(table_name);
+//            JSONObject parse_items = (JSONObject) parse_body.get("items");
+//            JSONObject parse_item = (JSONObject) parse_items.get("item");
+//                Table_name table_name = new Table_name();
+//                Integer e = Integer.valueOf(parse_item.get("contentId").toString());
+//                String t = parse_item.get("overview").toString();
+//                table_name.setContentid(e);
+//                table_name.setOverview(t);
+//                location.insertDetailTable(table_name);
             }
         }
     }
-//        catch (Exception e){
-//            System.out.println("디테일 업데이트 성공");
-//        }
-//    }
-}
 

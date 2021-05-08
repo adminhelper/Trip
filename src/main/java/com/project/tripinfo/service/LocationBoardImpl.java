@@ -21,7 +21,6 @@ public class LocationBoardImpl implements LocationBoard {
     public void insertTable (Table_name table_name) throws Exception {
         int tm = locationBoard_mapper.checkTable(table_name.getContentid(), table_name.getContenttypeid());
         if (tm == 0) {
-            System.out.println("성여사 등록이되었습니다.");
             locationBoard_mapper.insertTable(table_name);
         } else {
             System.out.println("중복");
