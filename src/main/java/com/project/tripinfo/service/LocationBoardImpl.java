@@ -47,8 +47,8 @@ public class LocationBoardImpl implements LocationBoard {
 
     //강남 페이지 조회
     @Override
-    public List<Map<String, Object>> selectGangnam (Criteria criteria, Integer contenttypeid) throws Exception {
-        return locationBoard_mapper.selectGangnam(criteria, contenttypeid);
+    public List<Map<String, Object>> selectGangnam (Criteria criteria, Integer contenttypeid,int gangnam) throws Exception {
+        return locationBoard_mapper.selectGangnam(criteria, contenttypeid,gangnam);
     }
 
     //강남 페이지 상세조회

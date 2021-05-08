@@ -30,7 +30,7 @@ public interface LocationBoard {
     int hongdaeListCnt(Integer contenttypeid) throws Exception;
 
     //강남 페이지 조회
-    List<Map<String,Object>> selectGangnam(Criteria criteria,Integer contenttypeid) throws Exception;
+    List<Map<String,Object>> selectGangnam(Criteria criteria,Integer contenttypeid,int gangnam) throws Exception;
 
     //강남 상세페이지 조회
     Table_name gangnamDetail (int contentId, int typeId) throws Exception;

@@ -78,7 +78,7 @@
         SELECT *
         FROM location_board
         where areacode = 1
-        AND sigungucode = 1
+        AND sigungucode = ${gangnam}
         <if test="contenttypeid !=null and !contenttypeid.equals('')">
             AND contenttypeid = #{contenttypeid}
         </if>

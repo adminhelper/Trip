@@ -32,8 +32,8 @@ public interface LocationBoardMapper {
     // 홍대 총갯수 조회
     int hongdaeListCnt (Integer contenttypeid) throws Exception;
 
-    // 강남 페이지 조남
-    List<Map<String, Object>> selectGangnam (Criteria criteria, Integer contenttypeid) throws Exception;
+    // 강남 페이지 조회
+    List<Map<String, Object>> selectGangnam (Criteria criteria, Integer contenttypeid,int gangnam) throws Exception;
 
     // 강남 상세 페이지 조회
     Table_name gangnamDetail (int contentId, int typeId) throws Exception;

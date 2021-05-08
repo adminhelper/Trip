@@ -37,8 +37,6 @@ public class LocationBoardController {
     // 홍대 페이지 조회
     @RequestMapping(value = "/hongdae")
     public String hongdae (Criteria criteria, Model model, @RequestParam(required = false) Integer contenttypeid) throws Exception {
-
-        hongdae.DetailAll();
         int num = locationBoard.hongdaeListCnt(contenttypeid);
         Pagination paging = new Pagination();
         paging.setCriteria(criteria);
@@ -64,11 +62,12 @@ public class LocationBoardController {
     @RequestMapping(value = "/gangnam")
     public String gangnam (Criteria criteria, Model model, @RequestParam(required = false) Integer contenttypeid) throws Exception {
         int num = locationBoard.gangnamListCnt(contenttypeid);
+        int gangnam = 1;
         //페이징 객체
         Pagination paging = new Pagination();
         paging.setCriteria(criteria);
         paging.setTotalCount(num);
-        List<Map<String, Object>> list = locationBoard.selectGangnam(criteria, contenttypeid);
+        List<Map<String, Object>> list = locationBoard.selectGangnam(criteria, contenttypeid,gangnam);
         model.addAttribute("paging", paging);
         model.addAttribute("table", list);
         model.addAttribute("type", contenttypeid);
@@ -84,4 +83,6 @@ public class LocationBoardController {
         model.addAttribute("hongdae", table_name);
         return "/local/gananamDetail";
     }
+
+
 }
