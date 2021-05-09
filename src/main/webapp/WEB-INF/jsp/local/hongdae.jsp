@@ -16,12 +16,14 @@
         </div>
         <div class="tag-element">
             <button onclick="onBtn()">전체</button>
-            <button onclick="onBtn(15)">축제&amp;행사</button>
-            <button onclick="onBtn(12)">명소</button>
-            <button onclick="onBtn(39)">음식</button>
-            <button onclick="onBtn(38)">쇼핑</button>
-            <button onclick="onBtn(32)">숙박</button>
-            <button onclick="onBtn(12)">관광</button>
+            <button id ="14" value="14" onclick="onBtn(14)">문화시설</button>
+            <button id ="15" value="15" onclick="onBtn(15)">축제&공연&행사</button>
+            <button id ="25" value="25" onclick="onBtn(25)">여행코스</button>
+            <button id ="28" value="28" onclick="onBtn(28)">레포츠</button>
+            <button id ="38" value="38" onclick="onBtn(38)">쇼핑</button>
+            <button id ="32" value="32" onclick="onBtn(32)">숙박</button>
+            <button id ="12" value="12" onclick="onBtn(12)">관광</button>
+            <button id ="39" value="39" onclick="onBtn(39)">음식</button>
         </div>
 
         <div class="row">
@@ -51,27 +53,39 @@
                 <li class="page-item">
 
                     <a class="page-link" style="color: black"
-                       href="<c:url value='hongdae?pageNum=${paging.startPage-1}'/>" aria-label="Previous">
+                       href="<c:url value='hongdae?pageNum=${paging.startPage-1}&contenttypeid=${type}}'/>" aria-label="Previous">
                         이전
                     </a>
 
                 </li>
             </c:if>
             <c:forEach begin="${paging.startPage}" end="${paging.endPage}" var="num">
-                <li class="page-item">
-                    <a class="page-link" style="color: black" onclick="test1(${num})"
-                       href="<c:url value='hongdae?pageNum=${num}&contenttypeid=${type}'/>">${num}</a></li>
+                <li class="page-item"><a class="page-link" style="color: black"
+                                         href="<c:url value='hongdae?pageNum=${num}&contenttypeid=${type}'/>">${num}</a></li>
             </c:forEach>
-            <c:if test="${paging.next && paging.endPage > 0}">
+            <c:if test="${paging.next && paging.endPage>0}">
                 <li class="page-item">
                     <a class="page-link" style="color: black"
-                       href="<c:url value='hongdae?pageNum=${paging.endPage + 1}&contenttypeid=${type}'/>"
+                       href="<c:url value='hongdae?pageNum=${paging.endPage+1}&contenttypeid=${type}'/>"
                        aria-label="Next">
                         다음
                     </a>
                 </li>
             </c:if>
         </ul>
+        <div class="form-group row justify-content-center">
+            <div class="w100" style="padding-right:10px">
+                <select class="form-control form-control-sm" name="searchType" id="searchType">
+                    <option value="board_title">제목</option>
+                </select>
+            </div>
+            <div class="w300" style="padding-right:10px">
+                <input type="text" class="form-control form-control-sm" name="keyword" id="keyword">
+            </div>
+            <div>
+                <button class="btn btn-sm btn-primary" name="btnSearch" id="btnSearch">검색</button>
+            </div>
+        </div>
     </nav>
 </section>
 <!-- Footer-->
@@ -102,6 +116,7 @@
 <script src="/assets/mail/contact_me.js"></script>
 <!-- Core theme JS-->
 <script src="/js/scripts.js"></script>
+<c:url var="getBoardListURL" value="/local/hongdae"></c:url>
 <script>
     function onBtn(e) {
         if(e == undefined){
@@ -113,6 +128,14 @@
         $('.item.' + e).show();
     }
 
+    $(document).on('click','#btnSearch', function(e) {
+        e.preventDefault();
+        var url = "${getBoardListURL}";
+        url = url + "?searchType=" + $('#searchType').val();
+        url = url + "&keyword=" + $('#keyword').val();
+        location.href = url;
+        console.log(url);
+    });
 </script>
 </body>
 </html>

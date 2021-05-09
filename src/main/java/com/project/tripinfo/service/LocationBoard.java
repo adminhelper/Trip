@@ -28,13 +28,23 @@ public interface LocationBoard {
 
     //홍대 총갯수 카운팅
     int hongdaeListCnt(Integer contenttypeid) throws Exception;
+//    int hongdaeListCnt(Criteria criteria) throws Exception;
 
     //강남 페이지 조회
-    List<Map<String,Object>> selectGangnam(Criteria criteria,Integer contenttypeid,int gangnam) throws Exception;
+    List<Map<String,Object>> selectGangnam(Criteria criteria,Integer contenttypeid) throws Exception;
 
     //강남 상세페이지 조회
     Table_name gangnamDetail (int contentId, int typeId) throws Exception;
 
     //강남 총갯수 카운팅
     int gangnamListCnt(Integer contenttypeid) throws Exception;
+
+    //명동 페이지 조회
+    List<Map<String,Object>> selectMyeongdong(Criteria criteria,Integer contenttypeid) throws Exception;
+
+    //명동 상세페이지 조회
+    Table_name myeongdongDetail (int contentId, int typeId) throws Exception;
+
+    //명동 총갯수 카운팅
+    int myeongdongListCnt(Integer contenttypeid) throws Exception;
 }

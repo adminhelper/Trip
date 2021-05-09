@@ -17,6 +17,8 @@ public class Criteria {
 
     private String keyword ;
 
+    private int contenttypeid;
+
     public Criteria () {
         this(1, 12);
     }

@@ -16,12 +16,14 @@ public interface LocationBoardMapper {
     // API 디테일 등록
     void insertDetailTable (String overview, int contentid);
 
-
     // API 테이블 중복확인
     int checkTable (int contentid, int contenttypeid) throws Exception;
 
     //  API content 체크
     int checkDetailTable (int contentid);
+
+    // API
+    List<Map<String, Object>> checkDetail () throws Exception;
 
     // 홍대 페이지 조회
     List<Map<String, Object>> selectHongdae (Criteria criteria, Integer contenttypeid) throws Exception;
@@ -30,10 +32,11 @@ public interface LocationBoardMapper {
     Table_name hongdaeDetail (int contentId, int typeId) throws Exception;
 
     // 홍대 총갯수 조회
+    int hongdaeListCnt (Criteria criteria) throws Exception;
     int hongdaeListCnt (Integer contenttypeid) throws Exception;
 
     // 강남 페이지 조회
-    List<Map<String, Object>> selectGangnam (Criteria criteria, Integer contenttypeid,int gangnam) throws Exception;
+    List<Map<String, Object>> selectGangnam (Criteria criteria, Integer contenttypeid) throws Exception;
 
     // 강남 상세 페이지 조회
     Table_name gangnamDetail (int contentId, int typeId) throws Exception;
@@ -41,5 +44,12 @@ public interface LocationBoardMapper {
     // 강남 총갯수 조회
     int gangnamListCnt (Integer contenttypeid);
 
-    List<Map<String, Object>> checkDetail () throws Exception;
+    // 명동 페이지 조회
+    List<Map<String, Object>> selectMyeongdong (Criteria criteria, Integer contenttypeid);
+
+    // 명동 상세 페이지 조회
+    Table_name myeongdongDetail (int contentId, int typeId) throws Exception;
+
+    // 명동 총갯수 조회
+    int myeongdongListCnt (Integer contenttypeid) throws Exception;
 }

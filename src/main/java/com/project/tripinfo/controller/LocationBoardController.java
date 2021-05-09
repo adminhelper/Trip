@@ -37,16 +37,28 @@ public class LocationBoardController {
     // 홍대 페이지 조회
     @RequestMapping(value = "/hongdae")
     public String hongdae (Criteria criteria, Model model, @RequestParam(required = false) Integer contenttypeid) throws Exception {
+        // 전체 글 개수
+        if (criteria.getKeyword() == null && criteria.getSearchType() == null) {
+            String t = "";
+            criteria.setKeyword(t);
+            criteria.setSearchType(t);
+        }
+
+//        int num = locationBoard.hongdaeListCnt(criteria);
         int num = locationBoard.hongdaeListCnt(contenttypeid);
         Pagination paging = new Pagination();
         paging.setCriteria(criteria);
         paging.setTotalCount(num);
         List<Map<String, Object>> list = locationBoard.selectHongdae(criteria, contenttypeid);
         model.addAttribute("paging", paging);
-        model.addAttribute("table", list);
         model.addAttribute("type", contenttypeid);
-        logger.info("=== 카테고리   : 홍대 ===");
+        model.addAttribute("table", list);
 
+        logger.info("=== 카테고리   : 홍대 ===");
+        System.out.println(contenttypeid);
+        System.out.println("시작페이지" + paging.getStartPage() + "끝페이지" + +paging.getEndPage() + "총갯수" + +paging.getTotalCount());
+        System.out.println(paging.getTotalPageCount());
+        System.out.println(criteria);
         return "/local/hongdae";
     }
 
@@ -62,16 +74,16 @@ public class LocationBoardController {
     @RequestMapping(value = "/gangnam")
     public String gangnam (Criteria criteria, Model model, @RequestParam(required = false) Integer contenttypeid) throws Exception {
         int num = locationBoard.gangnamListCnt(contenttypeid);
-        int gangnam = 1;
+//        int gangnam = 1;
         //페이징 객체
         Pagination paging = new Pagination();
         paging.setCriteria(criteria);
         paging.setTotalCount(num);
-        List<Map<String, Object>> list = locationBoard.selectGangnam(criteria, contenttypeid,gangnam);
+        List<Map<String, Object>> list = locationBoard.selectGangnam(criteria, contenttypeid);
         model.addAttribute("paging", paging);
         model.addAttribute("table", list);
         model.addAttribute("type", contenttypeid);
-        logger.info("=== 카테고리   : 홍대 ===");
+        logger.info("=== 카테고리   : 강남 ===");
 
         return "/local/gangnam";
     }
@@ -80,8 +92,33 @@ public class LocationBoardController {
     @RequestMapping(value = "/gangnam/detail")
     public String gangnam_Detail (@RequestParam("contentid") int contentId, @RequestParam("typeid") int typeId, Model model) throws Exception {
         Table_name table_name = locationBoard.gangnamDetail(contentId, typeId);
-        model.addAttribute("hongdae", table_name);
-        return "/local/gananamDetail";
+        model.addAttribute("gangnam", table_name);
+        return "/local/gangnamDetail";
+    }
+
+    //명동 페이지 조회
+    @RequestMapping(value = "/myeongdong")
+    public String myeongdong (Criteria criteria, Model model, @RequestParam(required = false) Integer contenttypeid) throws Exception {
+        int num = locationBoard.myeongdongListCnt(contenttypeid);
+        //페이징 객체
+        Pagination paging = new Pagination();
+        paging.setCriteria(criteria);
+        paging.setTotalCount(num);
+        List<Map<String, Object>> list = locationBoard.selectMyeongdong(criteria, contenttypeid);
+        model.addAttribute("paging", paging);
+        model.addAttribute("table", list);
+        model.addAttribute("type", contenttypeid);
+        logger.info("=== 카테고리   : 명 ===");
+
+        return "/local/myeongdong";
+    }
+
+    //명동 페이지 상세 조회
+    @RequestMapping(value = "/myeongdong/detail")
+    public String myeongdong_Detail (@RequestParam("contentid") int contentId, @RequestParam("typeid") int typeId, Model model) throws Exception {
+        Table_name table_name = locationBoard.myeongdongDetail(contentId, typeId);
+        model.addAttribute("myeongdong", table_name);
+        return "/local/myeongdongDetail";
     }
 
 

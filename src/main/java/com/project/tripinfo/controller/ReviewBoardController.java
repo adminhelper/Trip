@@ -54,7 +54,7 @@ public class ReviewBoardController {
         model.addAttribute("review", list);
         model.addAttribute("paging", paging);
 
-        System.out.println(criteria);
+
         return "review/reviewBoard";
     }
 
