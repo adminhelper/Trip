@@ -22,7 +22,7 @@
                             <div class="portfolio-hover">
                                 <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
                             </div>
-                            <img class="img-fluid" src="${data.file_name}"/>
+                            <img class="img-fluid" style="width: 300px; height: 200px;" src="/${data.file_name}"/>
                         </a>
 
                         <div class="portfolio-caption">

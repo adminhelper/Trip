@@ -31,7 +31,7 @@ public class Hongdae {
             int cnt = 1;
             while (true) {
                 StringBuilder urlBuilder = new StringBuilder("http://api.visitkorea.or.kr/openapi/service/rest/KorService/areaBasedList"); /*URL*/
-                urlBuilder.append("?" + URLEncoder.encode("ServiceKey", "UTF-8") + "=" + "gSu1lemgQIBSMiK4iENsi4VPY28J0Rrs5vp8maFdr0yeX5DYDcWVWelUnMw78ajSy53MBD%2F36W3V2rQHGw78qg%3D%3D"); /*Service Key*/
+                urlBuilder.append("?" + URLEncoder.encode("ServiceKey", "UTF-8") + "=" + "TbL0qkD2j2dTnn5GAHzt2M3kxzKwCfqfzX7y%2BbxkZwibdP7n1WFDOSXM2Px7Bz91U0bezSBG1eoVWbnqhBn7PA%3D%3D"); /*Service Key*/
                 urlBuilder.append("&" + URLEncoder.encode("pageNo", "UTF-8") + "=" + URLEncoder.encode(String.valueOf(cnt++), "UTF-8")); /*현재 페이지 번호*/
                 urlBuilder.append("&" + URLEncoder.encode("numOfRows", "UTF-8") + "=" + URLEncoder.encode("12", "UTF-8")); /*한 페이지 결과 수*/
                 urlBuilder.append("&" + URLEncoder.encode("MobileApp", "UTF-8") + "=" + URLEncoder.encode("TourAPI3.0_Guide", "UTF-8")); /*서비스명=어플명*/
@@ -94,7 +94,7 @@ public class Hongdae {
             List<Map<String, Object>> ad = location.checkDetail();
             for (int i = 0; i < ad.size(); i++) {
                 StringBuilder urlBuilder = new StringBuilder("http://api.visitkorea.or.kr/openapi/service/rest/KorService/detailCommon"); /*URL*/
-                urlBuilder.append("?" + URLEncoder.encode("ServiceKey", "UTF-8") + "=" + "gSu1lemgQIBSMiK4iENsi4VPY28J0Rrs5vp8maFdr0yeX5DYDcWVWelUnMw78ajSy53MBD%2F36W3V2rQHGw78qg%3D%3D"); /*Service Key*/
+                urlBuilder.append("?" + URLEncoder.encode("ServiceKey", "UTF-8") + "=" + "DZaiGK10nTsfHTK1%2B55nGE%2FAel%2BE7Gw9QTYmTcqNv1%2FYYEH%2FIBDQq8R3cj38nxqvKo9J1Zbu9JROzvVgsVJ8Nw%3D%3D"); /*Service Key*/
                 urlBuilder.append("&" + URLEncoder.encode("numOfRows", "UTF-8") + "=" + URLEncoder.encode("12", "UTF-8")); /*한 페이지 결과 수*/
                 urlBuilder.append("&" + URLEncoder.encode("pageNo", "UTF-8") + "=" + URLEncoder.encode("1", "UTF-8")); /*현재 페이지 번호*/
                 urlBuilder.append("&" + URLEncoder.encode("MobileOS", "UTF-8") + "=" + URLEncoder.encode("ETC", "UTF-8")); /*IOS(아이폰),AND(안드로이드),WIN(원도우폰),ETC*/
@@ -134,11 +134,14 @@ public class Hongdae {
                 JSONObject obj = (JSONObject) parser.parse(tt);
                 JSONObject parse_response = (JSONObject) obj.get("response");
                 JSONObject parse_body = (JSONObject) parse_response.get("body");
+                if(parse_body.get("items").equals("") || parse_body.get("items").equals(null)){
+                    continue;
+                }
                 JSONObject parse_items = (JSONObject) parse_body.get("items");
                 JSONObject parse_item = (JSONObject) parse_items.get("item");
                 if (parse_body.get("items").equals("") || parse_body.get("items").equals(null)
                         || parse_items.get("item").equals("") || parse_items.get("item").equals(null)) {
-                    System.out.println("=========================================");
+                        continue;
                 } else {
                     Table_name table_name = new Table_name();
                     Integer e = Integer.valueOf(parse_item.get("contentid").toString());

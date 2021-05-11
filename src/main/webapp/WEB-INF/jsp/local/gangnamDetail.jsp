@@ -17,9 +17,22 @@
                 <div class="col-lg-8">
                     <div class="modal-body">
                         <img src="${gangnam.firstimage}">
+                        <br>
+                        <br>
+                        <c:if test="${gangnam.overview != null}">
+                            <dl>
+                                <dt>설명</dt>
+                                <dd>${gangnam.overview}</dd>
+                            </dl>
+                        </c:if>
                         <dl>
                             <dt>주소</dt>
                             <dd>${gangnam.addr1}</dd>
+                            <dt>
+                                <div id="map" style="width:700px;height:400px;"></div>
+                                <script type="text/javascript"
+                                        src="//dapi.kakao.com/v2/maps/sdk.js?appkey=f51f7860ed8829a8f36e95287d941b55&libraries=services,clusterer,drawing"></script>
+                            </dt>
                         </dl>
                     </div>
                 </div>
@@ -55,4 +68,26 @@
 <script src="/assets/mail/contact_me.js"></script>
 <!-- Core theme JS-->
 <script src="/js/scripts.js"></script>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=0db2942233bd1e50916ba2f9f084b46e"></script>
+<script>
+
+    var mapX = ${gangnam.mapx};
+    var mapY = ${gangnam.mapy};
+
+    console.log("mapX" + mapX);
+    console.log("mapY" + mapY);
+
+    //지도생성
+    var map = new kakao.maps.Map(document.getElementById('map'), { // 지도를 표시할 div
+        center: new kakao.maps.LatLng(mapY, mapX), // 지도의 중심좌표
+        level: 3, // 지도의 확대 레벨
+        maxLevel: 15 // 지도의 확대 최대 레벨
+    });
+
+    marker = new kakao.maps.Marker({
+        map: map,
+        position: new kakao.maps.LatLng(mapY, mapX),
+        text: '텍스트를 표시할 수 있어요!'
+    });
+</script>
 </html>

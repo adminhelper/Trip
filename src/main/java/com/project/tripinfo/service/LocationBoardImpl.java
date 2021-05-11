@@ -28,12 +28,11 @@ public class LocationBoardImpl implements LocationBoard {
     }
 
 
-
     @Override
     public void insertDetailTable (Table_name table_name) throws Exception {
         int tm = locationBoard_mapper.checkDetailTable(table_name.getContentid());
         if (tm == 1) {
-            locationBoard_mapper.insertDetailTable(table_name.getOverview(),table_name.getContentid());
+            locationBoard_mapper.insertDetailTable(table_name.getOverview(), table_name.getContentid());
         } else {
             System.out.println("없음");
         }
@@ -63,8 +62,8 @@ public class LocationBoardImpl implements LocationBoard {
 
     //홍대 총갯수 카운트
     @Override
-    public int hongdaeListCnt (Integer contenttypeid) throws Exception {
-        return locationBoard_mapper.hongdaeListCnt(contenttypeid);
+    public int hongdaeListCnt (Criteria criteria, Integer contenttypeid) throws Exception {
+        return locationBoard_mapper.hongdaeListCnt(criteria,contenttypeid);
     }
 //    //홍대 총갯수 카운트
 //    @Override
@@ -90,20 +89,75 @@ public class LocationBoardImpl implements LocationBoard {
         return locationBoard_mapper.gangnamListCnt(contenttypeid);
     }
 
+    //명동 페이지 조회
     @Override
     public List<Map<String, Object>> selectMyeongdong (Criteria criteria, Integer contenttypeid) throws Exception {
         return locationBoard_mapper.selectMyeongdong(criteria, contenttypeid);
     }
 
+    //명동 상세 페이지 조회
     @Override
     public Table_name myeongdongDetail (int contentId, int typeId) throws Exception {
         return locationBoard_mapper.myeongdongDetail(contentId, typeId);
     }
 
+    //명동 총갯수 카운트
     @Override
     public int myeongdongListCnt (Integer contenttypeid) throws Exception {
         return locationBoard_mapper.myeongdongListCnt(contenttypeid);
     }
 
+    //잠실 페이지 조회
+    @Override
+    public List<Map<String, Object>> selectJamsil (Criteria criteria, Integer contenttypeid) throws Exception {
+        return locationBoard_mapper.selectJamsil(criteria, contenttypeid);
+    }
 
+    //잠실 상세 페이지 조회
+    @Override
+    public Table_name jamsilDetail (int contentId, int typeId) throws Exception {
+        return locationBoard_mapper.jamsilDetail(contentId, typeId);
+    }
+
+    //잠실 총갯수 카운트
+    @Override
+    public int jamsilListCnt (Integer contenttypeid) throws Exception {
+        return locationBoard_mapper.jamsilListCnt(contenttypeid);
+    }
+
+    //이태원 페이지 조회
+    @Override
+    public List<Map<String, Object>> selectItaewon (Criteria criteria, Integer contenttypeid) throws Exception {
+        return locationBoard_mapper.selectItaewon(criteria, contenttypeid);
+    }
+
+    //이태원 상세 페이지 조회
+    @Override
+    public Table_name itaewonDetail (int contentId, int typeId) throws Exception {
+        return locationBoard_mapper.itaewonDetail(contentId, typeId);
+    }
+
+    //이태원 총갯수 카운트
+    @Override
+    public int itaewonListCnt (Integer contenttypeid) throws Exception {
+        return locationBoard_mapper.itaewonListCnt(contenttypeid);
+    }
+
+    //광화문 페이지 조회
+    @Override
+    public List<Map<String, Object>> selectGwanghwamun (Criteria criteria, Integer contenttypeid) throws Exception {
+        return locationBoard_mapper.selectGwanghwamun(criteria, contenttypeid);
+    }
+
+    //광화문 상세 페이지 조회
+    @Override
+    public Table_name gwanghwamunDetail (int contentId, int typeId) throws Exception {
+        return locationBoard_mapper.gwanghwamunDetail(contentId, typeId);
+    }
+
+    //광화문 총갯수 카운트
+    @Override
+    public int gwanghwamunListCnt (Integer contenttypeid) throws Exception {
+        return locationBoard_mapper.gwanghwamunListCnt(contenttypeid);
+    }
 }

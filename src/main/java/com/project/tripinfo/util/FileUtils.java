@@ -26,10 +26,10 @@ public class FileUtils {
 
 
         List<Review_File> fileList = new ArrayList<>();
-
         DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyyMMdd");
         ZonedDateTime current = ZonedDateTime.now();
-        String path = "images/"+current.format(format);
+//        String path = "images/"+current.format(format);
+        String path = "images/";
         File file = new File(path);
         if(file.exists() == false){
             file.mkdirs();
@@ -70,7 +70,7 @@ public class FileUtils {
                     boardFile.setFile_name(path + "/" + newFileName);
                     fileList.add(boardFile);
 
-                    file = new File(path + "/" + newFileName);
+                    file = new File("/Users/byeonsungmun/Documents/SungMun/Ta9/project/src/main/resources/static/images" + "/" + newFileName);
                     multipartFile.transferTo(file);
                 }
             }

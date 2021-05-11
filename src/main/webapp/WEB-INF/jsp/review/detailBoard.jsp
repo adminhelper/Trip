@@ -38,16 +38,23 @@
                                     <td><input readonly="readonly" name="board_contents" id="board_contents"
                                                value="${board.board_contents}"></td>
                                 </tr>
+                                <tr>
+                                    <th>이미지</th>
+                                    <td><img class="img-fluid" src="/${board.file_name}"/></td>
+                                </tr>
                                 <div style="text-align: right;">
-                                <button type="button" onclick="location.href='/board/review/boardlist'">목록</button>
-                                <button id="modify" type="button"
-                                        onclick="location.href='/board/review/modifyform?no=${board.board_no}'">수정
-                                </button>
-                                <button id="delete" type="button"
-                                        onclick="location.href='/board/review/delete?no=${board.board_no}'">삭제
-                                </button>
+                                    <button type="button" onclick="location.href='/board/review/boardlist'">목록</button>
+                                    <c:if test="${sessionScope.member.member_id eq board.member_id}">
+                                        <button id="modify" type="button"
+                                                onclick="location.href='/board/review/modifyform?no=${board.board_no}'">
+                                            수정
+                                        </button>
 
-                                    <a class="btn btn-outline-dark heart" style="border : 0px solid";>
+                                        <button id="delete" type="button"
+                                                onclick="location.href='/board/review/delete?no=${board.board_no}'">삭제
+                                        </button>
+                                    </c:if>
+                                    <a class="btn btn-outline-dark heart" style="border : 0px solid" ;>
                                         <img id="heart" src="" style="width: 30px">
                                     </a>
                                 </div>
@@ -65,8 +72,8 @@
         integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
         crossorigin="anonymous"></script>
 <script>
-    $(document).ready(function () {
 
+    $(document).ready(function () {
         var heartval = ${heart};
 
         if (heartval > 0) {

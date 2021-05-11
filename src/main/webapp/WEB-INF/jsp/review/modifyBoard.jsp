@@ -18,29 +18,43 @@
                     <div class="modal-body">
                         <form name="form" action="/reviewBoard/review/modify" method="post">
                             <div class="text-center">
-                                글번호<input readonly="readonly" name="board_no" id="board_no" value="${reviewBoard.board_no}">
-                                작성자<input readonly="readonly" name="member_id" id="member_id"
-                                          value="${reviewBoard.member_id}">
-                                제목<input name="board_title" id="board_title"
-                                         value="${reviewBoard.board_title}">
-                                내용<input name="board_contents" id="board_contents"
-                                         value="${reviewBoard.board_contents}">
+                                <table class="table table-striped table-bordered">
+                                    <tr>
+                                        <th>글번호</th>
+                                        <td><input readonly="readonly" name="board_no" id="board_no"
+                                                   value="${board.board_no}"></td>
+                                    </tr>
+                                    <tr>
+                                        <th>제목</th>
+                                        <td><input name="board_title" id="board_title"
+                                                   value="${board.board_title}"></td>
+                                    </tr>
+                                    <tr>
+                                        <th>작성자</th>
+                                        <td><input readonly="readonly" name="member_id" id="member_id"
+                                                   value="${board.member_id}"></td>
+                                    </tr>
+                                    <tr>
+                                        <th>내용</th>
+                                        <td><input name="board_contents" id="board_contents"
+                                                   value="${board.board_contents}"></td>
+                                    </tr>
+                                    <tr>
+                                        <th>이미지</th>
+                                        <td><img class="img-fluid" src="/${board.file_name}"/></td>
+                                    </tr>
+                                    <input type="hidden" name="board_no" value="${board.board_no}">
+                                    <button type="button" onclick="history.back()">돌아가</button>
+                                    <button id="modify" type="submit">수정완료</button>
+                                </table>
                             </div>
-                            <input type="hidden" name="board_no" value="${reviewBoard.board_no}">
-                            <button type="button" onclick="history.back()">돌아가</button>
-                            <button id="modify" type="submit">수정완료</button>
                         </form>
-                        <ul class="list-inline">
-                            <li>Date: January 2020</li>
-                            <li>Client: Threads</li>
-                            <li>Category: Illustration</li>
-                        </ul>
-                        <div id="map" style="width:100%;height:450px;"></div>
                     </div>
                     <hr size="10px">
                 </div>
             </div>
         </div>
+    </div>
 </section>
 <!-- Footer-->
 <footer class="footer py-4">

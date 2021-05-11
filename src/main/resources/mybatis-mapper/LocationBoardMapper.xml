@@ -25,6 +25,7 @@
     <select id="checkDetail" resultType="map">
         select contentid
         from location_board
+        where overview is null
     </select>
 
     <!--  API 테이블 중복 체크  -->
@@ -48,7 +49,7 @@
         FROM location_board
         where areacode = 1
         AND sigungucode = 13
-        <if test="contenttypeid != null and !contenttypeid.equals('')">
+        <if test="contenttypeid != 0 and contenttypeid != null">
             AND contenttypeid = #{contenttypeid}
         </if>
         <if test='criteria.searchType.equals("board_title")'>
@@ -87,13 +88,16 @@
     </select>
 
     <!--  홍대 게시글 갯수 조회  -->
-    <select id="hongdaeListCnt" resultType="java.lang.Integer" parameterType="integer">
+    <select id="hongdaeListCnt" resultType="java.lang.Integer" parameterType="hashmap">
         select count(*)
         from location_board
         where areacode = 1
         AND sigungucode = 13
-        <if test="contenttypeid !=null and !contenttypeid.equals('')">
+        <if test="contenttypeid != 0 and contenttypeid != null">
             AND contenttypeid = #{contenttypeid}
+        </if>
+        <if test='criteria.searchType.equals("board_title")'>
+            AND title LIKE concat('%', #{criteria.keyword}, '%')
         </if>
 
     </select>
@@ -125,8 +129,11 @@
         FROM location_board
         where areacode = 1
         AND sigungucode = 1
-        <if test="contenttypeid !=null and !contenttypeid.equals('')">
+        <if test="contenttypeid != null and !contenttypeid.equals('')">
             AND contenttypeid = #{contenttypeid}
+        </if>
+        <if test='criteria.searchType.equals("board_title")'>
+            AND title LIKE concat('%', #{criteria.keyword}, '%')
         </if>
         ORDER BY info_seq DESC
         LIMIT #{criteria.pageStart}, #{criteria.amount}
@@ -151,20 +158,23 @@
         </if>
     </select>
 
-    <!--  강남 페이지 조회  -->
+    <!--  명동 페이지 조회  -->
     <select id="selectMyeongdong" resultType="hashmap" parameterType="hashmap">
         SELECT *
         FROM location_board
         where areacode = 1
         AND sigungucode = 24
-        <if test="contenttypeid !=null and !contenttypeid.equals('')">
+        <if test="contenttypeid != null and !contenttypeid.equals('')">
             AND contenttypeid = #{contenttypeid}
+        </if>
+        <if test='criteria.searchType.equals("board_title")'>
+            AND title LIKE concat('%', #{criteria.keyword}, '%')
         </if>
         ORDER BY info_seq DESC
         LIMIT #{criteria.pageStart}, #{criteria.amount}
     </select>
 
-    <!--  강남 상세 페이지 조회  -->
+    <!--  명동 상세 페이지 조회  -->
     <select id="myeongdongDetail" resultType="com.project.tripinfo.model.Table_name">
         SELECT *
         FROM location_board
@@ -172,7 +182,7 @@
           and contenttypeid = #{typeId}
     </select>
 
-    <!-- 강남 게시글 갯수 조회  -->
+    <!-- 명동 게시글 갯수 조회  -->
     <select id="myeongdongListCnt" resultType="java.lang.Integer" parameterType="java.lang.Integer">
         SELECT count(*)
         FROM location_board
@@ -183,4 +193,108 @@
         </if>
     </select>
 
+    <!-- 잠실 페이지 조회  -->
+    <select id="selectJamsil" resultType="hashmap" parameterType="hashmap">
+        SELECT *
+        FROM location_board
+        where areacode = 1
+        AND sigungucode = 18
+        <if test="contenttypeid != null and !contenttypeid.equals('')">
+            AND contenttypeid = #{contenttypeid}
+        </if>
+        <if test='criteria.searchType.equals("board_title")'>
+            AND title LIKE concat('%', #{criteria.keyword}, '%')
+        </if>
+        ORDER BY info_seq DESC
+        LIMIT #{criteria.pageStart}, #{criteria.amount}
+    </select>
+
+    <!-- 잠실 상세 페이지 조회  -->
+    <select id="jamsilDetail" resultType="com.project.tripinfo.model.Table_name">
+        SELECT *
+        FROM location_board
+        where contentid = #{contentId}
+          and contenttypeid = #{typeId}
+    </select>
+
+    <!-- 잠실 게시글 갯수 조회  -->
+    <select id="jamsilListCnt" resultType="java.lang.Integer" parameterType="java.lang.Integer">
+        SELECT count(*)
+        FROM location_board
+        where areacode = 1
+        AND sigungucode = 18
+        <if test="contenttypeid !=null and !contenttypeid.equals('')">
+            AND contenttypeid = #{contenttypeid}
+        </if>
+    </select>
+
+    <!-- 이태원 페이지 조회  -->
+    <select id="selectItaewon" resultType="hashmap" parameterType="hashmap">
+        SELECT *
+        FROM location_board
+        where areacode = 1
+        AND sigungucode = 21
+        <if test="contenttypeid != null and !contenttypeid.equals('')">
+            AND contenttypeid = #{contenttypeid}
+        </if>
+        <if test='criteria.searchType.equals("board_title")'>
+            AND title LIKE concat('%', #{criteria.keyword}, '%')
+        </if>
+        ORDER BY info_seq DESC
+        LIMIT #{criteria.pageStart}, #{criteria.amount}
+    </select>
+
+    <!-- 이태원 상세 페이지 조회  -->
+    <select id="itaewonDetail" resultType="com.project.tripinfo.model.Table_name">
+        SELECT *
+        FROM location_board
+        where contentid = #{contentId}
+          and contenttypeid = #{typeId}
+    </select>
+
+    <!-- 이태원 게시글 갯수 조회  -->
+    <select id="itaewonListCnt" resultType="java.lang.Integer" parameterType="java.lang.Integer">
+        SELECT count(*)
+        FROM location_board
+        where areacode = 1
+        AND sigungucode = 21
+        <if test="contenttypeid !=null and !contenttypeid.equals('')">
+            AND contenttypeid = #{contenttypeid}
+        </if>
+    </select>
+
+    <!-- 이태원 페이지 조회  -->
+    <select id="selectGwanghwamun" resultType="hashmap" parameterType="hashmap">
+        SELECT *
+        FROM location_board
+        where areacode = 1
+        AND sigungucode = 23
+        <if test="contenttypeid != null and !contenttypeid.equals('')">
+            AND contenttypeid = #{contenttypeid}
+        </if>
+        <if test='criteria.searchType.equals("board_title")'>
+            AND title LIKE concat('%', #{criteria.keyword}, '%')
+        </if>
+        ORDER BY info_seq DESC
+        LIMIT #{criteria.pageStart}, #{criteria.amount}
+    </select>
+
+    <!-- 이태원 상세 페이지 조회  -->
+    <select id="gwanghwamunDetail" resultType="com.project.tripinfo.model.Table_name">
+        SELECT *
+        FROM location_board
+        where contentid = #{contentId}
+          and contenttypeid = #{typeId}
+    </select>
+
+    <!-- 이태원 게시글 갯수 조회  -->
+    <select id="gwanghwamunListCnt" resultType="java.lang.Integer" parameterType="java.lang.Integer">
+        SELECT count(*)
+        FROM location_board
+        where areacode = 1
+        AND sigungucode = 23
+        <if test="contenttypeid !=null and !contenttypeid.equals('')">
+            AND contenttypeid = #{contenttypeid}
+        </if>
+    </select>
 </mapper>

@@ -38,4 +38,7 @@ public class MemberService implements MemberMapper {
     }
 
 
+    public int nicknameCheck (String nicknameCheck) throws Exception {
+        return memberMapper.nicknameCheck(nicknameCheck);
+    }
 }

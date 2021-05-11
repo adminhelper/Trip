@@ -5,8 +5,8 @@
 
     <!-- 회원 가입  -->
     <insert id="memberRegister">
-        INSERT INTO member(member_id, member_password, member_nickname)
-        VALUES (#{member_id}, #{member_password}, #{member_nickname})
+        INSERT INTO member(member_id, member_password, member_nickname ,member_phone)
+        VALUES (#{member_id}, #{member_password}, #{member_nickname},#{member_phone})
     </insert>
 
     <!--  로그인 체크  -->
@@ -29,6 +29,11 @@
         SELECT *
             FROM member
             where member_id = #{member_id}
+    </select>
+    <select id="nicknameCheck" resultType="java.lang.Integer" parameterType="String">
+        select count(1)
+        FROM member
+        where member_nickname = #{nicknameCheck}
     </select>
 
     <!-- 비밀번호 체크   -->

@@ -81,7 +81,8 @@ public class ReviewBoardController {
 
     //게시글 조회
     @RequestMapping(value = "/review/detail")
-    public String reviewBoard_Detail (@RequestParam("no") int board_no, Model model) throws Exception {
+    public String reviewBoard_Detail (@RequestParam("no") int board_no, Model model,HttpServletRequest request) throws Exception {
+        HttpSession session = request.getSession();
         ReviewBoard reviewBoard = reviewBoardService.reviewBoardDetail(board_no);
         model.addAttribute("board", reviewBoard);
 

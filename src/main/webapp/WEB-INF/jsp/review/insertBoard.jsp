@@ -16,7 +16,8 @@
             <div class="row justify-content-center">
                 <div class="col-lg-100">
                     <div class="modal-body">
-                        <form id="frm" name="frm" method="post"  action='/board/review/insert' enctype="multipart/form-data">
+                        <form id="frm" name="frm" method="post" action='/board/review/insert'
+                              enctype="multipart/form-data">
                             <div class="text-center">
 
                                 <table class="table table-striped table-bordered">
@@ -37,14 +38,14 @@
                                     </tr>
                                     <tr>
                                         <th>이미지 첨부</th>
-                                        <td><input type="file" name="files" id="files" multiple="multiple"/>
-                                            <div class="select_img"><img src=""/>
-                                            </div>
+                                        <td><input type="file" id="file1" name="files1" accept="image/*"
+                                                   onchange="previewImage(this)"/>
+                                            <div id="preview"></div>
                                         </td>
                                     </tr>
                                 </table>
                             </div>
-                            <button class="btn-primary" type="submit">작성완료</button>
+                            <button class="browse-btn" type="submit">작성완료</button>
                         </form>
                     </div>
                 </div>
@@ -82,14 +83,51 @@
 <script src="/js/scripts.js"></script>
 
 <script>
-    $("#files").change(function () {
-        if (this.files && this.files[0]) {
-            var reader = new FileReader;
-            reader.onload = function (data) {
-                $(".select_img img").attr("src", data.target.result).width(500);
-            }
-            reader.readAsDataURL(this.files[0]);
+
+    $(".browse-btn").click(function () {
+        if ($("#board_title").val().trim() == '' || $("#board_title").val().trim() == null) {
+            alert("제목을 입력 해주세요");
+            return false;
+        }
+        if ($("#board_title").val().length > 10) {
+            alert("글자 제한을 초과하였습니다.");
+            return false;
+        }
+        if ($("#file1").val() == null || $("#file1").val() == ''){
+            alert("이미지를 첨부해주세요") ;
+            return false;
         }
     });
+
+
+    function previewImage(f) {
+
+        var file = f.files;
+
+        // 확장자 체크
+        if (!/\.(gif|jpg|jpeg|png)$/i.test(file[0].name)) {
+            alert('gif, jpg, png 파일만 선택해 주세요.\n\n현재 파일 : ' + file[0].name);
+
+            // 선택한 파일 초기화
+            f.outerHTML = f.outerHTML;
+
+            document.getElementById('preview').innerHTML = '';
+
+        } else {
+
+            // FileReader 객체 사용
+            var reader = new FileReader();
+
+            // 파일 읽기가 완료되었을때 실행
+            reader.onload = function (rst) {
+                document.getElementById('preview').innerHTML = '<img src="' + rst.target.result + '" style="height: 500px; width: 500px">';
+            }
+
+            // 파일을 읽는다
+            reader.readAsDataURL(file[0]);
+
+        }
+    }
+
 </script>
 </html>

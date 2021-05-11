@@ -16,14 +16,14 @@
         </div>
         <div class="tag-element">
             <button onclick="onBtn()">전체</button>
-            <button id ="14" value="14" onclick="onBtn(14)">문화시설</button>
-            <button id ="15" value="15" onclick="onBtn(15)">축제&공연&행사</button>
-            <button id ="25" value="25" onclick="onBtn(25)">여행코스</button>
-            <button id ="28" value="28" onclick="onBtn(28)">레포츠</button>
-            <button id ="38" value="38" onclick="onBtn(38)">쇼핑</button>
-            <button id ="32" value="32" onclick="onBtn(32)">숙박</button>
-            <button id ="12" value="12" onclick="onBtn(12)">관광</button>
-            <button id ="39" value="39" onclick="onBtn(39)">음식</button>
+            <button id="14" value="14" onclick="onBtn(14)">문화시설</button>
+            <button id="15" value="15" onclick="onBtn(15)">축제&공연&행사</button>
+            <button id="25" value="25" onclick="onBtn(25)">여행코스</button>
+            <button id="28" value="28" onclick="onBtn(28)">레포츠</button>
+            <button id="38" value="38" onclick="onBtn(38)">쇼핑</button>
+            <button id="32" value="32" onclick="onBtn(32)">숙박</button>
+            <button id="12" value="12" onclick="onBtn(12)">관광</button>
+            <button id="39" value="39" onclick="onBtn(39)">음식</button>
         </div>
 
         <div class="row">
@@ -38,7 +38,9 @@
                             <div id="img-item" data-toggle="modal" class="portfolio-link"></div>
 
                             <div class="portfolio-caption">
-                                <img style="height : 120px" class="img-fluid" onerror="this.src='https://blog.kakaocdn.net/dn/bQeafp/btqDdIoJHbj/5HRBiW160574C7bMOIvBTK/img.png'" src="${data.firstimage2}">
+                                <img style="height : 120px" class="img-fluid"
+                                     onerror="this.src='https://blog.kakaocdn.net/dn/bQeafp/btqDdIoJHbj/5HRBiW160574C7bMOIvBTK/img.png'"
+                                     src="${data.firstimage2}">
                                 <div class="portfolio-caption-heading" id="title">${data.title}</div>
                             </div>
                         </a>
@@ -53,7 +55,8 @@
                 <li class="page-item">
 
                     <a class="page-link" style="color: black"
-                       href="<c:url value='hongdae?pageNum=${paging.startPage-1}&contenttypeid=${type}}'/>" aria-label="Previous">
+                       href="<c:url value='hongdae?pageNum=${paging.startPage-1}&contenttypeid=${param.contenttypeid}&keyword=${keyword}&searchType=${searchType}'/>"
+                       aria-label="Previous">
                         이전
                     </a>
 
@@ -61,12 +64,13 @@
             </c:if>
             <c:forEach begin="${paging.startPage}" end="${paging.endPage}" var="num">
                 <li class="page-item"><a class="page-link" style="color: black"
-                                         href="<c:url value='hongdae?pageNum=${num}&contenttypeid=${type}'/>">${num}</a></li>
+                                         href="<c:url value='hongdae?pageNum=${num}&contenttypeid=${param.contenttypeid}&keyword=${keyword}&searchType=${searchType}'/>">${num}</a>
+                </li>
             </c:forEach>
             <c:if test="${paging.next && paging.endPage>0}">
                 <li class="page-item">
                     <a class="page-link" style="color: black"
-                       href="<c:url value='hongdae?pageNum=${paging.endPage+1}&contenttypeid=${type}'/>"
+                       href="<c:url value='hongdae?pageNum=${paging.endPage+1}&contenttypeid=${param.contenttypeid}&keyword=${keyword}&searchType=${searchType}'/>"
                        aria-label="Next">
                         다음
                     </a>
@@ -118,21 +122,34 @@
 <script src="/js/scripts.js"></script>
 <c:url var="getBoardListURL" value="/local/hongdae"></c:url>
 <script>
+    var ky = "";
+    $("#btnSearch").click(function(){
+        ky = $("#keyword").val();
+    });
+
     function onBtn(e) {
-        if(e == undefined){
-        location.href = "/local/hongdae";
-        return ;
+        if (e == undefined) {
+            location.href = "/local/hongdae";
+            return;
         }
         location.href = "/local/hongdae?contenttypeid=" + e;
         $('.item').hide();
         $('.item.' + e).show();
     }
-
-    $(document).on('click','#btnSearch', function(e) {
+    $(document).on('click', '#btnSearch', function (e) {
         e.preventDefault();
         var url = "${getBoardListURL}";
+        var contenttypeid = '${param.contenttypeid}';
         url = url + "?searchType=" + $('#searchType').val();
         url = url + "&keyword=" + $('#keyword').val();
+        if(contenttypeid != ''){
+            url = url + "&cotenttypeid=" + contenttypeid;
+            url = url + "&pageNum1";
+        }else {
+            url = url + "&contenttypeid=";
+            url = url + "&pageNum1";
+        }
+
         location.href = url;
         console.log(url);
     });

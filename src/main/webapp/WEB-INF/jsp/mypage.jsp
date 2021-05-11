@@ -66,7 +66,7 @@
                 <p class="text-muted">${member.member_nickname}</p>
             </div>
             <div class="col-md-4">
-                <a href="#myModal" data-toggle="modal" data-target="#myModal">
+                <a href="#myModal" data-toggle="modal" data-target="#myModal1">
             <span class="fa-stack fa-4x">
               <!-- <i class="fas fa-circle fa-stack-2x text-primary"></i> -->
                   <i class="bi-map fa-stack-1x fa-inverse" style="color: black"></i>
@@ -97,7 +97,7 @@
         </div>
     </div>
 </div>
-<div class="modal modal-center fade" id="myModal" tabindex="-1" role="dialog"
+<div class="modal modal-center fade" id="myModal1" tabindex="-1" role="dialog"
      aria-labelledby="my80sizeCenterModalLabel">
     <div class="modal-dialog modal-80size modal-center" role="document">
         <div class="modal-content modal-80size">
@@ -109,10 +109,12 @@
                 <input type="password" id="pwd1" name="pwd1" value=""><br>
                 한번더 비밀번호를 입력해주세요
                 <input type="password" id="pwd2" name="pwd2" value="">
+                <div></div>
                 <div id="pwcheck"></div>
+                <div id="pwcheck1"></div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="check()">등록</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="check1()">등록</button>
                 <button type="button" class="btn btn-dark" data-dismiss="modal">닫기</button>
             </div>
         </div>
@@ -131,25 +133,57 @@
 <script src="js/scripts.js"></script>
 <script>
     var validate = false;
-
+    var pwd = /^.*(?=^.{8,20}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$/;
+    var blank = /\s/g;
     //패스워드확인
-    $("#pwd1,#pwd2").keyup(function () {
-        if ($("#pwd1").val() != $("#pwd2").val()) {
-            $("#pwcheck").text("비밀번호가 다릅니다.");
-            $("#pwcheck").css("color", "red");
-            validate = false;
-        } else if ($("#pwd2").val() == "") {
-            $("#pwcheck").text("패스워드를 입력해주시기 바랍니다.");
-            $("#pwcheck").css("color", "red");
+    // $("#pwd1,#pwd2").keyup(function () {
+    //     if ($("#pwd1").val() != $("#pwd2").val()) {
+    //         $("#pwcheck").text("비밀번호가 다릅니다.");
+    //         $("#pwcheck").css("color", "red");
+    //         validate = false;
+    //     } else if ($("#pwd2").val() == "") {
+    //         $("#pwcheck").text("패스워드를 입력해주시기 바랍니다.");
+    //         $("#pwcheck").css("color", "red");
+    //         validate = false;
+    //     } else {
+    //         $("#pwcheck").text("비밀번호가 일치합니다.");
+    //         $("#pwcheck").css("color", "blue");
+    //         validate = true;
+    //     }
+    // });
+    // 2.패스워드 유효성 검증
+    $('#pwd1').keyup(function () {
+        var member_password = $('#pwd1').val();
+        if (!pwd.test($(this).val()) || blank.test($(this).val())) {
+            //alert("패스워드"+$(this).val());
+            $('#pwcheck').text("8~20자에 특수문자가 반드시 포함된 영어 대소문자 + 숫자를 사용하세요");
+            $('#pwcheck').css('color', 'red');
             validate = false;
         } else {
-            $("#pwcheck").text("비밀번호가 일치합니다.");
-            $("#pwcheck").css("color", "blue");
+            $('#pwcheck').text("사용가능한 패스워드");
+            $('#pwcheck').css('color', 'blue');
             validate = true;
         }
     });
+    // 3.패스워드 일치여부 확인
+    $('#pwd1,#pwd2').keyup(function () {
+        if ($('#pwd2').val() != $('#pwd1').val()) {
+            $('#pwcheck1').text("비밀번호가 다릅니다.");
+            $('#pwcheck1').css('color', 'red');
+            validate = false;
+        } else if ($('#pwd2').val() == '') {
+            $('#pwcheck1').text("패스워드를 재입력 바람!");
+            $('#pwcheck1').css('color', 'red');
+            validate = false;
+        } else {
+            $('#pwcheck1').text("비밀번호가 일치합니다.");
+            $('#pwcheck1').css('color', 'blue');
+            validate = true;
+        }
 
-    function check() {
+    });
+
+    function check1() {
         if (validate == true) {
             $.ajax({
                 url: "/modify",
@@ -159,15 +193,13 @@
                     pwd: $("#pwd2").val()
                 },
                 success: function (data) {
-                    console.log(data)
                     if (data == 2) {
                         alert("비밀번호 변경 성공 다시 로그인해주세요");
-                        location.href="/";
+                        location.href = "/";
                     } else {
                         alert("기존 비밀번호랑 일치합니다 다른비밀번호를 입력해주세요");
                     }
                 }, error: function (data) {
-                    console.log(data);
                 }
             });
         } else {

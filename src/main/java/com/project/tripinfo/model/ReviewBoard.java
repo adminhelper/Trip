@@ -12,5 +12,6 @@ public class ReviewBoard {
     private String board_title;
     private String board_contents;
     private Date board_regdate;
+    private String file_name;
 
 }

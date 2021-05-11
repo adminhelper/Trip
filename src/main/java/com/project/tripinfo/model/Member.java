@@ -11,4 +11,5 @@ public class Member {
     private String member_password;
     private String member_name;
     private String member_nickname;
+    private String member_phone;
 }

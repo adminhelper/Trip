@@ -14,4 +14,6 @@ public interface MemberMapper {
     Member selectCheck (Member member) throws Exception;
 
     void pwdCheck(Member member) throws Exception;
+
+    int nicknameCheck (String nicknameCheck) throws Exception;
 }

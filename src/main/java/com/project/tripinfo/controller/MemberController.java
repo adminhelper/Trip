@@ -47,6 +47,14 @@ public class MemberController {
         return count;
     }
 
+    @RequestMapping(value = "/nicknameCheck", method = RequestMethod.POST)
+    @ResponseBody
+    public int nicknameCheck (@RequestBody String nicknameCheck) throws Exception {
+        int count = 0;
+        count = memberService.nicknameCheck(nicknameCheck);
+        return count;
+    }
+
 
     @PostMapping(value = "/loginCheck")
     @ResponseBody

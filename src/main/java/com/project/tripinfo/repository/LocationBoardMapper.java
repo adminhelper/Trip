@@ -32,8 +32,7 @@ public interface LocationBoardMapper {
     Table_name hongdaeDetail (int contentId, int typeId) throws Exception;
 
     // 홍대 총갯수 조회
-    int hongdaeListCnt (Criteria criteria) throws Exception;
-    int hongdaeListCnt (Integer contenttypeid) throws Exception;
+    int hongdaeListCnt (Criteria criteria, Integer contenttypeid) throws Exception;
 
     // 강남 페이지 조회
     List<Map<String, Object>> selectGangnam (Criteria criteria, Integer contenttypeid) throws Exception;
@@ -52,4 +51,31 @@ public interface LocationBoardMapper {
 
     // 명동 총갯수 조회
     int myeongdongListCnt (Integer contenttypeid) throws Exception;
+
+    // 잠실 페이지 조회
+    List<Map<String, Object>> selectJamsil (Criteria criteria, Integer contenttypeid);
+
+    // 잠실 상세 페이지 조회
+    Table_name jamsilDetail (int contentId, int typeId) throws Exception;
+
+    // 잠실 총갯수 조회
+    int jamsilListCnt (Integer contenttypeid) throws Exception;
+
+    // 이태원 페이지 조회
+    List<Map<String, Object>> selectItaewon (Criteria criteria, Integer contenttypeid);
+
+    // 이태원 상세 페이지 조회
+    Table_name itaewonDetail (int contentId, int typeId) throws Exception;
+
+    // 이태원 총갯수 조회
+    int itaewonListCnt (Integer contenttypeid) throws Exception;
+
+    // 광화문 페이지 조회
+    List<Map<String, Object>> selectGwanghwamun (Criteria criteria, Integer contenttypeid);
+
+    // 광화문 상세 페이지 조회
+    Table_name gwanghwamunDetail (int contentId, int typeId) throws Exception;
+
+    // 광화문 총갯수 조회
+    int gwanghwamunListCnt (Integer contenttypeid) throws Exception;
 }
