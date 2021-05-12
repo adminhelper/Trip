@@ -2,23 +2,22 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.project.tripinfo.repository.ReviewBoardMapper">
+    <!-- 리뷰 게시판 글 등록   -->
     <insert id="reviewBoardInsert" parameterType="com.project.tripinfo.model.ReviewBoard" useGeneratedKeys="true"
             keyProperty="board_no">
         INSERT INTO review_board (board_title, board_contents, member_id)
         values (#{board_title}, #{board_contents}, #{member_id})
     </insert>
-
+    <!--  리뷰 게시판에 글 등록시 파일도 등록  -->
     <insert id="reviewBoardFileInsert" parameterType="com.project.tripinfo.model.Review_File">
-        <![CDATA[
-            INSERT INTO file
-            (
-                board_no,
-                file_origin_name,
-                file_name,
-                file_size,
-                file_regdate
-            ) VALUES
-        ]]>
+        INSERT INTO file
+        (
+        board_no,
+        file_origin_name,
+        file_name,
+        file_size,
+        file_regdate
+        ) VALUES
         <foreach collection="list" item="item" separator=",">
             (
             #{item.board_no},
@@ -28,8 +27,8 @@
             NOW()
             )
         </foreach>
-
     </insert>
+    <!-- 리뷰 게시판 수정   -->
     <update id="reviewBoardModify" parameterType="com.project.tripinfo.model.ReviewBoard">
         UPDATE review_board rb
             left outer join file f on rb.board_no = f.board_no
@@ -38,17 +37,22 @@
             f.file_name       = #{file_name}
         WHERE rb.board_no = #{board_no}
     </update>
+
+    <!-- 리뷰 게시판 삭제  -->
     <update id="reviewBoardDelete" parameterType="int">
         UPDATE review_board
         SET TNF = 'F'
         WHERE board_no = #{board_no}
     </update>
 
+    <!-- 리뷰 게시판 조   -->
     <select id="reviewBoardList" resultType="hashmap" parameterType="hashmap">
-        SELECT b.board_no,b.member_id,board_title,board_contents,m.member_nickname,b.board_likecnt , file_name
-        FROM review_board b LEFT JOIN member m on b.member_id = m.member_id LEFT JOIN file f on b.board_no = f.board_no
-        WHERE TNF = 'T' AND b.board_no = f.board_no
-
+        SELECT b.board_no,b.member_id,board_title,board_contents,m.member_nickname,b.board_likecnt,f.file_name
+        FROM review_board b
+                LEFT JOIN member m on b.member_id = m.member_id
+                                        LEFT JOIN file f on b.board_no = f.board_no
+        WHERE TNF = 'T'
+                AND b.board_no = f.board_no
         <if test='searchType.equals("board_title")'>
             AND b.board_title LIKE concat('%', #{keyword}, '%')
         </if>
@@ -58,21 +62,18 @@
         ORDER BY board_no DESC
         LIMIT #{pageStart}, #{amount}
     </select>
-
+    <!--  메인 화면 리뷰게시판 리스트  -->
     <select id="reviewMainList" resultType="hashmap">
-        <![CDATA[
         SELECT b.board_no, b.member_id, board_title, board_contents, m.member_nickname, b.board_likecnt, file_name
         FROM review_board b
                  LEFT JOIN member m on b.member_id = m.member_id
-                 LEFT JOIN file f on b.board_no = f.board_no
+                            LEFT JOIN file f on b.board_no = f.board_no
         WHERE TNF = 'T'
-          AND b.board_no = f.board_no
+                AND b.board_no = f.board_no
         ORDER BY board_no DESC
-
-
         LIMIT 3
-        ]]>
     </select>
+    <!-- 리뷰 게시판 상세 조회   -->
     <select id="reviewBoardDetail" resultType="com.project.tripinfo.model.ReviewBoard">
         SELECT rb.board_title, rb.board_contents, rb.member_id, rb.board_no, f.file_name
         FROM review_board rb
@@ -80,6 +81,7 @@
         where rb.board_no = #{board_no}
     </select>
 
+    <!--  리뷰 게시판 페이징  -->
     <select id="ListPaging" resultType="com.project.tripinfo.model.ReviewBoard">
         SELECT *
         FROM review_board
@@ -87,7 +89,7 @@
         ORDER BY board_no DESC
         LIMIT #{pageNum}, #{amount}
     </select>
-
+    <!--  리뷰 게시판 총 갯수  -->
     <select id="boardListCnt" resultType="java.lang.Integer" parameterType="com.project.tripinfo.util.Criteria">
         select count(*)
         from review_board b LEFT JOIN member m on b.member_id = m.member_id

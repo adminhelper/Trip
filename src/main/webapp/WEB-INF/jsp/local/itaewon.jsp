@@ -12,7 +12,7 @@
     <div class="container">
         <div class="text-center">
             <h2 class="section-heading text-uppercase">이태원</h2>
-            <h3 class="section-subheading text-muted">==============수정하세요========</h3>
+            <h3 class="section-subheading text-muted">K-의 모든곳을 담은 콜라보</h3>
         </div>
         <div class="tag-element">
             <button onclick="onBtn()">전체</button>

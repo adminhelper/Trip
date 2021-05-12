@@ -12,7 +12,7 @@
     <div class="container">
         <div class="text-center">
             <h2 class="section-heading text-uppercase">강남</h2>
-            <h3 class="section-subheading text-muted">================수정하세요=========</h3>
+            <h3 class="section-subheading text-muted">서울의 최신 유행에 관한 모든 것</h3>
         </div>
         <div class="tag-element">
             <button onclick="onBtn()">전체</button>

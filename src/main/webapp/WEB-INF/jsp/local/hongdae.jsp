@@ -12,7 +12,7 @@
     <div class="container">
         <div class="text-center">
             <h2 class="section-heading text-uppercase">홍대</h2>
-            <h3 class="section-subheading text-muted">서울의 3대 번화가 중 교풍이 개방적이다</h3>
+            <h3 class="section-subheading text-muted">서울의 3대 번화가 중 젊은이들의 예술적 거리</h3>
         </div>
         <div class="tag-element">
             <button onclick="onBtn()">전체</button>

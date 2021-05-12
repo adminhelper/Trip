@@ -12,7 +12,7 @@
     <div class="container">
         <div class="text-center">
             <h2 class="section-heading text-uppercase">광화문</h2>
-            <h3 class="section-subheading text-muted">================수정하세요=========</h3>
+            <h3 class="section-subheading text-muted">대한민국의 4대문으로 하나 중 현대사회의 바쁨이 느껴지는 거리</h3>
         </div>
         <div class="tag-element">
             <button onclick="onBtn()">전체</button>

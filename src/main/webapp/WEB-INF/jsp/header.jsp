@@ -27,7 +27,7 @@
                 </c:if>
                 <c:if test="${member.member_id == null}">
                     <li class="nav-item"><a class="nav-link js-scroll-trigger"  href="/login">로그인</a></li>
-                    <li class="nav-item"><a class="nav-link js-scroll-trigger"  href="/member/register">로그인</a></li>
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger"  href="/member/register">회원가입</a></li>
                 </c:if>
             </ul>
 

@@ -437,7 +437,8 @@
             <c:forEach items="${review}" var="data">
                 <li>
                     <a class="link" href="/board/review/detail?no=${data.board_no}">
-                        <div class="timeline-image"><img class="rounded-circle img-fluid" src="/${data.file_name}"
+                        <div class="timeline-image"><img class="rounded-circle img-fluid"
+                                                         style="width: 156px; height: 156px;" src="/${data.file_name}"
                                                          alt=""/></div>
                         <div class="timeline-panel">
                             <div class="timeline-heading">
@@ -465,7 +466,7 @@
             <div class="col-lg-4">
                 <div class="team-member">
                     <a class="portfolio-link text-center" data-toggle="modal" href="#weather">
-                        <img class="mx-auto rounded-circle" src="/assets/img/team/2.jpg" alt=""/>
+                        <img class="mx-auto rounded-circle" src="/img/weater.png" alt=""/>
                         <h4>날씨</h4>
                     </a>
                 </div>
@@ -473,7 +474,7 @@
             <div class="col-lg-4">
                 <div class="team-member">
                     <a class="portfolio-link text-center" id="kakao" data-toggle="modal" href="#traffic">
-                        <img class="mx-auto rounded-circle" src="/assets/img/team/2.jpg" alt=""/>
+                        <img class="mx-auto rounded-circle" src="/img/map.jpg" alt=""/>
                         <h4>지도</h4>
                     </a>
                 </div>
@@ -606,7 +607,6 @@
         </div>
     </div>
 </div>
-
 <div class="portfolio-modal modal fade" id="traffic" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -615,13 +615,10 @@
                 <div class="row justify-content-center">
                     <div class="col-lg-8">
                         <div class="modal-body">
-                            <!-- Project Details Go Here-->
                             <h2 class="text-uppercase">길찾기</h2>
-                            <meta charset="utf-8">
                             <title>키워드로 장소검색하고 목록으로 표출하기</title>
                             <div class="map_wrap">
                                 <div id="map" style="width:100%;height:100%;position:relative;overflow:hidden;"></div>
-
                                 <div id="menu_wrap" class="bg_white">
                                     <div class="option">
                                         <div>

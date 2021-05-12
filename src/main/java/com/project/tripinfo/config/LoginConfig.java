@@ -11,7 +11,7 @@ public class LoginConfig implements WebMvcConfigurer {
     @Override
     public void addInterceptors (InterceptorRegistry registry) {
         registry.addInterceptor(new LoginInterceptor())
-                .addPathPatterns("/login")
+                .addPathPatterns("/login","/mypage")
                 //패턴에 url입력하면 인터셉터
                 .excludePathPatterns("/login", "/css/**", "/js/**",
                         "/idCheck", "/loginCheck");

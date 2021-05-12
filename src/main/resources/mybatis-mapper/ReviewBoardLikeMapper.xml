@@ -3,26 +3,39 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.project.tripinfo.repository.ReviewBoardLikeMapper">
 
+    <!--  리뷰 게시판 좋아요 등록   -->
     <insert id="createBoardLike">
         INSERT INTO review_board_like (board_no, member_id)
-        VALUES (#{board_no},#{member_id})
+        VALUES (
+                #{board_no},
+                #{member_id}
+                )
     </insert>
+
+    <!-- 리뷰 게시판 좋아요 취소   -->
     <delete id="deleteBoardLike">
-        DELETE FROM review_board_like
-        WHERE board_no = #{board_no} AND member_id = #{member_id}
+        DELETE
+        FROM review_board_like
+        WHERE board_no = #{board_no}
+                    AND member_id = #{member_id}
     </delete>
+    <!-- 리뷰 게시판 좋아요 총 갯수 변경   -->
     <select id="updateBoardLike">
         UPDATE review_board
         SET
-            board_likecnt = (SELECT COUNT(*)
-                             FROM review_board_like
-                             WHERE board_no = #{board_no})
-                            WHERE board_no = #{board_no}
+            board_likecnt = (
+                                SELECT COUNT(*)
+                                FROM review_board_like
+                                WHERE board_no = #{board_no}
+                            )
+            WHERE board_no = #{board_no}
     </select>
 
+    <!--  리뷰게시판 중복 회원 좋아요 확인  -->
     <select id="getBoardLike" resultType="int">
         SELECT COUNT(member_id)
-                FROM review_board_like
-                        WHERE board_no = #{board_no} AND member_id = #{member_id}
+        FROM review_board_like
+        WHERE board_no = #{board_no}
+                    AND member_id = #{member_id}
     </select>
 </mapper>
