@@ -18,22 +18,22 @@
                     <div class="modal-body">
                         <form id="frm" name="frm" method="post" action='/board/review/insert'
                               enctype="multipart/form-data">
-                            <div class="text-center">
+                            <div class="text-center" style="width: 1000px;">
 
                                 <table class="table table-striped table-bordered">
 
                                     <tr>
                                         <th>제목</th>
-                                        <td><input type="text" id="board_title" name="board_title"></td>
+                                        <td><input  type="text" id="board_title" name="board_title" style="width: 600px;"></td>
                                     </tr>
                                     <tr>
                                         <th>작성자</th>
                                         <td><input type="text" readonly="readonly" name="member_id"
-                                                   value="${member.member_id}">${reviewBoard.member_id}</td>
+                                                  style="width: 600px;" value="${member.member_id}">${reviewBoard.member_id}</td>
                                     </tr>
                                     <tr>
                                         <th>내용</th>
-                                        <td><textarea rows="5" cols="13" id="board_contents"
+                                        <td><textarea style="width: 600px; resize: none;" rows="5" cols="13" id="board_contents"
                                                       name="board_contents"></textarea></td>
                                     </tr>
                                     <tr>

@@ -43,10 +43,10 @@
                                         <th>이미지</th>
                                         <td><img class="img-fluid" src="/${board.file_name}"/></td>
                                     </tr>
-                                    <input type="hidden" name="board_no" value="${board.board_no}">
-                                    <button type="button" onclick="history.back()">돌아가</button>
-                                    <button id="modify" type="submit">수정완료</button>
                                 </table>
+                                <input type="hidden" name="board_no" value="${board.board_no}">
+                                <button type="button" onclick="history.back()">취소</button>
+                                <button id="modify" type="submit">수정완료</button>
                             </div>
                         </form>
                     </div>

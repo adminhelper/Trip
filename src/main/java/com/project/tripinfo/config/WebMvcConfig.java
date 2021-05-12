@@ -9,21 +9,14 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @SpringBootConfiguration
 public class WebMvcConfig implements WebMvcConfigurer {
 
-
-//    @Override
-//    public void addInterceptors (InterceptorRegistry registry) {
-//        registry.addInterceptor(new LogInterceptor())
-//                .excludePathPatterns("/css/**", "/assets/**",
-//                        "/img/**", "/js/**", "/login/**");
-//    }
-
-
+    //이미지 파일 경로 찾기
     @Override
     public void addResourceHandlers (ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/images/**")
                 .addResourceLocations("file:////Users/byeonsungmun/Documents/SungMun/Ta9/project/images/");
     }
 
+    // 파일 인코딩
     @Bean
     public CommonsMultipartResolver multipartResolver () {
         CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver();

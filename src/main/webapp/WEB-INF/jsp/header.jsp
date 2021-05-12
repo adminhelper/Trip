@@ -38,27 +38,7 @@
 
     </div>
 </nav>
-<div class="modal modal-center fade" id="myModal" tabindex="-1" role="dialog"
-     aria-labelledby="my80sizeCenterModalLabel">
-    <div class="modal-dialog modal-80size modal-center" role="document">
-        <div class="modal-content modal-80size">
-            <div class="modal-header">
-                전체 검색
-            </div>
-            <div class="modal-body">
-                <div class="w300" style="padding-right:10px">
-                    <input type="text" class="form-control form-control-sm" name="" id="" placeholder="검색어를 입력해주세요">
-                </div>
-                <div>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary" data-dismiss="modal">검색</button>
-                <button type="button" class="btn btn-dark" data-dismiss="modal">닫기</button>
-            </div>
-        </div>
-    </div>
-</div>
+
 <!-- Masthead-->
 <header class="masthead">
     <div class="container">

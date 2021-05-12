@@ -221,7 +221,7 @@
         </if>
     </select>
 
-    <!-- 이태원 페이지 조회  -->
+    <!-- 광화문 페이지 조회  -->
     <select id="selectGwanghwamun" resultType="hashmap" parameterType="hashmap">
         SELECT *
         FROM location_board
@@ -237,7 +237,7 @@
         LIMIT #{criteria.pageStart}, #{criteria.amount}
     </select>
 
-    <!-- 이태원 상세 페이지 조회  -->
+    <!-- 광과문 상세 페이지 조회  -->
     <select id="gwanghwamunDetail" resultType="com.project.tripinfo.model.Table_name">
         SELECT *
         FROM location_board
@@ -245,7 +245,7 @@
                 AND contenttypeid = #{typeId}
     </select>
 
-    <!-- 이태원 게시글 갯수 조회  -->
+    <!-- 광화문 게시글 갯수 조회  -->
     <select id="gwanghwamunListCnt" resultType="java.lang.Integer" parameterType="java.lang.Integer">
         SELECT count(*)
         FROM location_board

@@ -20,27 +20,27 @@
                         <form name="form" method="post">
                             <table class="table table-striped table-bordered">
                                 <tr>
-                                    <th>글번호</th>
-                                    <td>${board.board_no}</td>
+                                    <th>글번호
+                                    ${board.board_no}</th>
                                 </tr>
                                 <tr>
-                                    <th>제목</th>
-                                    <td><input readonly="readonly" name="board_title" id="board_title"
-                                               value="${board.board_title}"></td>
+                                    <th>제목
+                                    <input readonly="readonly" name="board_title" id="board_title"
+                                               value="${board.board_title}"></th>
                                 </tr>
                                 <tr>
-                                    <th>작성자</th>
-                                    <td><input readonly="readonly" name="member_id" id="member_id"
-                                               value="${board.member_id}"></td>
+                                    <th>작성자
+                                   <input readonly="readonly" name="member_id" id="member_id"
+                                               value="${board.member_id}"></th>
                                 </tr>
                                 <tr>
-                                    <th>내용</th>
-                                    <td><input readonly="readonly" name="board_contents" id="board_contents"
-                                               value="${board.board_contents}"></td>
+                                    <th>내용
+                                   <input readonly="readonly" name="board_contents" id="board_contents"
+                                               value="${board.board_contents}"></th>
                                 </tr>
                                 <tr>
-                                    <th>이미지</th>
-                                    <td><img class="img-fluid" src="/${board.file_name}"/></td>
+                                    <th>
+                                    <img class="img-fluid" src="/${board.file_name}"/></th>
                                 </tr>
                                 <div style="text-align: right;">
                                     <button type="button" onclick="location.href='/board/review/boardlist'">목록</button>

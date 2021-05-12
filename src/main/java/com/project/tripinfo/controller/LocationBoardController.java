@@ -1,7 +1,6 @@
 package com.project.tripinfo.controller;
 
-import com.project.tripinfo.api.Gangnam;
-import com.project.tripinfo.api.Hongdae;
+import com.project.tripinfo.api.LocationAPI;
 import com.project.tripinfo.model.Table_name;
 import com.project.tripinfo.service.LocationBoard;
 import com.project.tripinfo.util.Criteria;
@@ -26,10 +25,7 @@ public class LocationBoardController {
     LocationBoard locationBoard;
 
     @Autowired
-    Hongdae hongdae;
-
-    @Autowired
-    Gangnam gangnam;
+    LocationAPI locationAPI;
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 

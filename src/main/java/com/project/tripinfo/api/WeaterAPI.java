@@ -17,7 +17,7 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 
 @Component
-public class ApiExplorer {
+public class WeaterAPI {
     public Map<String, Object> OpenApi () throws IOException {
         Map<String, Object> resultMap = new HashMap<>();
         try {

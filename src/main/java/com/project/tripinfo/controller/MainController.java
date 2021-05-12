@@ -1,6 +1,6 @@
 package com.project.tripinfo.controller;
 
-import com.project.tripinfo.api.ApiExplorer;
+import com.project.tripinfo.api.WeaterAPI;
 import com.project.tripinfo.model.Member;
 import com.project.tripinfo.service.MemberService;
 import com.project.tripinfo.service.ReviewBoardService;
@@ -25,7 +25,7 @@ import java.util.Map;
 public class MainController {
 
     @Autowired
-    ApiExplorer apiExplorer;
+    WeaterAPI weaterAPI;
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
@@ -47,7 +47,7 @@ public class MainController {
     @RequestMapping("/api")
     @ResponseBody
     public Map<String, Object> api () throws Exception {
-        return apiExplorer.OpenApi();
+        return weaterAPI.OpenApi();
     }
 
     @RequestMapping(value = "/login")
