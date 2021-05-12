@@ -70,7 +70,7 @@ public class FileUtils {
                     boardFile.setFile_name(path + "/" + newFileName);
                     fileList.add(boardFile);
 
-                    file = new File("/Users/byeonsungmun/Documents/SungMun/Ta9/project/src/main/resources/static/images" + "/" + newFileName);
+                    file = new File("/Users/byeonsungmun/Documents/SungMun/Ta9/project/images" + "/" + newFileName);
                     multipartFile.transferTo(file);
                 }
             }

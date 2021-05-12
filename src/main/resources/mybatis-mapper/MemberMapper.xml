@@ -44,7 +44,8 @@
     <!-- 비밀번호 체크   -->
     <update id="pwdCheck" parameterType="com.project.tripinfo.model.Member">
         UPDATE member
-        SET member_password = #{member_password}
+        SET member_password = #{member_password},
+            upd_dttm = NOW()
         WHERE member_id = #{member_id}
     </update>
 

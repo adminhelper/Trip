@@ -135,22 +135,7 @@
     var validate = false;
     var pwd = /^.*(?=^.{8,20}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$/;
     var blank = /\s/g;
-    //패스워드확인
-    // $("#pwd1,#pwd2").keyup(function () {
-    //     if ($("#pwd1").val() != $("#pwd2").val()) {
-    //         $("#pwcheck").text("비밀번호가 다릅니다.");
-    //         $("#pwcheck").css("color", "red");
-    //         validate = false;
-    //     } else if ($("#pwd2").val() == "") {
-    //         $("#pwcheck").text("패스워드를 입력해주시기 바랍니다.");
-    //         $("#pwcheck").css("color", "red");
-    //         validate = false;
-    //     } else {
-    //         $("#pwcheck").text("비밀번호가 일치합니다.");
-    //         $("#pwcheck").css("color", "blue");
-    //         validate = true;
-    //     }
-    // });
+
     // 2.패스워드 유효성 검증
     $('#pwd1').keyup(function () {
         var member_password = $('#pwd1').val();
@@ -171,7 +156,7 @@
             $('#pwcheck1').text("비밀번호가 다릅니다.");
             $('#pwcheck1').css('color', 'red');
             validate = false;
-        } else if ($('#pwd2').val() == '') {
+        } else if (!pwd.test($(this).val()) || blank.test($(this).val())) {
             $('#pwcheck1').text("패스워드를 재입력 바람!");
             $('#pwcheck1').css('color', 'red');
             validate = false;

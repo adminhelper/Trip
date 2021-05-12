@@ -18,11 +18,11 @@ public class WebMvcConfig implements WebMvcConfigurer {
 //    }
 
 
-//    @Override
-//    public void addResourceHandlers (ResourceHandlerRegistry registry) {
-//        registry.addResourceHandler("/images/**")
-//                .addResourceLocations("/Users/byeonsungmun/Documents/SungMun/Ta9/project/src/main/resources/static/imgaes");
-//    }
+    @Override
+    public void addResourceHandlers (ResourceHandlerRegistry registry) {
+        registry.addResourceHandler("/images/**")
+                .addResourceLocations("file:////Users/byeonsungmun/Documents/SungMun/Ta9/project/images/");
+    }
 
     @Bean
     public CommonsMultipartResolver multipartResolver () {
